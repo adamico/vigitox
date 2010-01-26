@@ -1,0 +1,7 @@
+*~
+.*.swp
+.DS_Store
+log/*.log
+tmp/**/*
+config/database.yml
+db/*.sqlite3
