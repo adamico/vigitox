@@ -1,0 +1,2 @@
+module RevuesHelper
+end

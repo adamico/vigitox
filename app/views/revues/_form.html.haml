@@ -1,0 +1,13 @@
+-# encoding: utf-8
+- form_for @revue do |f|
+  = f.error_messages
+  %p
+    = f.label :numero, "Numéro"
+    %br
+    = f.text_field :numero
+  %p
+    = f.label :date_sortie
+    %br
+    = f.date_select :date_sortie
+  %p
+    = f.submit "Sauvegarder"

@@ -1,0 +1,15 @@
+- title "Revue"
+
+%p
+  %strong Numero:
+  =h @revue.numero
+%p
+  %strong Date Sortie:
+  =h @revue.date_sortie
+
+%p
+  = link_to "Edit", edit_revue_path(@revue)
+  |
+  = link_to "Destroy", @revue, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", revues_path
