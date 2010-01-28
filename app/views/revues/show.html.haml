@@ -1,11 +1,8 @@
-- title "Revue"
+-# encoding: utf-8
+- title "Vigitox N° #{@revue.numero}"
 
 %p
-  %strong Numero:
-  =h @revue.numero
-%p
-  %strong Date Sortie:
-  =h @revue.date_sortie
+  %strong= "Date de sortie : " + (l @revue.date_sortie, :format => :month_year)
 
 %p
   = link_to "Edit", edit_revue_path(@revue)

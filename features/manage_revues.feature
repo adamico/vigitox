@@ -7,9 +7,11 @@ Feature: admin adds new revues and articles
     Given I am on the homepage
     When I follow "Nouveau numéro"
       And I fill in "Numéro" with "1"
-      And I select "Janvier 2010" as the "Date de sortie" date
+      And I select "janvier 2010" as the revue "date_sortie" date
       And I press "Sauvegarder"
     Then a revue should exist
+      And I should see "Vigitox N° 1"
+      And I should see "Date de sortie : janvier 2010"
 
   Scenario: creating revues with existing number
 

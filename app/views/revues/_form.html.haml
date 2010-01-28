@@ -8,6 +8,6 @@
   %p
     = f.label :date_sortie, "Date de sortie"
     %br
-    = f.date_select :date_sortie
+    = f.date_select :date_sortie, :discard_day => true
   %p
     = f.submit "Sauvegarder"
