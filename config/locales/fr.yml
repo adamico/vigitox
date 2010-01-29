@@ -1,3 +1,4 @@
+# encoding: utf-8
 # French translations for Ruby on Rails 
 # by Christian Lescuyer (christian@flyingcoders.com)
 # contributor: Sebastien Grosjean - ZenCocoon.com
@@ -122,9 +123,9 @@ fr:
         exclusion: "n'est pas disponible"
         invalid: "n'est pas valide"
         confirmation: "ne concorde pas avec la confirmation"
-        accepted: "doit être accepté(e)"
-        empty: "doit être rempli(e)"
-        blank: "doit être rempli(e)"
+        accepted: "doit etre accepté(e)"
+        empty: "doit etre rempli(e)"
+        blank: "doit etre rempli(e)"
         too_long: "est trop long (pas plus de {{count}} caractères)"
         too_short: "est trop court (au moins {{count}} caractères)"
         wrong_length: "ne fait pas la bonne longueur (doit comporter {{count}} caractères)"
@@ -137,3 +138,5 @@ fr:
         less_than_or_equal_to: "doit être inférieur ou égal à {{count}}"
         odd: "doit être impair"
         even: "doit être pair"
+        record_invalid: "La validation a échoué : {{errors}}"
+        

@@ -1,13 +1,13 @@
 -# encoding: utf-8
-- form_for @revue do |f|
+-form_for @revue do |f|
   = f.error_messages
   %p
-    = f.label :numero, "Numéro"
+    =f.label :numero, "Numéro"
     %br
-    = f.text_field :numero
+    =f.text_field :numero
   %p
-    = f.label :date_sortie, "Date de sortie"
+    =f.label :date_sortie, "Date de sortie"
     %br
-    = f.date_select :date_sortie, :discard_day => true
+    =f.date_select :date_sortie, :discard_day => true, :include_blank => true
   %p
-    = f.submit "Sauvegarder"
+    =f.submit "Enregistrer"
