@@ -1,15 +1,9 @@
+-# encoding: utf-8
 - title "Revues"
 
-%table
-  %tr
-    %th Numero
-    %th Date sortie
+#revues
   - for revue in @revues
-    %tr
-      %td= h revue.numero
-      %td= h revue.date_sortie
-      %td= link_to 'Show', revue
-      %td= link_to 'Edit', edit_revue_path(revue)
-      %td= link_to 'Destroy', revue, :confirm => 'Are you sure?', :method => :delete
+    %h2
+      = link_to "Vigitox N°#{revue.numero}", revue_path(revue)
 
 %p= link_to "Nouveau numéro", new_revue_path

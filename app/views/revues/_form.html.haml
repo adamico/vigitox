@@ -10,4 +10,7 @@
     %br
     =f.date_select :date_sortie, :discard_day => true, :include_blank => true
   %p
+    =f.label :pdf, "PDF"
+    =f.file_field :pdf
+  %p
     =f.submit "Enregistrer"

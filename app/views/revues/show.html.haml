@@ -4,9 +4,18 @@
 %p
   %strong= "Date de sortie : " + (l @revue.date_sortie, :format => :month_year)
 
+-if !@revue.articles.blank?
+  #articles
+    = render :partial => @revue.articles
+-else
+  %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
+
+
 %p
   = link_to "Edit", edit_revue_path(@revue)
   |
   = link_to "Destroy", @revue, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "Nouvel article", new_revue_article_path(@revue)
   |
   = link_to "View All", revues_path

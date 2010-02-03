@@ -1,0 +1,5 @@
+- title "Nouvel article for Vigitox N°#{@revue.numero}"
+
+= render :partial => 'form'
+
+%p= link_to "<= Revue", revue_url(@article.revue_id)

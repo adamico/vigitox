@@ -1,0 +1,14 @@
+-# encoding: utf-8
+- title "Articles"
+
+%p
+  = link_to "Retourner à la revue", @revue
+
+-if @revue.articles.empty?
+  %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
+-else
+  #articles
+    = render :partial => @revue.articles
+
+%p
+  = link_to "Nouvel article", new_revue_article_path(@revue)

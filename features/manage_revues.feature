@@ -25,3 +25,20 @@ Feature: admin adds new revues and articles
       And I select "janvier 2010" as the revue "date_sortie" date
       And I submit
     Then I should see "Numero doit etre rempli(e)"
+
+  Scenario: creating new articles for revue
+    Given a revue exists
+    When I go to the revue's page
+      And I follow "Nouvel article"
+      And I fill in "Titre" with "titre"
+      And I fill in "Contenu" with "contenu"
+      And I submit
+    Then I should see "titre"
+      And 1 articles should exist
+
+  Scenario: attaching a pdf version of a revue
+    Given a revue exists
+    When I go to the revue's edit page
+      And I attach the file "/home/ada/vigitox37.pdf" to "pdf"
+      And I submit
+    Then I should see "Successfully updated revue."
