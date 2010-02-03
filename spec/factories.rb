@@ -7,3 +7,8 @@ Factory.define(:article) do |a|
   a.sequence(:titre) {|n| "article#{n}"}
   a.association :revue
 end
+
+Factory.define(:categorie) do |c|
+  c.name 'CAP'
+end
+
