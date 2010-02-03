@@ -16,7 +16,8 @@ Feature: admin adds new revues and articles
       And I fill in "Numéro" with "1"
       And I select "janvier 2010" as the revue "date_sortie" date
       And I submit
-    Then I should see "Numero n'est pas disponible"
+    Then I should see "Numéro"
+      And I should see "n'est pas disponible"
       And 1 revues should exist
 
   Scenario: creating revues without number
@@ -24,7 +25,8 @@ Feature: admin adds new revues and articles
     When I follow "Nouveau numéro"
       And I select "janvier 2010" as the revue "date_sortie" date
       And I submit
-    Then I should see "Numero doit etre rempli(e)"
+    Then I should see "Numéro"
+      And I should see "doit etre rempli(e)"
 
   Scenario: creating new articles for revue
     Given a revue exists
@@ -36,8 +38,6 @@ Feature: admin adds new revues and articles
       And I check "CAP"
       And I submit
     Then I should see "titre"
-      And 1 articles should exist
-      And the article should be one of categorie: "CAP" articles
 
   Scenario: attaching a pdf version of a revue
     Given a revue exists

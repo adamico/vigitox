@@ -29,3 +29,4 @@ config.gem 'rspec-rails',      :lib => false, :version => '>=1.2.9' unless File.
 
 config.gem 'spork',            :lib => false, :version => '>=0.7.4' unless File.directory?(File.join(Rails.root, 'vendor/plugins/spork'))
 config.gem "factory_girl",     :lib => false, :version => '>=2.0.0' unless File.directory?(File.join(Rails.root, 'vendor/plugins/factory_girl'))
+config.gem 'justinfrench-formtastic', :lib => false

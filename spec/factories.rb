@@ -6,6 +6,7 @@ end
 Factory.define(:article) do |a|
   a.sequence(:titre) {|n| "article#{n}"}
   a.association :revue
+  a.categories {|cats| [cats.association(:categorie)]}
 end
 
 Factory.define(:categorie) do |c|
