@@ -1,16 +1,8 @@
 -# encoding: utf-8
--form_for @revue do |f|
-  = f.error_messages
-  %p
-    =f.label :numero, "Numéro"
-    %br
-    =f.text_field :numero
-  %p
-    =f.label :date_sortie, "Date de sortie"
-    %br
-    =f.date_select :date_sortie, :discard_day => true, :include_blank => true
-  %p
-    =f.label :pdf, "PDF"
-    =f.file_field :pdf
-  %p
-    =f.submit "Enregistrer"
+- semantic_form_for @revue do |f|
+  - f.inputs do
+    = f.input :numero, :label => 'Numéro'
+    = f.input :date_sortie, :label => 'Date de sortie', :discard_day => true, :include_blank => true
+    = f.input :pdf
+  - f.buttons do
+    = f.commit_button "Enregistrer"
