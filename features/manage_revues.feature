@@ -28,13 +28,16 @@ Feature: admin adds new revues and articles
 
   Scenario: creating new articles for revue
     Given a revue exists
+      And a categorie: "CAP" exists
     When I go to the revue's page
       And I follow "Nouvel article"
       And I fill in "Titre" with "titre"
       And I fill in "Contenu" with "contenu"
+      And I check "CAP"
       And I submit
     Then I should see "titre"
       And 1 articles should exist
+      And the article should be one of categorie: "CAP" articles
 
   Scenario: attaching a pdf version of a revue
     Given a revue exists

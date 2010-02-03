@@ -1,0 +1,12 @@
+<% title "Categorie" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @categorie.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_categorie_path(@categorie) %> |
+  <%= link_to "Destroy", @categorie, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", categories_path %>
+</p>
