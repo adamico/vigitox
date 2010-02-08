@@ -2,9 +2,13 @@
 - title "Vigitox N° #{@revue.numero}"
 
 %p
+  = link_to 'Télécharger le PDF', @revue.pdf.url
+
+%p
   %strong= "Date de sortie : " + (l @revue.date_sortie, :format => :month_year)
 
 -if !@revue.articles.blank?
+  %h2 Liste des articles
   #articles
     = render :partial => @revue.articles
 -else

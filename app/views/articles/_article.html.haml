@@ -1,5 +1,19 @@
-.article
-  %b= h(article.titre)
-  %p
-    =link_to "Modifier", edit_article_path(article) |
-    =link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"
+%table.article
+  %tr
+    %td.buttons
+      =link_to "Modifier", edit_article_path(article)
+      %br
+      =link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"
+    %td
+      %b
+        -if article.fiche_technique?
+          = "Fiche technique : #{article.titre}"
+        -else
+          = h(article.titre)
+  %tr
+    %td
+    %td.tags
+      - unless article.tags.blank?
+        = "Tags : "
+        - article.tags.each do |t|
+          = link_to t.name, tag_path(t)

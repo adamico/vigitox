@@ -2,6 +2,9 @@
   - f.inputs do
     = f.input :titre, :label => 'Titre'
     = f.input :contenu, :label => 'Contenu'
+    = f.label :tag_names, "Tags"
+    = f.text_field :tag_names
     = f.input :categories, :as => :check_boxes
+    = f.input :fiche_technique
   - f.buttons do
     = f.commit_button "Enregistrer"

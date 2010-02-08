@@ -35,13 +35,34 @@ Feature: admin adds new revues and articles
       And I follow "Nouvel article"
       And I fill in "Titre" with "titre"
       And I fill in "Contenu" with "contenu"
+      And I fill in "Tags" with "paracétamol grossesse"
       And I check "CAP"
+      And I check "Fiche technique"
       And I submit
-    Then I should see "titre"
+    Then I should see "Fiche technique : titre"
+      And I should see "paracétamol"
+      And I should see "grossesse"
+    
 
+  @wip
   Scenario: attaching a pdf version of a revue
     Given a revue exists
     When I go to the revue's edit page
       And I attach the file "/home/ada/vigitox37.pdf" to "pdf"
       And I submit
     Then I should see "Successfully updated revue."
+    
+  @focus
+  Scenario: lists tag links for article
+    Given an article in a revue
+      And the following tags exist:
+        | name |
+        | io    |
+        | tu    |
+        | noi   |
+        | voi   |
+    When I visit the revue's page
+    Then I should see "io" within "a"
+    Then I should see "tu" within "a"
+    Then I should see "noi" within "a"
+    Then I should see "voi" within "a"

@@ -79,3 +79,15 @@ a {
   font-size: 12px;
   list-style: disc;
 }
+
+td.buttons {
+  padding-left: 1em;
+}
+
+td.tags {
+  font-size: 0.8em;
+}
+
+td.right {
+  text-align: right;
+}
