@@ -1,0 +1,14 @@
+- title "Pathologies"
+
+%table{ :style =>}
+  %tr
+    %th Name
+  - for pathologie in @pathologies
+    %tr{ :class => cycle("even", "odd")}
+      %td
+        = link_to pathologie.name, pathologie
+        = pluralize(pathologie.articles.count, 'article')
+      %td= link_to 'Edit', edit_pathologie_path(pathologie)
+      %td= link_to 'Destroy', pathologie, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Pathologie", new_pathologie_path

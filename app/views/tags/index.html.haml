@@ -4,10 +4,10 @@
   %tr
     %th Name
   - for tag in @tags
-    %tr
+    %tr{ :class => cycle("even", "odd")}
       %td
         = link_to tag.name, tag
-        = "#{tag.articles.count} articles"
+        = pluralize(tag.articles.count, 'article')
       %td= link_to 'Edit', edit_tag_path(tag)
       %td= link_to 'Destroy', tag, :confirm => 'Are you sure?', :method => :delete
 

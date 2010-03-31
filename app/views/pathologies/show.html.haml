@@ -1,0 +1,23 @@
+- title "Pathologie"
+
+%p
+  %strong Name:
+  =h @pathologie.name
+
+%p
+  = link_to "Edit", edit_pathologie_path(@pathologie)
+  |
+  = link_to "Destroy", @pathologie, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", pathologies_path
+
+- if !@articles.blank?
+  %table
+    - for article in @articles
+      %tr
+        %td.right
+          = link_to "##{article.revue.numero}", revue_path(article.revue)
+        %td
+          = article.titre
+- else
+  Pas d'articles

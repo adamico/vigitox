@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   
   def show
     @categorie = Categorie.find(params[:id])
+    @articles = @categorie.articles.all(:order => 'titre ASC')
   end
   
   def new

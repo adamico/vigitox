@@ -1,0 +1,20 @@
+- title @categorie.name
+
+%p
+  = link_to "Edit", edit_categorie_path(@categorie)
+  |
+  = link_to "Destroy", @categorie, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", categories_path
+
+- if !@articles.blank?
+  %table
+    - for article in @articles
+      %tr
+        %td.right
+          = link_to "##{article.revue.numero}", revue_path(article.revue)
+        %td
+          = article.titre
+- else
+  Pas d'articles
+

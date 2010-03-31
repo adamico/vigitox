@@ -91,3 +91,10 @@ td.tags {
 td.right {
   text-align: right;
 }
+
+.even {
+  background-color: #ddd; }
+
+.odd {
+  background-color: white; }
+

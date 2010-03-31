@@ -1,6 +1,11 @@
 -# encoding: utf-8
 - title "Liste des Vigitox publiés"
 
+%p
+  = link_to "Index par produits", tags_path(:format => "pdf")
+%p
+  = link_to "Index par pathologies", pathologies_path(:format => "pdf")
+
 #revues
   - for revue in @revues
     %h2
