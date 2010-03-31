@@ -7,6 +7,24 @@
   %strong Nature:
   =h @argument.nature
 
+%ul
+  - if !@argument.articles_as_main.blank?
+    %h3 Articles avec cet argument comme principal
+    - for article in @argument.articles_as_main
+      %li
+        = link_to "#{article.titre} (VIGITOX##{article.revue.numero})", revue_path(article.revue)
+  - else
+    Pas d'articles avec cet argument comme principal
+
+%ul
+  - if !@argument.articles_as_aux.blank?
+    %h3 Articles avec cet argument comme secondaire
+    - for article in @argument.articles_as_aux
+      %li
+        = link_to "#{article.titre} (VIGITOX##{article.revue.numero})", revue_path(article.revue)
+  - else
+    Pas d'articles avec cet argument comme secondaire
+
 %p
   = link_to "Edit", edit_argument_path(@argument)
   |

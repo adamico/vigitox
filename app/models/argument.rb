@@ -1,7 +1,7 @@
 class Argument < ActiveRecord::Base
   attr_accessible :name, :nature
   validates_presence_of :name
-  #NATURES = %w(pathologie médicament champignon)
+  NATURES = %w(pathologie produit circonstance)
   def articles_as_main
     Article.all :joins => :argumentaire, :conditions => { 'argumentaires.main_argument_id' => self.id}
   end

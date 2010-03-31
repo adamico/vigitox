@@ -98,3 +98,6 @@ td.right {
 .odd {
   background-color: white; }
 
+#revue {
+  border: 1px solid black;
+}

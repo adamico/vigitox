@@ -6,10 +6,12 @@
     %th Nature
   - for argument in @arguments
     %tr
-      %td= h argument.name
+      %td= link_to h(argument.name), argument
       %td= h argument.nature
-      %td= link_to 'Show', argument
       %td= link_to 'Edit', edit_argument_path(argument)
       %td= link_to 'Destroy', argument, :confirm => 'Are you sure?', :method => :delete
+
+%p= will_paginate @arguments, :previous_label => "<--", :next_label => "-->"
+%hr/
 
 %p= link_to "New Argument", new_argument_path

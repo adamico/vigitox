@@ -1,6 +1,5 @@
 # encoding: utf-8
 class Article < ActiveRecord::Base
-  acts_as_list
   belongs_to :revue
   has_and_belongs_to_many :categories, :join_table => "articles_categories"
 

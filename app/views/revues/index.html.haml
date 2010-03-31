@@ -2,13 +2,19 @@
 - title "Liste des Vigitox publiés"
 
 %p
-  = link_to "Index par produits", tags_path(:format => "pdf")
-%p
-  = link_to "Index par pathologies", pathologies_path(:format => "pdf")
+  = link_to "Index par arguments", arguments_path
+
+#revue
+  %h2= "Dernier Numéro : #{@derniere.numero}"
+  = render :partial => @derniere.articles
 
 #revues
   - for revue in @revues
-    %h2
-      = link_to "Vigitox N°#{revue.numero}", revue_path(revue)
+    %p
+      %b
+        = link_to "Vigitox N°#{revue.numero}", revue_path(revue)
+
+%p= will_paginate @revues, :previous_label => "<--", :next_label => "-->"
+%hr/
 
 %p= link_to "Nouveau numéro", new_revue_path

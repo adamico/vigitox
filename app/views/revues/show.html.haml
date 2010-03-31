@@ -1,6 +1,9 @@
 -# encoding: utf-8
 - title "Vigitox N° #{@revue.numero}"
 
+%p
+  - prev_and_next_item("Préc. <--", "&nbsp;", "--> Suiv.", @prev, @next)
+
 - if @revue.pdf?
   %p= link_to 'Télécharger le PDF', @revue.pdf.url
 - else
