@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :categories
+  map.resources :arguments
 
-  map.resources :pathologies
+  map.resources :categories
 
   map.resources :tags, :categories
   map.resources :revues, :has_many => :articles, :shallow => true

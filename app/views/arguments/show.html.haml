@@ -1,0 +1,15 @@
+- title "Argument"
+
+%p
+  %strong Name:
+  =h @argument.name
+%p
+  %strong Nature:
+  =h @argument.nature
+
+%p
+  = link_to "Edit", edit_argument_path(@argument)
+  |
+  = link_to "Destroy", @argument, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", arguments_path

@@ -9,7 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100215191007) do
+ActiveRecord::Schema.define(:version => 20100331082717) do
+
+  create_table "argumentaires", :force => true do |t|
+    t.integer  "main_argument_id"
+    t.integer  "aux_argument_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "arguments", :force => true do |t|
+    t.string   "name"
+    t.string   "nature"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "articles", :force => true do |t|
     t.text     "titre"

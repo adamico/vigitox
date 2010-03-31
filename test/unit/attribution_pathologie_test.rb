@@ -6,3 +6,15 @@ class AttributionPathologieTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: attribution_pathologies
+#
+#  id            :integer         not null, primary key
+#  article_id    :integer
+#  pathologie_id :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

@@ -10,17 +10,17 @@
           = "Fiche technique : #{article.titre}"
         -else
           = h(article.titre)
+
   %tr
     %td
     %td.tags
-      - unless article.tags.blank?
-        = "Produits : "
-        - article.tags.each do |t|
-          = link_to t.name, tag_path(t)
+      - unless article.main_argument.nil?
+        = "Argument principal : "
+        = link_to article.main_argument.name, argument_path(article.main_argument)
+
   %tr
     %td
     %td.tags
-      - unless article.pathologies.blank?
-        = "Pathologies : "
-        - article.pathologies.each do |p|
-          = link_to p.name, pathologie_path(p)
+      - unless article.aux_argument.nil?
+        = "Argument secondaire : "
+        = link_to article.aux_argument.name, argument_path(article.aux_argument)

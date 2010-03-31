@@ -1,8 +1,12 @@
-- form_for @pathologie do |f|
+- form_for @argument do |f|
   = f.error_messages
   %p
     = f.label :name
     %br
     = f.text_field :name
+  %p
+    = f.label :nature
+    %br
+    = f.text_field :nature
   %p
     = f.submit "Submit"

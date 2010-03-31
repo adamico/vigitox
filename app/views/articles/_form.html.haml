@@ -1,14 +1,13 @@
+- @article.build_argumentaire unless @article.argumentaire
 -#encoding: utf-8
 - semantic_form_for [@revue, @article] do |f|
   - f.inputs do
     = f.input :titre, :label => 'Titre', :input_html => {:size => "50x2"}
-    %li.textfield.optional#article_tag_names_input
-      = f.label :produit_names, "Produits"
-      = f.text_field :produit_names
-    %li.textfield.optional#article_tag_names_input
-      = f.label :pathologie_names, "Pathologies"
-      = f.text_field :pathologie_names
     = f.input :categories, :as => :check_boxes
-    = f.input :fiche_technique
+    - f.semantic_fields_for :argumentaire do |argumentaire|
+      - argumentaire.inputs do
+        = argumentaire.input :main_argument, :label => "Argument principal", :collection => Argument.all(:order => :name)
+        = argumentaire.input :aux_argument, :label => "Argument secondaire", :collection => Argument.all(:order => :name)
+    = f.input :fiche_technique, :label => "Fiche Technique ?"
   - f.buttons do
     = f.commit_button "Enregistrer"

@@ -1,15 +1,18 @@
 one:
   name: MyString
+  nature: MyString
 
 two:
   name: MyString
+  nature: MyString
 
 # == Schema Information
 #
-# Table name: categories
+# Table name: arguments
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)
+#  nature     :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #

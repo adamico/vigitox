@@ -7,3 +7,15 @@ one:
 two:
   article_id: 1
   pathologie_id: 1
+
+# == Schema Information
+#
+# Table name: attribution_pathologies
+#
+#  id            :integer         not null, primary key
+#  article_id    :integer
+#  pathologie_id :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

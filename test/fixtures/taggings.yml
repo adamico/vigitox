@@ -7,3 +7,15 @@ one:
 two:
   article_id: 1
   tag_id: 1
+
+# == Schema Information
+#
+# Table name: taggings
+#
+#  id         :integer         not null, primary key
+#  article_id :integer
+#  tag_id     :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

@@ -1,0 +1,15 @@
+- title "Arguments"
+
+%table
+  %tr
+    %th Name
+    %th Nature
+  - for argument in @arguments
+    %tr
+      %td= h argument.name
+      %td= h argument.nature
+      %td= link_to 'Show', argument
+      %td= link_to 'Edit', edit_argument_path(argument)
+      %td= link_to 'Destroy', argument, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Argument", new_argument_path

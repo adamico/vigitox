@@ -6,3 +6,15 @@ class TaggingTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: taggings
+#
+#  id         :integer         not null, primary key
+#  article_id :integer
+#  tag_id     :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
