@@ -10,24 +10,50 @@ describe Argument do
     @argument.name = "valueforname"
     @argument.should be_valid
   end
-  describe "#articles_as" do
+  describe "#articles_" do
     before(:each) do
       @argument.save
-      @article1 = Article.create(:titre => "letitre")
+      @revue1 = Revue.create(:numero => 1)
+      @article1 = @revue1.articles.create(:titre => "letitre")
+      @revue2 = Revue.create(:numero => 2)
+      @article2 = @revue2.articles.create(:titre => "letitre2")
       @article1.build_argumentaire
+      @article2.build_argumentaire
     end
-    context "_main" do
-      it "should list articles where it figures as the main argument" do
+    context "as_main" do
+      it "should list articles where it figures as main argument" do
         @article1.argumentaire.main_argument = @argument
         @article1.argumentaire.save
         @argument.articles_as_main.should == [ @article1 ]
       end
     end
-    context "_aux" do
-      it "should list articles where it figures as the aux argument" do
+    context "as_aux" do
+      it "should list articles where it figures as aux argument" do
         @article1.argumentaire.aux_argument = @argument
         @article1.argumentaire.save
         @argument.articles_as_aux.should == [ @article1 ]
+      end
+    end
+    context "revue_numbers_as_main" do
+      it "should print revue number for articles where it figures as main argument" do
+        @article1.argumentaire.main_argument = @argument
+        @article1.argumentaire.save
+        @article2.argumentaire.main_argument = @argument
+        @article2.argumentaire.save
+        @argument.articles_revue_numbers_as_main.should == "1, 2"
+      end
+    end
+    context "aux_arguments_names_and_revue_numbers_as_main" do
+      it "should return an array of aux arguments names and revue numbers for articles where it figures as a main argument" do
+        aux1 = Argument.create(:name => "aux1")
+        aux2 = Argument.create(:name => "aux2")
+        @article1.argumentaire.main_argument = @argument
+        @article1.argumentaire.aux_argument = aux1
+        @article1.argumentaire.save
+        @article2.argumentaire.main_argument = @argument
+        @article2.argumentaire.aux_argument = aux2
+        @article2.argumentaire.save
+        @argument.articles_aux_arguments_names_and_revue_numbers_as_main.should == [ [aux1.name, @revue1.numero], [aux2.name, @revue2.numero]]
       end
     end
   end
