@@ -1,6 +1,6 @@
 class ArgumentsController < ApplicationController
   def index
-    @arguments = Argument.paginate :page => params[:page], :order => :name
+    @arguments = Argument.paginate :page => params[:page], :order => "LOWER(name) ASC"
   end
   
   def show
