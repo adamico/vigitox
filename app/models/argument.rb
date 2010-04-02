@@ -24,10 +24,20 @@ class Argument < ActiveRecord::Base
 
   def articles_aux_arguments_names_and_revue_numbers_as_main
     liste = []
+    temp = {}
     self.articles_as_main.each do |a|
-      liste << [a.aux_argument.name, a.revue.numero] if a.aux_argument
+      if a.aux_argument
+        liste << [a.aux_argument.name, [ a.revue.numero ]]
+      end
     end
-    liste
+    liste.each do |item|
+      if temp[item[0]].nil?
+        temp[item[0]] = item[1]
+      else
+        temp[item[0]] = [temp[item[0]], item[1]].flatten.sort
+      end
+    end
+    temp.to_a
   end
 end
 

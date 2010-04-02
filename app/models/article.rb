@@ -11,6 +11,9 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :titre
 
+  def args_couple
+    [ main_argument, aux_argument]
+  end
 end
 
 # == Schema Information
