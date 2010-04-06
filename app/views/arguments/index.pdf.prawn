@@ -1,4 +1,13 @@
-pdf.text "VIGItox Index par arguments", :size => 30, :style => :bold
+pdf.repeat :all do
+  pdf.font_size(24) do
+    pdf.cell [0, pdf.bounds.top], :width => pdf.bounds.width,
+      :text => "VIGItox - Index par arguments",
+      :font_style => :bold, :text_color => "0078FF",
+      :align => :center,
+      :padding => 10,
+      :border_color => "000000", :background_color => "FFCC33"
+  end
+end
 
 arguments = Argument.all(:order => "LOWER(name) ASC")
 
@@ -13,9 +22,8 @@ args_main = temp_list.delete_if { |a| Argument.find_by_name(a[0]).articles_as_ma
 
 sep = ","
 
-pdf.move_down(10)
 #column_box([x,y]) where x,y = origin coordinates
-pdf.column_box([0,pdf.cursor],
+pdf.column_box([0,pdf.bounds.top-58],
                :columns => 2,
                :spacer => 3,
                :width => pdf.bounds.width
