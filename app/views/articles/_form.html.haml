@@ -6,8 +6,8 @@
     = f.input :categories, :as => :check_boxes
     - f.semantic_fields_for :argumentaire do |argumentaire|
       - argumentaire.inputs do
-        = argumentaire.input :main_argument, :label => "Argument principal", :collection => Argument.all(:order => :name)
-        = argumentaire.input :aux_argument, :label => "Argument secondaire", :collection => Argument.all(:order => :name)
+        = argumentaire.input :main_argument, :label => "Argument principal", :collection => Argument.all(:order => 'LOWER(name) ASC')
+        = argumentaire.input :aux_argument, :label => "Argument secondaire", :collection => Argument.all(:order => 'LOWER(name) ASC')
     = f.input :fiche_technique, :label => "Fiche Technique ?"
   - f.buttons do
     = f.commit_button "Enregistrer"

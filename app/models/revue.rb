@@ -2,7 +2,7 @@ class Revue < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 10
 
-  has_many :articles, :dependent => :destroy
+  has_many :articles, :dependent => :destroy, :order => "position"
   has_attached_file :pdf
 
   validates_presence_of :numero

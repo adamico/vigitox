@@ -1,14 +1,22 @@
 class ArticlesController < ApplicationController
+  
+  def sort
+    params[:articles].each_with_index do |id, index|
+      Article.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
+
   def index
     @revue = Revue.find(params[:revue_id])
-    @articles = @revue.articles
+    @articles = @revue.articles(:order => 'position')
   end
-  
+
   def new
     @revue = Revue.find(params[:revue_id])
     @article = @revue.articles.build
   end
-  
+
   def create
     @revue = Revue.find(params[:revue_id])
     @article = @revue.articles.build(params[:article])
@@ -19,11 +27,11 @@ class ArticlesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @article = Article.find(params[:id])
   end
-  
+
   def update
     @article = Article.find(params[:id])
     if @article.update_attributes(params[:article])
@@ -33,7 +41,7 @@ class ArticlesController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @article = Article.find(params[:id])
     @article.destroy

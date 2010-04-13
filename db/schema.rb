@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100331082717) do
+ActiveRecord::Schema.define(:version => 20100406073038) do
 
   create_table "argumentaires", :force => true do |t|
     t.integer  "main_argument_id"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20100331082717) do
     t.datetime "updated_at"
     t.text     "contenu"
     t.boolean  "fiche_technique"
+    t.integer  "position"
+    t.integer  "author_id"
   end
 
   create_table "articles_categories", :id => false, :force => true do |t|

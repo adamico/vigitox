@@ -1,5 +1,7 @@
 - title @categorie.name
 
+= link_to "Index au format PDF", categorie_path(@categorie, :format => 'pdf')
+
 %p
   = link_to "Edit", edit_categorie_path(@categorie)
   |
@@ -7,9 +9,9 @@
   |
   = link_to "View All", categories_path
 
-- if !@articles.blank?
+- if !@categorie.articles.blank?
   %table
-    - for article in @articles
+    - for article in @categorie.articles
       %tr
         %td.right
           = link_to "##{article.revue.numero}", revue_path(article.revue)

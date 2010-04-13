@@ -1,26 +1,17 @@
-%table.article
-  %tr
-    %td.buttons
-      =link_to "Modifier", edit_article_path(article)
-      %br
-      =link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"
-    %td
-      %b
-        -if article.fiche_technique?
-          = "Fiche technique : #{article.titre}"
-        -else
-          = h(article.titre)
-
-  %tr
-    %td
-    %td.tags
+- content_tag_for :li, article do
+  %span.handle [drag]
+  %span.small
+    = link_to "Modifier", edit_article_path(article)
+    |
+    = link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"
+  %b
+    = "Fiche technique : " if article.fiche_technique?
+    = h(article.titre)
+  - if article.argumentaire
+    %br
+    %span.tags
       - unless article.main_argument.nil?
-        = "Argument principal : "
         = link_to article.main_argument.name, argument_path(article.main_argument)
-
-  %tr
-    %td
-    %td.tags
       - unless article.aux_argument.nil?
-        = "Argument secondaire : "
+        = "/"
         = link_to article.aux_argument.name, argument_path(article.aux_argument)

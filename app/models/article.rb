@@ -1,5 +1,6 @@
 # encoding: utf-8
 class Article < ActiveRecord::Base
+  acts_as_list :scope => :revue
   belongs_to :revue
   has_and_belongs_to_many :categories, :join_table => "articles_categories"
 
@@ -16,6 +17,7 @@ class Article < ActiveRecord::Base
   end
 end
 
+
 # == Schema Information
 #
 # Table name: articles
@@ -27,5 +29,7 @@ end
 #  updated_at      :datetime
 #  contenu         :text
 #  fiche_technique :boolean
+#  position        :integer
+#  author_id       :integer
 #
 

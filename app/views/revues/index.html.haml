@@ -3,10 +3,21 @@
 
 %p
   = link_to "Index par arguments", arguments_path
+  |
+  = link_to "Index générale", revues_path(:format => "pdf")
 
+%h3= "Dernier Numéro :"
 #revue
-  %h2= "Dernier Numéro : #{@derniere.numero}"
-  = render :partial => @derniere.articles
+  %h2= "VIGItox##{@derniere.numero}"
+  .actions
+    = link_to "Modifier", edit_revue_path(@derniere)
+    |
+    = link_to "Détruire", @derniere, :confirm => 'Are you sure?', :method => :delete
+  .clear
+  %ul#articles
+    = render :partial => @derniere.articles
+
+  = sortable_element('articles', :url => sort_revue_articles_path(@derniere), :handle => 'handle')
 
 #revues
   - for revue in @revues

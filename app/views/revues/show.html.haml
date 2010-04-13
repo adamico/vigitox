@@ -18,11 +18,12 @@
 
 -if !@revue.articles.blank?
   %h2 Liste des articles
-  #articles
+  %ul#articles
     = render :partial => @revue.articles
 -else
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
 
+= sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
 
 %p
   = link_to "Edit", edit_revue_path(@revue)

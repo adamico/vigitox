@@ -19,6 +19,7 @@ describe Article do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: articles
@@ -30,5 +31,7 @@ end
 #  updated_at      :datetime
 #  contenu         :text
 #  fiche_technique :boolean
+#  position        :integer
+#  author_id       :integer
 #
 

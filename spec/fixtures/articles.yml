@@ -4,6 +4,7 @@ one:
 two:
   titre: MyText
 
+
 # == Schema Information
 #
 # Table name: articles
@@ -15,5 +16,7 @@ two:
 #  updated_at      :datetime
 #  contenu         :text
 #  fiche_technique :boolean
+#  position        :integer
+#  author_id       :integer
 #
 
