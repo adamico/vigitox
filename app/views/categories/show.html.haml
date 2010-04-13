@@ -1,13 +1,12 @@
 - title @categorie.name
 
-= link_to "Index au format PDF", categorie_path(@categorie, :format => 'pdf')
+%ul.actions
+  %li= link_to "Edit", edit_categorie_path(@categorie)
+  %li= link_to "Destroy", @categorie, :confirm => 'Are you sure?', :method => :delete
 
-%p
-  = link_to "Edit", edit_categorie_path(@categorie)
-  |
-  = link_to "Destroy", @categorie, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", categories_path
+.clear
+
+= link_to "Index au format PDF", categorie_path(@categorie, :format => 'pdf')
 
 - if !@categorie.articles.blank?
   %table

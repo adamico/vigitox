@@ -1,5 +1,10 @@
--# encoding: utf-8
 - title "Vigitox N° #{@revue.numero}"
+
+%ul.actions
+  %li= link_to "Edit", edit_revue_path(@revue)
+  %li= link_to "Destroy", @revue, :confirm => 'Are you sure?', :method => :delete
+
+.clear
 
 %p
   - prev_and_next_item("Préc. <--", "&nbsp;", "--> Suiv.", @prev, @next)
@@ -14,11 +19,17 @@
       = f.commit_button "Envoyer"
 
 %p
-  %strong= "Date de sortie : " + (l @revue.date_sortie, :format => :month_year)
+  %strong= "Date de sortie : "
+  = l(@revue.date_sortie, :format => :month_year)
+
+- if @revue.issn
+  %p
+    %strong= "ISSN : "
+    = @revue.issn
 
 -if !@revue.articles.blank?
   %h2 Liste des articles
-  %ul#articles
+  %ul.articles
     = render :partial => @revue.articles
 -else
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
@@ -26,10 +37,4 @@
 = sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
 
 %p
-  = link_to "Edit", edit_revue_path(@revue)
-  |
-  = link_to "Destroy", @revue, :confirm => 'Are you sure?', :method => :delete
-  |
   = link_to "Nouvel article", new_revue_article_path(@revue)
-  |
-  = link_to "View All", revues_path

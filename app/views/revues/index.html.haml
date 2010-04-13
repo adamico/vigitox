@@ -1,6 +1,8 @@
 -# encoding: utf-8
 - title "Liste des Vigitox publiés"
 
+.clear
+
 %p
   = link_to "Index par arguments", arguments_path
   |
@@ -14,7 +16,7 @@
     |
     = link_to "Détruire", @derniere, :confirm => 'Are you sure?', :method => :delete
   .clear
-  %ul#articles
+  %ul.articles
     = render :partial => @derniere.articles
 
   = sortable_element('articles', :url => sort_revue_articles_path(@derniere), :handle => 'handle')
