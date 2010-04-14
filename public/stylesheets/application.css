@@ -17,10 +17,11 @@ a {
   float: left; }
 
 #corner, #menu {
-  width: 150px; }
+  width: 18%; }
 
 #banner, #container {
-  width: 900px; }
+  width: 75%;
+  overflow: auto; }
 
 #corner, #banner, #menu {
   height: 100%; }

@@ -4,13 +4,15 @@
 
 %table
   %tr
-    %th Name
+    %th Nom
   - for categorie in @categories
     %tr
       %td
         = link_to categorie.name, categorie
         = "#{categorie.articles.count} articles"
-      %td= link_to 'Edit', edit_categorie_path(categorie)
-      %td= link_to 'Destroy', categorie, :confirm => 'Are you sure?', :method => :delete
+      - if user_signed_in?
+        %td= link_to 'Edit', edit_categorie_path(categorie)
+        %td= link_to 'Destroy', categorie, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Categorie", new_categorie_path
+- if user_signed_in?
+  %p= link_to "Nouvelle Categorie", new_categorie_path

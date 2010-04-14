@@ -1,8 +1,9 @@
 - title "Vigitox N° #{@revue.numero}"
 
-%ul.actions
-  %li= link_to "Edit", edit_revue_path(@revue)
-  %li= link_to "Destroy", @revue, :confirm => 'Are you sure?', :method => :delete
+- if user_signed_in?
+  %ul.actions
+    %li= link_to "Edit", edit_revue_path(@revue)
+    %li= link_to "Destroy", @revue, :confirm => 'Are you sure?', :method => :delete
 
 .clear
 
@@ -12,11 +13,12 @@
 - if @revue.pdf?
   %p= link_to 'Télécharger le PDF', @revue.pdf.url
 - else
-  - semantic_form_for @revue, :html => { :multipart => true } do |f|
-    - f.inputs do
-      = f.input :pdf, :label => "Joindre le PDF"
-    - f.buttons do
-      = f.commit_button "Envoyer"
+  - if user_signed_in?
+    - semantic_form_for @revue, :html => { :multipart => true } do |f|
+      - f.inputs do
+        = f.input :pdf, :label => "Joindre le PDF"
+      - f.buttons do
+        = f.commit_button "Envoyer"
 
 %p
   %strong= "Date de sortie : "
@@ -34,7 +36,6 @@
 -else
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
 
-= sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
-
-%p
-  = link_to "Nouvel article", new_revue_article_path(@revue)
+- if user_signed_in?
+  = sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
+  %p= link_to "Nouvel article", new_revue_article_path(@revue)

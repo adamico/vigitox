@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.devise_for :users
+
   map.resources :arguments, :categories
 
   map.resources :revues, :shallow => true do |revues|

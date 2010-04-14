@@ -11,6 +11,12 @@
         &nbsp;
       #banner
         %h1= link_to "Index VIGItox", root_path
+        #user_nav
+          - if user_signed_in?
+            = "Bonjour, #{current_user.email}."
+            = link_to "Déconnection", destroy_user_session_path
+          - else
+            = link_to "Connection", new_user_session_path
     #main
       #menu
         %ul

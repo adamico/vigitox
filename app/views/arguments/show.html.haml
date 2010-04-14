@@ -1,8 +1,9 @@
 - title h(@argument.name.humanize)
 
-%ul.actions
-  %li= link_to "Edit", edit_argument_path(@argument)
-  %li= link_to "Destroy", @argument, :confirm => 'Are you sure?', :method => :delete
+- if user_signed_in?
+  %ul.actions
+    %li= link_to "Edit", edit_argument_path(@argument)
+    %li= link_to "Destroy", @argument, :confirm => 'Are you sure?', :method => :delete
 
 .clear
 

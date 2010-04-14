@@ -12,10 +12,13 @@
     %tr
       %td= link_to h(argument.name), argument
       %td= h argument.nature
-      %td= link_to 'Edit', edit_argument_path(argument)
-      %td= link_to 'Destroy', argument, :confirm => 'Are you sure?', :method => :delete
+      - if user_signed_in?
+        %td= link_to 'Edit', edit_argument_path(argument)
+        %td= link_to 'Destroy', argument, :confirm => 'Are you sure?', :method => :delete
 
+%p= page_entries_info @arguments
 %p= will_paginate @arguments, :previous_label => "<--", :next_label => "-->"
 %hr/
 
-%p= link_to "New Argument", new_argument_path
+- if user_signed_in?
+  %p= link_to "New Argument", new_argument_path
