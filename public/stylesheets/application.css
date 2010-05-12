@@ -136,3 +136,6 @@ ul.actions {
   ul.actions li {
     padding-left: 1em;
     float: left; }
+
+ul.revues {
+  list-style: none; }

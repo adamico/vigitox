@@ -18,11 +18,10 @@
 
   = sortable_element('articles', :url => sort_revue_articles_path(@derniere), :handle => 'handle')
 
-#revues
+%ul.revues
   - for revue in @revues
-    %p
-      %b
-        = link_to "Vigitox N°#{revue.numero}", revue_path(revue)
+    %li
+      = link_to "Vigitox N°#{revue.numero}", revue_path(revue)
 
 %p= will_paginate @revues, :previous_label => "<--", :next_label => "-->"
 %hr/
