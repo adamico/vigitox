@@ -13,7 +13,7 @@
       %li= link_to "Modifier", edit_revue_path(@derniere)
       %li= link_to "Détruire", @derniere, :confirm => 'Are you sure?', :method => :delete
   .clear
-  %ul.articles
+  %ul.articles#articles
     = render :partial => @derniere.articles
 
   = sortable_element('articles', :url => sort_revue_articles_path(@derniere), :handle => 'handle')
@@ -23,7 +23,8 @@
     %li
       = link_to "Vigitox N°#{revue.numero}", revue_path(revue)
 
-%p= will_paginate @revues, :previous_label => "<--", :next_label => "-->"
+= will_paginate @revues, :previous_label => "<--", :next_label => "-->"
+
 %hr/
 
 - if user_signed_in?

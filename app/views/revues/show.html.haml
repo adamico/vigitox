@@ -31,7 +31,7 @@
 
 -if !@revue.articles.blank?
   %h2 Liste des articles
-  %ul.articles
+  %ul.articles#articles
     = render :partial => @revue.articles
 -else
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
