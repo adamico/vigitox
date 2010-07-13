@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100713163906) do
+ActiveRecord::Schema.define(:version => 20100713181621) do
 
   create_table "argumentaires", :force => true do |t|
     t.integer  "main_argument_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20100713163906) do
     t.text     "contenu"
     t.boolean  "fiche_technique"
     t.integer  "position"
+    t.integer  "authorships_count", :default => 0
   end
 
   create_table "articles_categories", :id => false, :force => true do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20100713163906) do
     t.boolean  "current"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "authorships_count", :default => 0
   end
 
   create_table "authorships", :force => true do |t|
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20100713163906) do
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
     t.string   "issn"
+    t.integer  "articles_count",   :default => 0
   end
 
   create_table "taggings", :force => true do |t|

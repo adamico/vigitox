@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   acts_as_list :scope => :revue
-  belongs_to :revue
+  belongs_to :revue, :counter_cache => true
   has_and_belongs_to_many :categories, :join_table => "articles_categories"
   has_many :authors, :through => :authorships
   has_many :authorships, :dependent => :destroy
