@@ -1,8 +1,17 @@
 - @article.build_argumentaire unless @article.argumentaire
--#encoding: utf-8
+- @article.authorships.build if @article.authorships.empty?
+
+.clear
 - semantic_form_for [@revue, @article] do |f|
+  = f.error_messages
   - f.inputs do
     = f.input :titre, :label => 'Titre', :input_html => {:size => "50x2"}
+
+  - f.inputs :name => 'Autheurs' do
+    - f.fields_for :authorships do |authorship|
+      = render 'authorship_fields', :f => authorship
+    %p= link_to_add_fields 'Rajouter un autheur', f, :authorships
+
     = f.input :categories, :as => :check_boxes
     - f.semantic_fields_for :argumentaire do |argumentaire|
       - argumentaire.inputs do

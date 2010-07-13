@@ -1,18 +1,23 @@
 - content_tag_for :li, article do
   - if user_signed_in?
     %span.handle [drag]
-    %span.small
-      = link_to "Modifier", edit_article_path(article)
-      |
-      = link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"
-  %b
+  %span.title
     = "Fiche technique : " if article.fiche_technique?
     = h(article.titre)
   - if article.argumentaire
     %br
+    %span.authors
+      Autheurs : #{article.authors_list}
+    %br
     %span.tags
+      Arguments : 
       - unless article.main_argument.nil?
         = link_to article.main_argument.name, argument_path(article.main_argument)
       - unless article.aux_argument.nil?
         = "/"
         = link_to article.aux_argument.name, argument_path(article.aux_argument)
+    %br
+    %span.actions
+      = link_to "Modifier", edit_article_path(article)
+      |
+      = link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"

@@ -1,0 +1,6 @@
+.fields
+  - f.inputs do
+    %li.select
+      = f.collection_select :author_id, Author.all(:order => "nom ASC"), :id, :short_name, :include_blank => true
+  %p= link_to_remove_fields "Enlever cet autheur", f
+%hr/

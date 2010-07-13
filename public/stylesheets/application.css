@@ -4,7 +4,7 @@ body {
   font-size: 14px; }
 
 a {
-  color: #0000FF; }
+  color: blue; }
   a img {
     border: none; }
 
@@ -49,19 +49,19 @@ a {
   margin: 10px 0; }
 
 #flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6; }
+  background-color: #ccffcc;
+  border: solid 1px #66cc66; }
 
 #flash_error {
-  background-color: #FCC;
-  border: solid 1px #C66; }
+  background-color: #ffcccc;
+  border: solid 1px #cc6666; }
 
 .fieldWithErrors {
   display: inline; }
 
 #errorExplanation {
   width: 400px;
-  border: 2px solid #CF0000;
+  border: 2px solid #cf0000;
   padding: 0;
   padding-bottom: 12px;
   margin-bottom: 20px;
@@ -72,10 +72,10 @@ a {
     margin: 0;
     font-weight: bold;
     font-size: 12px;
-    background-color: #c00;
-    color: #fff; }
+    background-color: #cc0000;
+    color: white; }
   #errorExplanation p {
-    color: #333;
+    color: #333333;
     margin-bottom: 0;
     padding: 8px; }
   #errorExplanation ul {
@@ -91,7 +91,7 @@ td.right {
   text-align: right; }
 
 .even {
-  background-color: #ddd; }
+  background-color: #dddddd; }
 
 .odd {
   background-color: white; }
@@ -109,15 +109,17 @@ ul.articles {
   padding: 0 1em;
   list-style: none; }
   ul.articles li .handle {
-    color: #777;
+    color: #777777;
     cursor: move;
     font-size: 12px; }
 
-span.tags {
-  margin-left: 20em; }
+span.title {
+  font-weight: bold;
+  font-size: 0.85em; }
 
-span.small, span.tags {
-  font-size: 0.8em; }
+span.actions, span.tags, span.authors {
+  font-size: 0.8em;
+  margin-left: 20em; }
 
 #menu ul {
   padding: 0 1em;
