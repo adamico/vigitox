@@ -1,12 +1,25 @@
-- title "Author"
-
-%p
-  %strong Name:
-  =h @author.name
-
+- title "Autheur : #{@author.short_name}"
 %p
   = link_to "Edit", edit_author_path(@author)
   |
   = link_to "Destroy", @author, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", authors_path
+.clear
+%p
+  %strong Nom :
+  = h @author.nom
+
+%p
+  %strong Prénom :
+  = h @author.prenom
+
+- if !@author.articles.blank?
+  %table
+    - for article in @author.articles
+      %tr
+        %td.right
+          = link_to "##{article.revue.numero}", revue_path(article.revue)
+        %td
+          %span.title= article.titre
+- else
+  Pas d'articles
+

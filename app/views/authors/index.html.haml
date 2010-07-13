@@ -1,13 +1,18 @@
-- title "Authors"
+- title "Autheurs"
+
+.clear
 
 %table
   %tr
-    %th Name
+    %th Nom
+    %th N. Articles
   - for author in @authors
     %tr
-      %td= h author.name
-      %td= link_to 'Show', author
-      %td= link_to 'Edit', edit_author_path(author)
-      %td= link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to h(author.short_name), author
+      %td= author.articles.count
+      - if user_signed_in?
+        %td= link_to 'Edit', edit_author_path(author)
+        %td= link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Author", new_author_path
+- if user_signed_in?
+  %p= link_to "New Author", new_author_path
