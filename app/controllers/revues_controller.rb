@@ -1,6 +1,6 @@
 class RevuesController < ApplicationController
   def index
-    @revues = Revue.paginate :page => params[:page], :order => :numero
+    @revues = Revue.paginate :page => params[:page], :order => "numero DESC"
     @derniere = Revue.derniere
   end
   

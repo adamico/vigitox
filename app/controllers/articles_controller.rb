@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  
+  before_filter :find_revue, :only => [:index, :create, :new]
+
   def sort
     params[:articles].each_with_index do |id, index|
       Article.update_all(['position=?', index+1], ['id=?', id])
@@ -8,21 +9,18 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @revue = Revue.find(params[:revue_id])
-    @articles = @revue.articles(:order => 'position')
+    @articles = @revue.articles.paginate :page => params[:page], :order => :position
   end
 
   def new
-    @revue = Revue.find(params[:revue_id])
     @article = @revue.articles.build
   end
 
   def create
-    @revue = Revue.find(params[:revue_id])
     @article = @revue.articles.build(params[:article])
     if @article.save
       flash[:notice] = "Successfully created article."
-      redirect_to revue_url(@article.revue_id)
+      redirect_to revue_articles_path(@revue, :page => @article.position)
     else
       render :action => 'new'
     end
@@ -36,7 +34,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     if @article.update_attributes(params[:article])
       flash[:notice] = "Successfully updated article."
-      redirect_to revue_url(@article.revue_id)
+      redirect_to revue_articles_path(@article.revue, :page => @article.position)
     else
       render :action => 'edit'
     end
@@ -47,5 +45,9 @@ class ArticlesController < ApplicationController
     @article.destroy
     flash[:notice] = "Successfully destroyed article."
     redirect_to revue_url(@article.revue_id)
+  end
+  private
+  def find_revue
+    @revue = Revue.find(params[:revue_id])
   end
 end

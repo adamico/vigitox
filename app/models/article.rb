@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  cattr_reader :per_page
+  @@per_page = 1
   acts_as_list :scope => :revue
   belongs_to :revue, :counter_cache => true
   has_and_belongs_to_many :categories, :join_table => "articles_categories"
@@ -15,12 +17,20 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :titre
 
+  named_scope :prev, lambda { |a| {:conditions => ["position < ?", a.position], :order => 'position DESC' } }
+  named_scope :next, lambda { |a| {:conditions => ["position > ?", a.position], :order => :position } }
+
   def args_couple
     [main_argument, aux_argument]
   end
 
   def authors_list
     authors.map { |a| a.short_name }.join(', ')
+  end
+
+  def full_title
+    title = fiche_technique? ? "Fiche technique : " : ""
+    title += titre
   end
 end
 

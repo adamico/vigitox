@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = Author.all(:include => :authorships)
+    @authors = Author.all(:include => :authorships, :order => :nom)
   end
   
   def show

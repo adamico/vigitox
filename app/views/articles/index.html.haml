@@ -1,14 +1,11 @@
 -# encoding: utf-8
-- title "Articles"
+- title "Article##{params[:page]} du VIGItox#{@revue.numero}", false
+%h1= link_to "VIGItox n°#{@revue.numero}", @revue
+.clear
 
-%p
-  = link_to "Retourner à la revue", @revue
-
--if @revue.articles.empty?
+- if @articles.empty?
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
--else
-  #articles
-    = render :partial => @revue.articles
+- else
+  = render @articles
 
-%p
-  = link_to "Nouvel article", new_revue_article_path(@revue)
+= will_paginate @articles, :previous_label => "<--", :next_label => "-->"
