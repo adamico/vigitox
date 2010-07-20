@@ -27,7 +27,7 @@
     %strong= "ISSN : "
     = @revue.issn
 
--if !@revue.articles.empty?
+- if !@revue.articles.empty?
   %h2 Liste des articles
   %ul.articles#articles
     - @revue.articles.each do |article|
@@ -36,7 +36,7 @@
           %span.handle [drag]
         %strong
           = link_to article.full_title, revue_articles_path(article.revue, :page => article.position)
--else
+- else
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
 
 - if user_signed_in?

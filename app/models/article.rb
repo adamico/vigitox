@@ -32,6 +32,7 @@ class Article < ActiveRecord::Base
     title = fiche_technique? ? "Fiche technique : " : ""
     title += titre
   end
+
 end
 
 

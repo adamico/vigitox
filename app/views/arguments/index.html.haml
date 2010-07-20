@@ -8,7 +8,7 @@
   %tr
     %th Name
     %th Nature
-  - for argument in @arguments
+  - for argument in @arguments_paginate
     %tr
       %td= link_to h(argument.name), argument
       %td= h argument.nature
@@ -16,9 +16,9 @@
         %td= link_to 'Edit', edit_argument_path(argument)
         %td= link_to 'Destroy', argument, :confirm => 'Are you sure?', :method => :delete
 
-%p= page_entries_info @arguments
-%p= will_paginate @arguments, :previous_label => "<--", :next_label => "-->"
+%p= page_entries_info @arguments_paginate
+%p= will_paginate @arguments_paginate, :previous_label => "<--", :next_label => "-->"
 %hr/
 
 - if user_signed_in?
-  %p= link_to "New Argument", new_argument_path
+  %p= link_to "Nouvel Argument", new_argument_path

@@ -14,6 +14,7 @@ Rails::Initializer.run do |config|
   config.gem "prawn"
   config.gem 'ryanb-acts-as-list', :lib => 'acts_as_list', :source => 'http://gems.github.com'
   config.gem 'devise', :version => '1.0.6'
+  config.gem "repeated_auto_complete"
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.

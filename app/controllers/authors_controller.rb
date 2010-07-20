@@ -1,6 +1,10 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = Author.all(:include => :authorships, :order => :nom)
+    if params[:search]
+      @authors = Author.all(:order => :nom, :conditions => ['nom LIKE ?', "%#{params[:search]}%"])
+    else
+      @authors = Author.all(:include => :authorships, :order => :nom)
+    end
   end
   
   def show
