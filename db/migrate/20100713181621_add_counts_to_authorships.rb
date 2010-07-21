@@ -13,7 +13,7 @@ class AddCountsToAuthorships < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :articles, :authorships_count
-    add_column :authors,  :authorships_count
+    remove_column :articles, :authorships_count
+    remove_column :authors,  :authorships_count
   end
 end

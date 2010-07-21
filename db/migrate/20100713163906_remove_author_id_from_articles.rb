@@ -6,6 +6,8 @@ class RemoveAuthorIdFromArticles < ActiveRecord::Migration
   end
 
   def self.down
-    t.references :author
+    change_table :articles do |t|
+      t.references :author
+    end
   end
 end

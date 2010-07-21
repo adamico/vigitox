@@ -6,6 +6,7 @@ class RevueTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: revues
@@ -19,5 +20,7 @@ end
 #  pdf_content_type :string(255)
 #  pdf_file_size    :integer
 #  pdf_updated_at   :datetime
+#  issn             :string(255)
+#  articles_count   :integer         default(0)
 #
 

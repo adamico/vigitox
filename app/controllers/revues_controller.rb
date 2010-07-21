@@ -5,7 +5,7 @@ class RevuesController < ApplicationController
   end
   
   def show
-    @revue = Revue.find(params[:id])
+    @revue = Revue.find(params[:id], :include => :articles)
     @prev = Revue.prev(@revue).first
     @next = Revue.next(@revue).first
     @article = Article.new(:revue => @revue)

@@ -20,18 +20,19 @@ describe Article do
 end
 
 
+
 # == Schema Information
 #
 # Table name: articles
 #
-#  id              :integer         not null, primary key
-#  titre           :text
-#  revue_id        :integer
-#  created_at      :datetime
-#  updated_at      :datetime
-#  contenu         :text
-#  fiche_technique :boolean
-#  position        :integer
-#  author_id       :integer
+#  id                :integer         not null, primary key
+#  titre             :text
+#  revue_id          :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  contenu           :text
+#  fiche_technique   :boolean
+#  position          :integer
+#  authorships_count :integer         default(0)
 #
 

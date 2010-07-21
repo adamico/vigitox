@@ -6,3 +6,15 @@ class AuthorshipTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: authorships
+#
+#  id         :integer         not null, primary key
+#  article_id :integer
+#  author_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

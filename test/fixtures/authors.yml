@@ -9,3 +9,17 @@ two:
   nom: MyString
   prenom: MyString
   current: false
+
+# == Schema Information
+#
+# Table name: authors
+#
+#  id                :integer         not null, primary key
+#  nom               :string(255)
+#  prenom            :string(255)
+#  current           :boolean
+#  created_at        :datetime
+#  updated_at        :datetime
+#  authorships_count :integer         default(0)
+#
+

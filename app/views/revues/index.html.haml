@@ -18,6 +18,7 @@
       - content_tag_for :li, article do
         - if user_signed_in?
           %span.handle [drag]
+        = article.authors_list
         %strong
           = link_to article.full_title, revue_articles_path(article.revue, :page => article.position)
 

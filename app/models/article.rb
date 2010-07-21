@@ -25,7 +25,9 @@ class Article < ActiveRecord::Base
   end
 
   def authors_list
-    authors.map { |a| a.short_name }.join(', ')
+    unless authors.empty?
+      authors.map{ |a| a.short_name }.join(', ').insert(0, '(').insert(-1, ')')
+    end
   end
 
   def full_title
@@ -36,18 +38,19 @@ class Article < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: articles
 #
-#  id              :integer         not null, primary key
-#  titre           :text
-#  revue_id        :integer
-#  created_at      :datetime
-#  updated_at      :datetime
-#  contenu         :text
-#  fiche_technique :boolean
-#  position        :integer
-#  author_id       :integer
+#  id                :integer         not null, primary key
+#  titre             :text
+#  revue_id          :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  contenu           :text
+#  fiche_technique   :boolean
+#  position          :integer
+#  authorships_count :integer         default(0)
 #
 
