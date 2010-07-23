@@ -1,3 +1,4 @@
+#ebcoding: utf-8
 namespace :db do
   desc "Importer les argumentaire à partir des tags existants"
   task :import_argumentaires => :environment do
