@@ -17,7 +17,7 @@ class Revue < ActiveRecord::Base
   }
 
   def self.derniere
-    find(:last).order(:numero)
+    find(:last)
   end
 
 end

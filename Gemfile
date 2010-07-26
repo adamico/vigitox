@@ -21,8 +21,9 @@ gem 'acts_as_list', :git => "http://github.com/nono/acts_as_list.git"
 gem 'devise', '1.1.rc2'
 gem 'repeated_auto_complete', :git => "http://github.com/jasherai/auto_complete.git", :branch => "jquery"
 
-group :test do
+group :development, :test do
   gem 'factory_girl_rails'
+  gem 'rspec-rails', ">= 2.0.0.beta.17"
 end
 
 group :cucumber do
@@ -30,7 +31,7 @@ group :cucumber do
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec-rails'
+  gem 'rspec-rails', ">= 2.0.0.beta.17"
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle', :git => 'http://github.com/codegram/pickle.git'
