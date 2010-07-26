@@ -1,11 +1,11 @@
 class RevuesController < ApplicationController
   def index
-    @revues = Revue.paginate :page => params[:page], :order => "numero DESC"
+    @revues = Revue.order("numero DESC").paginate(:page => params[:page])
     @derniere = Revue.derniere
   end
   
   def show
-    @revue = Revue.find(params[:id], :include => :articles)
+    @revue = Revue.includes(:articles).find(params[:id])
     @prev = Revue.prev(@revue).first
     @next = Revue.next(@revue).first
     @article = Article.new(:revue => @revue)

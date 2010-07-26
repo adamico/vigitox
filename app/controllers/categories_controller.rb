@@ -5,8 +5,8 @@ class CategoriesController < ApplicationController
   
   def show
     @categorie = Categorie.find(params[:id])
-    @articles = Article.paginate :joins => :categories, :conditions => { 'categories.id'  => @categorie.id},
-      :page => params[:page], :per_page => 20, :order => 'revue_id DESC'
+    @articles = Article.joins(:categories).where(:categories => {:id => @categorie.id}).order("revue_id DESC").paginate(
+      :page => params[:page], :per_page => 20)
   end
   
   def new

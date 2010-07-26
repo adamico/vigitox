@@ -1,9 +1,9 @@
 class AuthorsController < ApplicationController
   def index
     if params[:search]
-      @authors = Author.all(:order => :nom, :conditions => ['nom LIKE ?', "%#{params[:search]}%"])
+      @authors = Author.where(['nom LIKE ?', "%#{params[:search]}%"]).order(:nom)
     else
-      @authors = Author.all(:include => :authorships, :order => :nom)
+      @authors = Author.includes(:authorships).order(:nom)
     end
   end
   

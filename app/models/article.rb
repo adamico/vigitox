@@ -17,8 +17,12 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :titre
 
-  named_scope :prev, lambda { |a| {:conditions => ["position < ?", a.position], :order => 'position DESC' } }
-  named_scope :next, lambda { |a| {:conditions => ["position > ?", a.position], :order => :position } }
+  scope :prev, lambda { |a|
+    where(["position < ?", a.position]).order('position DESC')
+  }
+  scope :next, lambda { |a|
+    where(["position > ?", a.position]).order(:position)
+  }
 
   def args_couple
     [main_argument, aux_argument]

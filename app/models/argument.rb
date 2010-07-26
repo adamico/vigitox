@@ -7,19 +7,20 @@ class Argument < ActiveRecord::Base
 
   # custom methods
   def articles_as_main
-    Article.all :joins => :argumentaire, :conditions => { 'argumentaires.main_argument_id' => self.id}
+    Article.joins(:argumentaire).where(:argumentaires => {:main_argument_id => self.id})
   end
 
   def articles_as_aux
-    Article.all :joins => :argumentaire, :conditions => { 'argumentaires.aux_argument_id' => self.id}
+    Article.joins(:argumentaire).where(:argumentaires => {:aux_argument_id => self.id})
   end
 
   def articles_revue_numbers_as_main
-    liste = []
-    self.articles_as_main.each do |a|
-      liste << a.revue.numero if a.aux_argument.nil?
+    returning liste = [] do
+      self.articles_as_main.each do |a|
+        liste << a.revue.numero if a.aux_argument.nil?
+      end
+      liste.join(', ')
     end
-    liste.join(', ')
   end
 
   def articles_aux_arguments_names_and_revue_numbers_as_main

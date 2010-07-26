@@ -9,11 +9,15 @@ class Revue < ActiveRecord::Base
   validates_uniqueness_of :numero
   validates_attachment_content_type :pdf, :content_type => [ 'application/pdf' ]
 
-  named_scope :prev, lambda { |r| {:conditions => ["numero < ?", r.numero], :order => 'numero DESC' } }
-  named_scope :next, lambda { |r| {:conditions => ["numero > ?", r.numero], :order => :numero } }
+  scope :prev, lambda { |r|
+    where(["numero < ?", r.numero]).order('numero DESC')
+  }
+  scope :next, lambda { |r|
+    where(["numero > ?", r.numero]).order(:numero)
+  }
 
   def self.derniere
-    find(:last, :order => :numero)
+    find(:last).order(:numero)
   end
 
 end

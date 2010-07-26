@@ -1,17 +1,14 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :authors
+Vigitox::Application.routes.draw do |map|
+  devise_for :users
 
-  map.devise_for :users
+  resources :authors, :arguments, :categories
 
-  map.resources :arguments, :categories
-
-  map.resources :revues, :shallow => true do |revues|
-    revues.resources :articles
-    revues.resources :articles, :collection => {
-      :sort => :post
-    }
+  resources :revues, :shallow => true do
+    resources :articles do
+      post :sort, :on => :collection
+    end
   end
 
-  map.root :revues
-  map.connect ':controller/:action.:format'
+  root :to => 'revues#index'
+  match ':controller(/:action(/:id(.:format))'
 end

@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = @revue.articles.paginate :page => params[:page], :order => :position
+    @articles = @revue.articles.order(:position).paginate(:page => params[:page])
   end
 
   def new
