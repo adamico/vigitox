@@ -10,5 +10,4 @@ Vigitox::Application.routes.draw do |map|
   end
 
   root :to => 'revues#index'
-  match ':controller(/:action(/:id(.:format))'
 end

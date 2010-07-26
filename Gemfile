@@ -10,13 +10,14 @@ group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
+gem 'test-unit', '1.2.3'
 gem 'haml'
 gem 'will_paginate', '3.0.pre'
 gem 'formtastic', :git => "http://github.com/justinfrench/formtastic.git", :branch => "rails3"
 gem 'paperclip'
 gem 'meta_search'
 gem 'prawn'
-gem 'ryanb-acts-as-list', :require => 'acts_as_list'
+gem 'acts_as_list', :git => "http://github.com/nono/acts_as_list.git"
 gem 'devise', '1.1.rc2'
 gem 'repeated_auto_complete', :git => "http://github.com/jasherai/auto_complete.git", :branch => "jquery"
 

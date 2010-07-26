@@ -29,6 +29,7 @@ module Vigitox
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.i18n.default_locale = :fr
 
     # Configure generators values. Many other options are available, be sure to check the documentation.
     # config.generators do |g|
@@ -36,6 +37,12 @@ module Vigitox
     #   g.template_engine :erb
     #   g.test_framework  :test_unit, :fixture => true
     # end
+    config.generators do |g|
+      g.orm             :active_record
+      g.template_engine :haml
+      g.test_framework  :rspec
+      g.fixture_replacement :factory_girl
+    end
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
