@@ -1,12 +1,11 @@
 .fields
   - f.inputs do
     %li.select
-      -#= f.collection_select :author_id, Author.all(:order => "nom ASC"), :id, :short_name, :include_blank => true
-      = f.label :author_name
       = f.text_field_with_auto_complete :author_name,
         {:size => 15},
         {:url => authors_path(:format => :js),
          :method => :get,
+         :skip_style => true,
          :param_name => 'search'}
-  %p= link_to_remove_fields "Enlever cet autheur", f
+      = link_to_remove_fields "Enlever cet autheur", f
 %hr/

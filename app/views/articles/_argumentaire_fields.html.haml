@@ -1,7 +1,17 @@
 - f.inputs do
   %li.select
     = f.label :main_argument_name, "Argument principal"
-    = f.text_field_with_auto_complete :main_argument_name, {:size => 40}, { :method => :get, :url => arguments_path(:format => :js), :param_name => "search"}
+    = f.text_field_with_auto_complete :main_argument_name, 
+      {:size => 40},
+      {:method => :get,
+      :skip_style => true,
+      :url => arguments_path(:format => :js),
+      :param_name => "search"}
   %li.select
     = f.label :aux_argument_name, "Argument secondaire"
-    = f.text_field_with_auto_complete :aux_argument_name, {:size => 40}, { :method => :get, :url => arguments_path(:format => :js), :param_name => "search"}
+    = f.text_field_with_auto_complete :aux_argument_name,
+      {:size => 40},
+      {:method => :get,
+      :skip_style => true,
+      :url => arguments_path(:format => :js),
+      :param_name => "search"}
