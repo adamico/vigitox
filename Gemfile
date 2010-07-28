@@ -2,7 +2,7 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta4'
+gem 'rails', '3.0.0.rc'
 
 group :development do
   gem "nifty-generators"
@@ -19,7 +19,8 @@ gem 'meta_search'
 gem 'prawn'
 gem 'acts_as_list', :git => "http://github.com/nono/acts_as_list.git"
 gem 'devise', '1.1.rc2'
-gem 'repeated_auto_complete', :git => "http://github.com/adamico/auto_complete.git"
+gem 'rails3-jquery-autocomplete'
+#gem 'repeated_auto_complete', :git => "http://github.com/adamico/auto_complete.git"
 
 group :development, :test do
   gem 'factory_girl_rails'

@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :find_revue, :only => [:index, :create, :new]
+  autocomplete :authorship, :author_name
 
   def sort
     params[:articles].each_with_index do |id, index|
