@@ -1,45 +1,47 @@
-- title "Vigitox N° #{@revue.numero}"
+- title "Vigitox N° #{@revue.numero}", false
 
-- if user_signed_in?
-  - actions(@revue)
+%h1
+  - prev_and_next_item("#{@prev.numero} <--", "Vigitox N°#{@revue.numero}", "--> #{@next.numero}", @prev, @next)
 
 .clear
+#revue
 
-%p
-  - prev_and_next_item("Préc. <--", "&nbsp;", "--> Suiv.", @prev, @next)
+  - if @revue.pdf?
+    %p= link_to 'Télécharger le PDF', @revue.pdf.url
+  - else
+    - if user_signed_in?
+      - semantic_form_for @revue, :html => { :multipart => true } do |f|
+        - f.inputs do
+          = f.input :pdf, :label => "Joindre le PDF"
+        - f.buttons do
+          = f.commit_button "Envoyer"
 
-- if @revue.pdf?
-  %p= link_to 'Télécharger le PDF', @revue.pdf.url
-- else
-  - if user_signed_in?
-    - semantic_form_for @revue, :html => { :multipart => true } do |f|
-      - f.inputs do
-        = f.input :pdf, :label => "Joindre le PDF"
-      - f.buttons do
-        = f.commit_button "Envoyer"
-
-%p
-  %strong= "Date de sortie : "
-  = l(@revue.date_sortie, :format => :month_year)
-
-- if @revue.issn
   %p
-    %strong= "ISSN : "
-    = @revue.issn
+    %strong= "Date de sortie : "
+    = l(@revue.date_sortie, :format => :month_year)
 
-- if !@revue.articles.empty?
-  %h2 Liste des articles
-  %ul.articles#articles
-    - @revue.articles.each do |article|
-      - content_tag_for :li, article do
-        - if user_signed_in?
-          %span.handle [drag]
-        = article.authors_list
-        %strong
-          = link_to article.full_title, revue_articles_path(@revue, :page => article.position)
-- else
-  %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
+  - if @revue.issn
+    %p
+      %strong= "ISSN : "
+      = @revue.issn
 
+  - if !@revue.articles.empty?
+    %h2 Liste des articles
+    %ul.articles#articles
+      - @revue.articles.each do |article|
+        - content_tag_for :li, article do
+          - if user_signed_in?
+            %span.handle [drag]
+          = article.authors_list
+          %strong
+            = link_to article.full_title, revue_articles_path(@revue, :page => article.position)
+  - else
+    %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
+
+  - if user_signed_in?
+    = sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
 - if user_signed_in?
-  = sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
-  %p= link_to "Nouvel article", new_revue_article_path(@revue)
+  - actions(@revue)
+  .clear
+  %p= link_to "Rajouter un article", new_revue_article_path(@revue)
+

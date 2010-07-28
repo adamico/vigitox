@@ -19,7 +19,7 @@ gem 'meta_search'
 gem 'prawn'
 gem 'acts_as_list', :git => "http://github.com/nono/acts_as_list.git"
 gem 'devise', '1.1.rc2'
-gem 'repeated_auto_complete', :git => "http://github.com/jasherai/auto_complete.git", :branch => "jquery"
+gem 'repeated_auto_complete', :git => "http://github.com/adamico/auto_complete.git"
 
 group :development, :test do
   gem 'factory_girl_rails'

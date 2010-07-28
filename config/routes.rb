@@ -1,7 +1,7 @@
 Vigitox::Application.routes.draw do |map|
   devise_for :users
 
-  resources :authors, :arguments, :categories
+  resources :authors, :arguments, :categories, :articles
 
   resources :revues, :shallow => true do
     resources :articles do
