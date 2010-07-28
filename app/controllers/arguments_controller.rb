@@ -15,8 +15,7 @@ class ArgumentsController < ApplicationController
   def create
     @argument = Argument.new(params[:argument])
     if @argument.save
-      flash[:notice] = "Successfully created argument."
-      redirect_to @argument
+      redirect_to @argument, :notice => "Successfully created argument."
     else
       render :action => 'new'
     end
@@ -29,8 +28,7 @@ class ArgumentsController < ApplicationController
   def update
     @argument = Argument.find(params[:id])
     if @argument.update_attributes(params[:argument])
-      flash[:notice] = "Successfully updated argument."
-      redirect_to @argument
+      redirect_to @argument, :notice => "Successfully updated argument."
     else
       render :action => 'edit'
     end
@@ -39,7 +37,6 @@ class ArgumentsController < ApplicationController
   def destroy
     @argument = Argument.find(params[:id])
     @argument.destroy
-    flash[:notice] = "Successfully destroyed argument."
-    redirect_to arguments_url
+    redirect_to arguments_path, :notice => "Successfully destroyed argument."
   end
 end

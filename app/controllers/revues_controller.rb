@@ -19,8 +19,7 @@ class RevuesController < ApplicationController
   def create
     @revue = Revue.new(params[:revue])
     if @revue.save
-      flash[:notice] = "Successfully created revue."
-      redirect_to @revue
+      redirect_to @revue, :notice => "Successfully created revue."
     else
       render :action => 'new'
     end
@@ -33,8 +32,7 @@ class RevuesController < ApplicationController
   def update
     @revue = Revue.find(params[:id])
     if @revue.update_attributes(params[:revue])
-      flash[:notice] = "Successfully updated revue."
-      redirect_to @revue
+      redirect_to @revue, :notice => "Successfully updated revue."
     else
       render :action => 'edit'
     end
@@ -43,7 +41,6 @@ class RevuesController < ApplicationController
   def destroy
     @revue = Revue.find(params[:id])
     @revue.destroy
-    flash[:notice] = "Successfully destroyed revue."
-    redirect_to revues_url
+    redirect_to revues_path, :notice => "Successfully destroyed revue."
   end
 end
