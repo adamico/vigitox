@@ -10,11 +10,11 @@
     %p= link_to 'Télécharger le PDF', @revue.pdf.url
   - else
     - if user_signed_in?
-      - semantic_form_for @revue, :html => { :multipart => true } do |f|
-        - f.inputs do
-          = f.input :pdf, :label => "Joindre le PDF"
-        - f.buttons do
-          = f.commit_button "Envoyer"
+      = form_for @revue, :html => { :multipart => true } do |f|
+        %fieldset
+          %legend Joindre le PDF
+          = f.file_field :pdf
+          = f.submit "OK"
 
   %p
     %strong= "Date de sortie : "

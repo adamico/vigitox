@@ -2,4 +2,4 @@
 
 = render :partial => 'form'
 
-%p= link_to "<= Revue", revue_url(@article.revue_id)
+%p= link_to "<= Revue", revue_articles_path(@article.revue_id, :page => @article.position)

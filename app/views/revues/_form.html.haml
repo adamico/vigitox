@@ -1,9 +1,17 @@
 -# encoding: utf-8
 .clear
-- semantic_form_for @revue, :html => { :multipart => true } do |f|
-  - f.inputs do
-    = f.input :numero, :label => 'Numéro'
-    = f.input :date_sortie, :label => 'Date de sortie', :discard_day => true, :include_blank => true
-    = f.input :pdf, :label => "Joindre le fichier PDF"
-  - f.buttons do
-    = f.commit_button "Enregistrer"
+= form_for @revue, :html => { :multipart => true } do |f|
+  = f.error_messages
+  %fieldset
+    %ol
+      %li
+        = f.label :numer, "Numéro"
+        = f.text_field :numero
+      %li
+        = f.label :date_sortie, "Date de sortie"
+        = f.date_select :date_sortie, :discard_day => true, :include_blank => true
+      %li
+        = f.label :pdf, "Joindre le PDF"
+        = f.file_field :pdf
+    .actions
+      = f.submit

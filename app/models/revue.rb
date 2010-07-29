@@ -7,7 +7,6 @@ class Revue < ActiveRecord::Base
 
   validates_presence_of :numero
   validates_uniqueness_of :numero
-  validates_attachment_content_type :pdf, :content_type => [ 'application/pdf' ]
 
   scope :prev, lambda { |r|
     where(["numero < ?", r.numero]).order('numero DESC')
