@@ -1,19 +1,18 @@
+#encoding: utf-8
 module ArticlesHelper
-  def links_to_associations(dci, association)
-    unless dci.send(association).empty?
-      haml_tag :h2 do
-        title = case association
-          when "specialites"; "Spécialités : "
-          when "classe_therapeutiques"; "Classes thérapeutiques : "
+  def links_to_associations(article, association)
+    unless article.send(association).empty?
+      haml_tag :p do
+        title = association.classify.constantize.human_name.pluralize
+        haml_tag :strong do
+          haml_concat "#{title} : "
         end
-        haml_concat title
         links = []
-        dci.send(association).each do |item|
-          links << link_to(h(item.name.humanize), polymorphic_path(item))
+        article.send(association).each do |item|
+          links << link_to(h(item.name), polymorphic_path(item))
         end
-        haml_concat links.join(', ')
+        haml_concat links.join(', ').html_safe
       end
     end
-    haml_tag 'div.clear' do end;
   end
 end

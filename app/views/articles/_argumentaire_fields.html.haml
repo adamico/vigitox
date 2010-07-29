@@ -1,7 +1,7 @@
 = f.fields_for :argumentaire do |arg_form|
   .field
-    = arg_form.label :main_argument_name, "Argument principal"
+    = arg_form.label :main_argument_name, "Principal"
     = arg_form.text_field :main_argument_name, :autocomplete => autocomplete_argument_name_argumentaires_path
   .field
-    = arg_form.label :aux_argument_name, "Argument secondaire"
+    = arg_form.label :aux_argument_name, "Secondaire"
     = arg_form.text_field :aux_argument_name, :autocomplete => autocomplete_argument_name_argumentaires_path

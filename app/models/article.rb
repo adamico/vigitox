@@ -31,7 +31,7 @@ class Article < ActiveRecord::Base
   def authors_list
     #TODO: use new Array.to_s 1.9 syntax
     unless authors.empty?
-      authors.map{ |a| a.short_name }.join(', ').insert(0, '(').insert(-1, ')')
+      authors.map{ |a| a.name }.join(', ').insert(0, '(').insert(-1, ')')
     end
   end
 

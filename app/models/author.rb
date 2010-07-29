@@ -3,7 +3,11 @@ class Author < ActiveRecord::Base
   has_many :articles, :through => :authorships
   has_many :authorships, :dependent => :destroy
 
-  def short_name
+  def self.human_name
+    "Autheurs"
+  end
+
+  def name
     output = "#{nom} "
     initiales = prenom.split.map {|p| p.first + "."}
     output += initiales.join
