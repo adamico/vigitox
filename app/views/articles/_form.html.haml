@@ -10,7 +10,6 @@
   - f.inputs :name => 'Autheurs' do
     - f.fields_for :authorships do |authorship|
       = render 'authorship_fields', :f => authorship
-    %p= link_to_add_fields 'Rajouter un autheur', f, :authorships
 
     = f.input :categories, :as => :check_boxes
   - f.inputs :name => 'Argumentaire' do

@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
   before_filter :find_revue, :only => [:index, :create, :new]
-  autocomplete :authorship, :author_name
 
   def sort
     params[:articles].each_with_index do |id, index|
@@ -16,6 +15,9 @@ class ArticlesController < ApplicationController
 
   def new
     @article = @revue.articles.build
+    4.times do
+      @article.authorships.build
+    end
   end
 
   def create
@@ -29,6 +31,10 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    total = 4
+    (total - @article.authorships.size).times do
+      @article.authorships.build
+    end
   end
 
   def update

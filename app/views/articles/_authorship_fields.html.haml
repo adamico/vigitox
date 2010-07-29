@@ -1,5 +1,3 @@
 .fields
   - f.inputs do
-    = f.collection_select :author_id, Author.order(:nom), :id, :nom
-    = link_to_remove_fields "Enlever cet autheur", f
-%hr/
+    = f.text_field :author_name, :autocomplete => autocomplete_author_nom_authorships_path
