@@ -7,6 +7,10 @@ Vigitox::Application.routes.draw do |map|
     get :autocomplete_author_nom, :on => :collection
   end
 
+  resources :argumentaires do
+    get :autocomplete_argument_name, :on => :collection
+  end
+
   resources :revues, :shallow => true do
     resources :articles do
       post :sort, :on => :collection

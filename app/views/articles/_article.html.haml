@@ -17,4 +17,9 @@
       - unless article.aux_argument.nil?
         = "/"
         = link_to article.aux_argument.name, argument_path(article.aux_argument)
+  - unless article.categories.empty?
+    %p
+      %strong Categories :
+      - categories_links(article)
+
   %p= article.contenu if article.contenu

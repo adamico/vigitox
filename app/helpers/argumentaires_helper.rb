@@ -1,0 +1,2 @@
+module ArgumentairesHelper
+end
