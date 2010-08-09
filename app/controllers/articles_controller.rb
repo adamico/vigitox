@@ -12,6 +12,11 @@ class ArticlesController < ApplicationController
     @articles = @revue.articles.paginate :page => params[:page], :order => :position
   end
 
+  def search
+    @search = Article.search(params[:search])
+    @articles = @search.all
+  end
+
   def new
     @article = @revue.articles.build
   end

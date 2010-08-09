@@ -5,6 +5,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :arguments, :categories
 
+  map.search '/search', :controller => 'articles', :action => 'search'
+
   map.resources :revues, :shallow => true do |revues|
     revues.resources :articles
     revues.resources :articles, :collection => {

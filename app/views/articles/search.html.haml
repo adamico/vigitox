@@ -1,0 +1,21 @@
+-# encoding: utf-8
+- title "Recherche"
+
+.clear
+
+- semantic_form_for @search do |f|
+  - f.inputs do
+    = f.input :titre_like, :label => "Mots dans le titre"
+  - f.buttons do
+    = f.commit_button 'OK'
+
+- if @articles.empty?
+  %p
+    Aucun résultat
+  - if user_signed_in?
+    %p
+      Params :
+      = params[:search] || "None"
+
+- else
+  = render @articles
