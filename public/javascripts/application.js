@@ -2,14 +2,32 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 function remove_fields(link) {
-  $(link).previous("input[type=hidden]").value = "1";
-  $(link).up(".fields").hide();
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".fields").hide();
 }
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g");
-  $(link).up().insert({
-    before: content.replace(regexp, new_id)
-  });
+  $(link).parent().before(content.replace(regexp, new_id));
+  add_autocomplete();
 }
+
+//autocomplete
+$(function() {
+  $("[id*=author_name]").autocomplete({
+    source: '/authors/names.js',
+    minLength: 2
+  });
+  $("[id*=argument_name]").autocomplete({
+    source: '/arguments/names.js',
+    minLength: 2
+  });
+});
+
+function add_autocomplete() {
+  $('[id*=author_name]').autocomplete({
+    source: '/authors/names.js',
+    minLength: 2
+  });
+};

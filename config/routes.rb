@@ -1,9 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :authors
 
   map.devise_for :users
 
-  map.resources :arguments, :categories
+  map.resources :authors, :collection => { :names => :get }
+  map.resources :arguments, :collection => { :names => :get }
+  map.resources :categories
 
   map.search '/search', :controller => 'articles', :action => 'search'
 
@@ -15,5 +16,4 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.root :revues
-  map.connect ':controller/:action.:format'
 end

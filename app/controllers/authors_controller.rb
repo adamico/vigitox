@@ -6,7 +6,11 @@ class AuthorsController < ApplicationController
       @authors = Author.all(:include => :authorships, :order => :nom)
     end
   end
-  
+
+  def names
+    @authors = Author.all(:conditions => ["nom LIKE ?", "%#{params[:term]}%"])
+  end
+
   def show
     @author = Author.find(params[:id])
   end

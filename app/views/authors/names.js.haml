@@ -1,0 +1,6 @@
+= "["
+- array = []
+- @authors.map(&:nom).each do |name|
+  - array << "\"#{name}\""
+= array.join(', ')
+= "]"
