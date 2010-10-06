@@ -3,6 +3,10 @@ class ArgumentsController < ApplicationController
     @arguments_paginate = Argument.order("LOWER(name) ASC").paginate(:page => params[:page], :per_page => 20)
     @arguments = Argument.where(['name LIKE ?', "%#{params[:search]}%"]).order("LOWER(name) ASC")
   end
+
+  def names
+    @arguments = Argument.where(:name =~ "%#{params[:term]}%")
+  end
   
   def show
     @argument = Argument.find(params[:id])

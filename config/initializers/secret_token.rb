@@ -2,6 +2,6 @@
 
 # Your secret key for verifying the integrity of signed cookies.
 # If you change this key, all old signed cookies will become invalid!
-# Make sure the secret is at least 30 characters and all random, 
+# Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Rails.application.config.secret_token = '8c2bd76036ac3ff7e24778e20c0385adbfe728b680cc5007950856657637b7dc470c08d25e5ce3d384a4e8b94e67c496e1e7450551446314e6b04de1cdf69fc4'
+Vigitox::Application.config.secret_token = '343f3a1e5ce05480582ad4f42beb752144c605e1447f7fbd421f05fbc62fdd6902e34bb7ab4c88a5e4105e9ae3b5f23f94fa18f9be0d7520a671ed6d2a3a3ccf'

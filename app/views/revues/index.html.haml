@@ -15,7 +15,7 @@
   .clear
   %ul.articles#articles
     - @derniere.articles.each do |article|
-      - content_tag_for :li, article do
+      = content_tag_for :li, article do
         - if user_signed_in?
           %span.handle [drag]
         = article.authors_list

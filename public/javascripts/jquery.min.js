@@ -1,0 +1,1 @@
+/home/ada/assets/js/jquery/jquery-1.4.1.min.js

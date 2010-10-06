@@ -8,7 +8,7 @@
     %th N. Articles
   - for author in @authors
     %tr
-      %td= link_to h(author.short_name), author
+      %td= link_to author.name, author
       %td= author.authorships.size
       - if user_signed_in?
         %td= link_to 'Edit', edit_author_path(author)

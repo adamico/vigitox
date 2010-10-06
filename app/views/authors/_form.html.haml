@@ -1,7 +1,7 @@
 .clear
-- semantic_form_for @author do |f|
+= semantic_form_for @author do |f|
   = f.error_messages
-  - f.inputs do
+  = f.inputs do
     = f.input :nom
     = f.input :prenom
     = f.submit

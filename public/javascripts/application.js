@@ -2,7 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 function remove_fields(link) {
-  $(link).previous("input[type=hidden]").value = "1";
+  $(link).previous("input[type=hidden]").val("1");
   $(link).up(".fields").hide();
 }
 
@@ -13,3 +13,15 @@ function add_fields(link, association, content) {
     before: content.replace(regexp, new_id)
   });
 }
+
+$(function() {
+  //autocomplete
+  $("[id*=author_name]").autocomplete({
+    source: '/authors/names.js',
+    minLength: 2
+  });
+  $("[id*=argument_name]").autocomplete({
+    source: '/arguments/names.js',
+    minLength: 2
+  });
+});

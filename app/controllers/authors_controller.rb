@@ -7,6 +7,10 @@ class AuthorsController < ApplicationController
     end
   end
   
+  def names
+    @authors = Author.where(:nom =~ "%#{params[:term]}%")
+  end
+
   def show
     @author = Author.find(params[:id])
   end

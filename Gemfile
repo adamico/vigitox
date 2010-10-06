@@ -2,24 +2,29 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.rc'
+gem 'rails', '3.0.0'
+gem 'haml'
+gem "RedCloth"
+gem 'meta_where'
+gem 'meta_search'
+gem 'formtastic', '~> 1.1.0'
+gem 'will_paginate', '3.0.pre2'
+gem 'paperclip'
+gem 'prawn'
+gem 'acts_as_list'
+gem 'devise', '~> 1.1.rc2'
 
 group :development do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem "ruby-graphviz"
+  gem "rails-erd"
   gem "nifty-generators"
   gem "rails3-generators"
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem "haml-rails"
+  gem "wirble"
+  gem "hirb"
+  gem 'annotate-models', '1.0.4'
 end
-
-gem 'test-unit', '1.2.3'
-gem 'haml'
-gem 'will_paginate', '3.0.pre'
-gem 'formtastic', :git => "http://github.com/justinfrench/formtastic.git", :branch => "rails3"
-gem 'paperclip'
-gem 'meta_search'
-gem 'prawn'
-gem 'acts_as_list', :git => "http://github.com/nono/acts_as_list.git"
-gem 'devise', '1.1.rc2'
-gem 'rails3-jquery-autocomplete'
 
 group :development, :test do
   gem 'factory_girl_rails'
@@ -34,6 +39,6 @@ group :cucumber do
   gem 'rspec-rails', ">= 2.0.0.beta.17"
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'pickle', :git => 'http://github.com/codegram/pickle.git'
+  gem 'pickle'
   gem 'factory_girl_rails'
 end
