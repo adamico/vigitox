@@ -1,6 +1,7 @@
 -# encoding: utf-8
 .clear
 - semantic_form_for @revue, :html => { :multipart => true } do |f|
+  = f.error_messages
   - f.inputs do
     = f.input :numero, :label => 'Numéro'
     = f.input :date_sortie, :label => 'Date de sortie', :discard_day => true, :include_blank => true

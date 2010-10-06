@@ -136,3 +136,18 @@ ul.actions {
 
 ul.revues {
   list-style: none; }
+
+table.list {
+  border-collapse: collapse; }
+  table.list th {
+    border-bottom: 1px solid black; }
+  table.list td {
+    vertical-align: top;
+    padding-left: 0.3em;
+    padding-right: 0.3em; }
+
+.odd {
+  background: white; }
+
+.even {
+  background: #eeeeee; }

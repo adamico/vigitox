@@ -9,12 +9,12 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = @revue.articles.paginate :page => params[:page], :order => :position
+    @articles = @revue.articles.paginate :page => params[:page], :per_page => 1, :order => :position
   end
 
   def search
     @search = Article.search(params[:search])
-    @articles = @search.all
+    @articles = @search.paginate :page => params[:page], :order => "revue_id DESC"
   end
 
   def new

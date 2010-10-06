@@ -9,13 +9,28 @@
   - f.buttons do
     = f.commit_button 'OK'
 
-- if @articles.empty?
-  %p
-    Aucun résultat
-  - if user_signed_in?
+- if params[:search]
+  - if @articles.empty?
     %p
-      Params :
-      = params[:search] || "None"
+      Aucun résultat
+    - if user_signed_in?
+      %p
+        Params :
+        = params[:search] || "None"
 
-- else
-  = render @articles
+  - else
+    = will_paginate @articles, :previous_label => "<--", :next_label => "-->"
+    %table.list
+      %tr
+        %th Titre
+        %th N°
+        %th Auteurs
+        %th Arguments
+      - @articles.each do |article|
+        %tr{:class => "#{cycle('odd', 'even')}"}
+          %td= article.full_title
+          %td= article.revue_numero
+          %td= article.authors_list
+          %td= article.arguments
+
+    = will_paginate @articles, :previous_label => "<--", :next_label => "-->"

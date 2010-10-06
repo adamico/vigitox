@@ -1,7 +1,6 @@
 class ArgumentsController < ApplicationController
   def index
-    @arguments_paginate = Argument.paginate :page => params[:page], :per_page => 20, :order => "LOWER(name) ASC"
-    @arguments = Argument.all(:conditions => ['name LIKE ?', "%#{params[:search]}%"], :order => "LOWER(name) ASC")
+    @arguments = Argument.paginate :page => params[:page], :per_page => 20, :order => "LOWER(name) ASC"
   end
 
   def names
