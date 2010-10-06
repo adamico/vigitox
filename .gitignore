@@ -9,3 +9,7 @@ db/*.sqlite3
 rerun.txt
 *.csv
 .bundle
+
+/.bundle
+
+/.bundle
