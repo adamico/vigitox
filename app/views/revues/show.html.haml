@@ -22,11 +22,6 @@
   %strong= "Date de sortie : "
   = l(@revue.date_sortie, :format => :month_year)
 
-- if @revue.issn
-  %p
-    %strong= "ISSN : "
-    = @revue.issn
-
 - if !@revue.articles.empty?
   %h2 Liste des articles
   %ul.articles#articles
