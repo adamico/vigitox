@@ -14,6 +14,8 @@ gem 'prawn'
 gem 'acts_as_list'
 gem 'devise', '~> 1.1.rc2'
 
+gem 'pg', :group => :production
+
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem "ruby-graphviz"
