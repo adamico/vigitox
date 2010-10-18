@@ -7,7 +7,7 @@ class Revue < ActiveRecord::Base
 
   validates_presence_of :numero
   validates_uniqueness_of :numero
-  validates_attachment_content_type :pdf, :content_type => [ 'application/pdf' ]
+  #validates_attachment_content_type :pdf, :content_type => [ 'application/pdf' ]
 
   named_scope :prev, lambda { |r| {:conditions => ["numero < ?", r.numero], :order => 'numero DESC' } }
   named_scope :next, lambda { |r| {:conditions => ["numero > ?", r.numero], :order => :numero } }
