@@ -2,7 +2,7 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 source 'http://rubygems.org'
 
-gem 'rails', '2.3.9'
+gem 'rails', '2.3.10'
 gem 'haml', '3.0.18'
 gem "RedCloth"
 gem 'searchlogic'
