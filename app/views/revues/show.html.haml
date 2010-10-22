@@ -8,15 +8,8 @@
 %p
   - prev_and_next_item("Préc. <--", "&nbsp;", "--> Suiv.", @prev, @next)
 
-- if @revue.pdf?
-  %p= link_to 'Télécharger le PDF', @revue.pdf.url
-- else
-  - if user_signed_in? && Rails.env.development?
-    - semantic_form_for @revue, :html => { :multipart => true } do |f|
-      - f.inputs do
-        = f.input :pdf, :label => "Joindre le PDF"
-      - f.buttons do
-        = f.commit_button "Envoyer"
+- unless @revue.pdf_url.blank?
+  %p= link_to 'Version PDF', @revue.pdf_url
 
 %p
   %strong= "Date de sortie : "

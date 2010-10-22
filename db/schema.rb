@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100713181621) do
+ActiveRecord::Schema.define(:version => 20101022172528) do
 
   create_table "argumentaires", :force => true do |t|
     t.integer  "main_argument_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20100713181621) do
     t.datetime "pdf_updated_at"
     t.string   "issn"
     t.integer  "articles_count",   :default => 0
+    t.string   "pdf_url"
   end
 
   create_table "taggings", :force => true do |t|

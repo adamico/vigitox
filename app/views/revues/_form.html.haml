@@ -5,6 +5,6 @@
   - f.inputs do
     = f.input :numero, :label => 'Numéro'
     = f.input :date_sortie, :label => 'Date de sortie', :discard_day => true, :include_blank => true
-    = f.input :pdf, :label => "Joindre le fichier PDF" if Rails.env.development?
+    = f.input :pdf_url, :label => 'Lien version PDF'
   - f.buttons do
     = f.commit_button "Enregistrer"
