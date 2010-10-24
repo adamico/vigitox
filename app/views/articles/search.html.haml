@@ -1,5 +1,5 @@
 -# encoding: utf-8
-- title "Recherche"
+- title "Rechercher des articles"
 
 .clear
 
@@ -26,11 +26,15 @@
         %th N°
         %th Auteurs
         %th Arguments
+        %th Categories
       - @articles.each do |article|
         %tr{:class => "#{cycle('odd', 'even')}"}
-          %td= article.full_title
-          %td= article.revue_numero
-          %td= article.authors_list
-          %td= article.arguments
-
+          %td= link_to h(article.full_title), article
+          %td= link_to h(article.revue_numero), revue_path(article.revue_id)
+          %td
+            - links_to_associations(article, "authors", "short_name")
+          %td
+            - links_to_arguments(article)
+          %td
+            - links_to_associations(article, "categories")
     = will_paginate @articles, :previous_label => "<--", :next_label => "-->"
