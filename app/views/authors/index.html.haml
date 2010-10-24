@@ -2,17 +2,22 @@
 
 .clear
 
-%table
-  %tr
-    %th Nom
-    %th N. Articles
-  - for author in @authors
+%table.list
+  %thead
     %tr
-      %td= link_to h(author.short_name), author
-      %td= author.authorships.size
-      - if user_signed_in?
-        %td= link_to 'Edit', edit_author_path(author)
-        %td= link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete
+      %th Nom
+      %th Articles
+      %th &nbsp;
+  %tbody
+    - for author in @authors
+      %tr{:class => "#{cycle('odd', 'even')}"}
+        %td= link_to h(author.short_name), author
+        %td= author.authorships.size
+        - if user_signed_in?
+          %td
+            %ul.actions
+              %li= link_to 'Edit', edit_author_path(author)
+              %li= link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete
 
 = will_paginate @authors, :previous_label => "<--", :next_label => "-->"
 

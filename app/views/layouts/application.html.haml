@@ -24,9 +24,18 @@
       #menu
         %ul
           %li= link_to "Recherche", search_path
-          %li= link_to "Autheurs", authors_path
-          %li= link_to "Categories", categories_path
-          %li= link_to "Arguments", arguments_path
+          %li
+            %ul.links
+              %li= link_to "Autheurs", authors_path
+              %li= link_to "+", new_author_path if user_signed_in?
+          %li
+            %ul.links
+              %li= link_to "Categories", categories_path
+              %li= link_to "+", new_categorie_path if user_signed_in?
+          %li
+            %ul.links
+              %li= link_to "Arguments", arguments_path
+              %li= link_to "+", new_argument_path if user_signed_in?
       #container
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"

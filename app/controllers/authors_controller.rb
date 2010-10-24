@@ -1,6 +1,7 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = Author.paginate(:page => params[:page], :per_page => 20, :include => :authorships, :order => :nom)
+    @authors = Author.paginate(:page => params[:page], :per_page => 20,
+                               :include => :authorships, :order => :nom)
   end
 
   def names
@@ -9,12 +10,16 @@ class AuthorsController < ApplicationController
 
   def show
     @author = Author.find(params[:id])
+    @articles = Article.paginate(:page => params[:page], :per_page => 20,
+                                 :joins => :authorships,
+                                 :conditions => { 'authorships.author_id'  => @author.id},
+                                 :order => 'revue_id DESC')
   end
-  
+
   def new
     @author = Author.new
   end
-  
+
   def create
     @author = Author.new(params[:author])
     if @author.save
@@ -24,11 +29,11 @@ class AuthorsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @author = Author.find(params[:id])
   end
-  
+
   def update
     @author = Author.find(params[:id])
     if @author.update_attributes(params[:author])
@@ -38,7 +43,7 @@ class AuthorsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @author = Author.find(params[:id])
     @author.destroy

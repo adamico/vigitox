@@ -1,25 +1,25 @@
-- title "Autheur : #{@author.short_name}"
-%p
-  = link_to "Edit", edit_author_path(@author)
-  |
-  = link_to "Destroy", @author, :confirm => 'Are you sure?', :method => :delete
+- title h(@author.short_name)
+
+- if user_signed_in?
+  %ul.actions
+    %li= link_to "Edit", edit_author_path(@author)
+    %li= link_to "Destroy", @author, :confirm => 'Are you sure?', :method => :delete
+
 .clear
-%p
-  %strong Nom :
+
+%div
+  %span.label Nom :
   = h @author.nom
 
-%p
-  %strong Prénom :
+%div
+  %span.label Prénom :
   = h @author.prenom
 
-- if !@author.articles.blank?
-  %table
-    - for article in @author.articles
-      %tr
-        %td.right
-          = link_to "##{article.revue.numero}", revue_path(article.revue)
-        %td
-          %span.title= article.titre
+- if !@articles.blank?
+  %h3 Articles par cet autheur :
+  = render 'shared/article_line', :articles => @articles
 - else
-  Pas d'articles
+  %h3 Pas d'articles
 
+%p= page_entries_info @articles
+%p= will_paginate @articles, :previous_label => "<--", :next_label => "-->"

@@ -1,0 +1,6 @@
+%table.list
+  %tbody
+    - articles.each do |article|
+      %tr{:class => "#{cycle('odd', 'even')}"}
+        %td.right= link_to "##{article.revue.numero}", revue_path(article.revue)
+        %td= link_to article.titre, revue_articles_path(article.revue, :page => article.position)

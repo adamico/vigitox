@@ -123,7 +123,6 @@ span.title
   :font-size 0.85em
 
 #menu ul
-  :padding 0 1em
   :list-style none
 
 #banner a
@@ -132,27 +131,36 @@ span.title
 #container h1
   :float left
 
-ul.actions
-  :margin 0
-  :padding 0
-  :float left
-  :list-style none
-  li
-    :padding-left 1em
-    :float left
-
-ul.inline
+ul.inline, ul.links, ul.actions
   margin: 0
   padding: 0
-  float: left
   list-style: none
+  li
+    display: inline
+
+ul.links
+  margin-left: 0
+
+ul.inline, ul.actions
+  float: left
   clear: right
   li
-    &:after
-      content: ", "
     &:last-child:after
       content: ""
-    display: inline
+
+ul.actions li
+  &:after
+    content: " |"
+
+ul.inline li
+  &:after
+    content: ", "
+
+ul.actions
+  margin-left: 0.5em
+  padding-left: 0.5em
+  li
+    padding-left: 0 0.5em
 
 span.label
   margin-right: 0.5em

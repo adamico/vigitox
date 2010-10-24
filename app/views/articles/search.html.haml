@@ -19,22 +19,5 @@
         = params[:search] || "None"
 
   - else
-    = will_paginate @articles, :previous_label => "<--", :next_label => "-->"
-    %table.list
-      %tr
-        %th Titre
-        %th N°
-        %th Auteurs
-        %th Arguments
-        %th Categories
-      - @articles.each do |article|
-        %tr{:class => "#{cycle('odd', 'even')}"}
-          %td= link_to h(article.full_title), article
-          %td= link_to h(article.revue_numero), revue_path(article.revue_id)
-          %td
-            - links_to_associations(article, "authors", "short_name")
-          %td
-            - links_to_arguments(article)
-          %td
-            - links_to_associations(article, "categories")
+    = render 'shared/article_line', :articles => @articles
     = will_paginate @articles, :previous_label => "<--", :next_label => "-->"
