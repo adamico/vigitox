@@ -134,6 +134,28 @@ ul.actions {
     padding-left: 1em;
     float: left; }
 
+ul.inline {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+  clear: right; }
+  ul.inline li {
+    display: inline; }
+    ul.inline li:after {
+      content: ", "; }
+    ul.inline li:last-child:after {
+      content: ""; }
+
+span.label {
+  margin-right: 0.5em;
+  font-weight: bold;
+  text-align: right;
+  display: block;
+  width: 8em;
+  clear: left;
+  float: left; }
+
 ul.revues {
   list-style: none; }
 

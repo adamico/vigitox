@@ -6,15 +6,26 @@
       %li= link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"
   .clear
   - unless article.authors.empty?
-    %p
-      %strong Autheurs :
-      = article.authors_list
+    %div
+      %span.label Autheurs :
+      %ul.inline
+        - article.authors.each do |author|
+          %li= link_to h(author.short_name), author_path(author)
   - if article.argumentaire
-    %p
-      %strong Arguments :
-      - unless article.main_argument.nil?
-        = link_to article.main_argument.name, argument_path(article.main_argument)
-      - unless article.aux_argument.nil?
-        = "/"
-        = link_to article.aux_argument.name, argument_path(article.aux_argument)
-  %p= article.contenu if article.contenu
+    %div
+      %span.label Arguments :
+      %ul.inline
+        - unless article.main_argument.nil?
+          %li= link_to h(article.main_argument.name), argument_path(article.main_argument)
+        - unless article.aux_argument.nil?
+          %li= link_to h(article.aux_argument.name), argument_path(article.aux_argument)
+  - unless article.categories.empty?
+    %div
+      %span.label Categories :
+      %ul.inline
+        - article.categories.each do |categorie|
+          %li= link_to h(categorie.name), categorie_path(categorie)
+
+  .clear
+  %div
+    = h(article.contenu) unless article.contenu.blank?

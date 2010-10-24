@@ -141,6 +141,28 @@ ul.actions
     :padding-left 1em
     :float left
 
+ul.inline
+  margin: 0
+  padding: 0
+  float: left
+  list-style: none
+  clear: right
+  li
+    &:after
+      content: ", "
+    &:last-child:after
+      content: ""
+    display: inline
+
+span.label
+  margin-right: 0.5em
+  font-weight: bold
+  text-align: right
+  display: block
+  width: 8em
+  clear: left
+  float: left
+
 ul.revues
   :list-style none
 
