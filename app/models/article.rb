@@ -1,3 +1,19 @@
+# == Schema Information
+# Schema version: 20101024124902
+#
+# Table name: articles
+#
+#  id                :integer         primary key
+#  titre             :text
+#  revue_id          :integer
+#  created_at        :timestamp
+#  updated_at        :timestamp
+#  contenu           :text
+#  fiche_technique   :boolean
+#  position          :integer
+#  authorships_count :integer         default(0)
+#
+
 class Article < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 20
@@ -47,19 +63,4 @@ class Article < ActiveRecord::Base
 end
 
 
-
-# == Schema Information
-#
-# Table name: articles
-#
-#  id                :integer         not null, primary key
-#  titre             :text
-#  revue_id          :integer
-#  created_at        :datetime
-#  updated_at        :datetime
-#  contenu           :text
-#  fiche_technique   :boolean
-#  position          :integer
-#  authorships_count :integer         default(0)
-#
 

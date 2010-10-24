@@ -1,12 +1,5 @@
-one:
-  name: MyString
-  nature: MyString
-
-two:
-  name: MyString
-  nature: MyString
-
 # == Schema Information
+# Schema version: 20101022172528
 #
 # Table name: arguments
 #
@@ -16,4 +9,12 @@ two:
 #  created_at :datetime
 #  updated_at :datetime
 #
+
+one:
+  name: MyString
+  nature: MyString
+
+two:
+  name: MyString
+  nature: MyString
 

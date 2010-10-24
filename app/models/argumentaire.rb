@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20101024124902
+#
+# Table name: argumentaires
+#
+#  id               :integer         primary key
+#  main_argument_id :integer
+#  aux_argument_id  :integer
+#  article_id       :integer
+#  created_at       :timestamp
+#  updated_at       :timestamp
+#
+
 class Argumentaire < ActiveRecord::Base
   belongs_to :article
   belongs_to :main_argument, :class_name => "Argument"
@@ -16,17 +29,3 @@ class Argumentaire < ActiveRecord::Base
     self.aux_argument = Argument.find_by_name(name)
   end
 end
-
-
-# == Schema Information
-#
-# Table name: argumentaires
-#
-#  id               :integer         not null, primary key
-#  main_argument_id :integer
-#  aux_argument_id  :integer
-#  article_id       :integer
-#  created_at       :datetime
-#  updated_at       :datetime
-#
-

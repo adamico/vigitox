@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20101024124902
+#
+# Table name: authors
+#
+#  id                :integer         primary key
+#  nom               :string(255)
+#  prenom            :string(255)
+#  current           :boolean
+#  created_at        :timestamp
+#  updated_at        :timestamp
+#  authorships_count :integer         default(0)
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
@@ -9,17 +23,4 @@ two:
   nom: MyString
   prenom: MyString
   current: false
-
-# == Schema Information
-#
-# Table name: authors
-#
-#  id                :integer         not null, primary key
-#  nom               :string(255)
-#  prenom            :string(255)
-#  current           :boolean
-#  created_at        :datetime
-#  updated_at        :datetime
-#  authorships_count :integer         default(0)
-#
 

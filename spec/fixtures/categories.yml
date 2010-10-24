@@ -1,16 +1,17 @@
+# == Schema Information
+# Schema version: 20101024124902
+#
+# Table name: categories
+#
+#  id         :integer         primary key
+#  name       :string(255)
+#  created_at :timestamp
+#  updated_at :timestamp
+#
+
 one:
   name: MyString
 
 two:
   name: MyString
-
-# == Schema Information
-#
-# Table name: categories
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
 

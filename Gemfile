@@ -15,10 +15,18 @@ gem 'devise', '1.0.7'
 
 gem 'pg', :group => :production
 
-group :development do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem "nifty-generators"
-  gem "wirble"
-  gem "hirb"
-  gem 'annotate-models', '1.0.4'
+unless ENV.has_key?('SSH_CLIENT')
+  group :development do
+    gem 'sqlite3-ruby', :require => 'sqlite3'
+    gem "nifty-generators"
+    gem "wirble"
+    gem "hirb"
+    gem 'annotate-models', '1.0.4'
+  end
+
+  group :test, :development do
+    gem 'rspec', "~> 1.2.0"
+    gem 'rspec-rails', "~> 1.2.0"
+    gem 'factory_girl'
+  end
 end

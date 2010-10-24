@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20101024124902
+#
+# Table name: authorships
+#
+#  id         :integer         primary key
+#  article_id :integer
+#  author_id  :integer
+#  created_at :timestamp
+#  updated_at :timestamp
+#
+
 class Authorship < ActiveRecord::Base
   belongs_to :article, :counter_cache => true
   belongs_to :author, :counter_cache => true
@@ -10,15 +22,4 @@ class Authorship < ActiveRecord::Base
     self.author = Author.find_by_nom(name)
   end
 end
-
-# == Schema Information
-#
-# Table name: authorships
-#
-#  id         :integer         not null, primary key
-#  article_id :integer
-#  author_id  :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
 

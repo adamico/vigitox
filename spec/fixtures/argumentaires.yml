@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20101024124902
+#
+# Table name: argumentaires
+#
+#  id               :integer         primary key
+#  main_argument_id :integer
+#  aux_argument_id  :integer
+#  article_id       :integer
+#  created_at       :timestamp
+#  updated_at       :timestamp
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
@@ -8,16 +21,4 @@ two:
   main_argument_id: 1
   aux_argument_id: 1
 
-
-# == Schema Information
-#
-# Table name: argumentaires
-#
-#  id               :integer         not null, primary key
-#  main_argument_id :integer
-#  aux_argument_id  :integer
-#  article_id       :integer
-#  created_at       :datetime
-#  updated_at       :datetime
-#
 
