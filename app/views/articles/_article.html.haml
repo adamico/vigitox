@@ -27,5 +27,6 @@
           %li= link_to h(categorie.name), categorie_path(categorie)
 
   .clear
-  %div
-    = h(article.contenu) unless article.contenu.blank?
+  - if user_signed_in?
+    %div
+      = textilize h(article.contenu) unless article.contenu.blank?
