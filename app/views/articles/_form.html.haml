@@ -7,13 +7,13 @@
   %ol
     %li
       = f.label :titre, 'Titre'
-      = f.text_field :titre, :size => "50x2"
+      = f.text_area :titre, :size => "80x2"
     %li
       = f.label :fiche_technique, "Fiche Technique ?"
       = f.check_box :fiche_technique
     %li
       = f.label :contenu
-      = f.text_area :contenu
+      = f.text_area :contenu, :size => "80x30"
 
   %h4 Autheurs
   = f.fields_for :authorships do |authorship_form|

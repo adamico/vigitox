@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
 
   def search
     @search = Article.search(params[:search])
-    @articles = @search.order("revue_id DESC").paginate :page => params[:page]
+    @articles = @search.order("revue_id DESC").paginate(:page => params[:page])
   end
 
   def new
@@ -25,7 +25,8 @@ class ArticlesController < ApplicationController
   def create
     @article = @revue.articles.build(params[:article])
     if @article.save
-      redirect_to revue_articles_path(@revue, :page => @article.position), :notice => "Successfully created article."
+      redirect_to revue_articles_path(@revue, :page => @article.position),
+        :notice => "Successfully created article."
     else
       render :action => 'new'
     end

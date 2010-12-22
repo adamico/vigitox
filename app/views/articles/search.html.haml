@@ -2,7 +2,7 @@
 
 .clear
 
-= simple_form_for @search do |f|
+= simple_form_for @search, :url => { :action => "search" } do |f|
   .inputs
     = f.input :titre_or_contenu_like, :label => false, :hint => "mot(s) dans le titre ou le contenu d'un article"
   .buttons
