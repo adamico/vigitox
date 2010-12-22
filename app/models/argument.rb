@@ -1,15 +1,3 @@
-# == Schema Information
-# Schema version: 20101022172528
-#
-# Table name: arguments
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  nature     :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class Argument < ActiveRecord::Base
   # validations
   validates_presence_of :name
@@ -52,4 +40,18 @@ class Argument < ActiveRecord::Base
     temp.to_a
   end
 end
+
+
+
+# == Schema Information
+# Schema version: 20101022172528
+#
+# Table name: arguments
+#
+#  id         :integer         primary key
+#  name       :string(255)
+#  nature     :string(255)
+#  created_at :timestamp
+#  updated_at :timestamp
+#
 

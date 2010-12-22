@@ -2,7 +2,7 @@
 - semantic_form_for @argument do |f|
   = f.error_messages
   - f.inputs do
-    = f.input :name
+    = f.input :name, :label => "Libéllé"
     = f.input :nature, :as => :select, :collection => Argument::NATURES
   - f.buttons do
-    = f.commit_button 'Submit'
+    = f.commit_button 'Sauvegarder'

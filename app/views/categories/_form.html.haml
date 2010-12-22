@@ -1,9 +1,7 @@
 .clear
-- form_for @categorie do |f|
+- semantic_form_for @categorie do |f|
   = f.error_messages
-  %p
-    = f.label :name
-    %br
-    = f.text_field :name
-  %p
-    = f.submit "Submit"
+  - f.inputs do
+    = f.input :name, :label => "Libéllé"
+  - f.buttons do
+    = f.commit_button 'Sauvegarder'

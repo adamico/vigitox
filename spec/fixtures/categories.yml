@@ -1,5 +1,12 @@
+one:
+  name: MyString
+
+two:
+  name: MyString
+
+
 # == Schema Information
-# Schema version: 20101024124902
+# Schema version: 20101022172528
 #
 # Table name: categories
 #
@@ -8,10 +15,4 @@
 #  created_at :timestamp
 #  updated_at :timestamp
 #
-
-one:
-  name: MyString
-
-two:
-  name: MyString
 

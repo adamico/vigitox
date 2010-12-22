@@ -1,36 +1,13 @@
--# encoding: utf-8
-- title "Liste des Vigitox publiés"
+- title "Index VIGItox", false
 
-.clear
+- form_tag search_path, :method => :get do
+  = text_field_tag "search[titre_or_contenu_like]", params[:search][:titre_or_contenu_like]
+  = submit_tag "Recherche", :name => nil
 
-%p= link_to "Index générale en PDF", revues_path(:format => "pdf")
-
-%h3= "Dernier Numéro :"
-#revue
-  %h2= "VIGItox##{@derniere.numero}"
-  - if user_signed_in?
-    %ul.actions
-      %li= link_to "Modifier", edit_revue_path(@derniere)
-      %li= link_to "Détruire", @derniere, :confirm => 'Are you sure?', :method => :delete
-  .clear
-  %ul.articles#articles
-    - @derniere.articles.each do |article|
-      - content_tag_for :li, article do
-        - if user_signed_in?
-          %span.handle [drag]
-        %strong
-          = link_to article.full_title, revue_articles_path(article.revue, :page => article.position)
-
-  = sortable_element('articles', :url => sort_revue_articles_path(@derniere), :handle => 'handle')
-
-%ul.revues
-  - for revue in @revues
-    %li
-      = link_to "Vigitox N°#{revue.numero}", revue_path(revue)
+%h2 Derniers numéros publiés
 
 = will_paginate @revues, :previous_label => "<--", :next_label => "-->"
 
-%hr/
+= render @revues
 
-- if user_signed_in?
-  %p= link_to "Nouveau numéro", new_revue_path
+= will_paginate @revues, :previous_label => "<--", :next_label => "-->"

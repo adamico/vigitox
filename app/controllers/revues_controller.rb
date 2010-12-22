@@ -1,9 +1,15 @@
 class RevuesController < ApplicationController
   def index
-    @revues = Revue.paginate :page => params[:page], :order => "numero DESC"
+    params[:search] ||= {}
+    @revues = Revue.recent.all.paginate(:page => params[:page], :per_page => 3)
     @derniere = Revue.derniere
   end
-  
+
+  def archive
+    revues = Revue.all(:order => "numero DESC")
+    @revue_annees = revues.group_by(&:annee_sortie)
+  end
+
   def show
     @revue = Revue.find(params[:id], :include => :articles)
     @prev = Revue.prev(@revue).first
@@ -11,11 +17,11 @@ class RevuesController < ApplicationController
     @article = Article.new(:revue => @revue)
 
   end
-  
+
   def new
     @revue = Revue.new
   end
-  
+
   def create
     @revue = Revue.new(params[:revue])
     if @revue.save

@@ -8,6 +8,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.search '/search', :controller => 'articles', :action => 'search'
 
+  map.archive '/archive', :controller =>  'revues', :action => 'archive'
+
   map.resources :revues, :shallow => true do |revues|
     revues.resources :articles
     revues.resources :articles, :collection => {

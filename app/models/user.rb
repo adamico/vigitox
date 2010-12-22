@@ -1,5 +1,15 @@
+class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :http_authenticatable, :token_authenticatable, :lockable, :timeoutable and :activatable
+  devise :database_authenticatable, :rememberable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation
+end
+
+
 # == Schema Information
-# Schema version: 20101024124902
+# Schema version: 20101022172528
 #
 # Table name: users
 #
@@ -17,13 +27,4 @@
 #  created_at          :timestamp
 #  updated_at          :timestamp
 #
-
-class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :http_authenticatable, :token_authenticatable, :lockable, :timeoutable and :activatable
-  devise :database_authenticatable, :rememberable, :validatable
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation
-end
 

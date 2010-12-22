@@ -16,7 +16,7 @@
   = l(@revue.date_sortie, :format => :month_year)
 
 - if !@revue.articles.empty?
-  %h2 Liste des articles
+  %h2 Articles
   %ul.articles#articles
     - @revue.articles.each do |article|
       - content_tag_for :li, article do
@@ -29,4 +29,5 @@
 
 - if user_signed_in?
   = sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
-  %p= link_to "Nouvel article", new_revue_article_path(@revue)
+  %hr/
+  %p= link_to "Rajouter un article", new_revue_article_path(@revue)

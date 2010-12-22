@@ -1,5 +1,14 @@
+one:
+  titre: MyText
+
+two:
+  titre: MyText
+
+
+
+
 # == Schema Information
-# Schema version: 20101024124902
+# Schema version: 20101022172528
 #
 # Table name: articles
 #
@@ -13,12 +22,4 @@
 #  position          :integer
 #  authorships_count :integer         default(0)
 #
-
-one:
-  titre: MyText
-
-two:
-  titre: MyText
-
-
 

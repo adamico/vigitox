@@ -13,7 +13,7 @@
       #corner
         &nbsp;
       #banner
-        %h1= link_to "Index VIGItox", root_path
+        %h1= link_to_unless_current "VIGItox", root_path
         #user_nav
           - if user_signed_in?
             = "Bonjour, #{current_user.email}."
@@ -23,7 +23,10 @@
     #main
       #menu
         %ul
-          %li= link_to "Recherche", search_path
+          %li
+            %ul.links
+              %li= link_to "Archives", archive_path
+              %li= link_to "+", new_revue_path if user_signed_in?
           %li
             %ul.links
               %li= link_to "Autheurs", authors_path

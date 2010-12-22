@@ -1,5 +1,28 @@
+class Revue < ActiveRecord::Base
+
+  has_many :articles, :dependent => :destroy, :order => "position"
+
+  validates_presence_of :numero
+  validates_uniqueness_of :numero
+
+  named_scope :prev, lambda { |r| {:conditions => ["numero < ?", r.numero], :order => 'numero DESC' } }
+  named_scope :next, lambda { |r| {:conditions => ["numero > ?", r.numero], :order => :numero } }
+
+  named_scope :recent, :order => "numero DESC", :limit => 5
+
+  def self.derniere
+    find(:last, :order => :numero)
+  end
+
+  def annee_sortie
+    date_sortie.beginning_of_year
+  end
+end
+
+
+
 # == Schema Information
-# Schema version: 20101024124902
+# Schema version: 20101022172528
 #
 # Table name: revues
 #
@@ -16,23 +39,4 @@
 #  articles_count   :integer         default(0)
 #  pdf_url          :string(255)
 #
-
-class Revue < ActiveRecord::Base
-  cattr_reader :per_page
-  @@per_page = 10
-
-  has_many :articles, :dependent => :destroy, :order => "position"
-
-  validates_presence_of :numero
-  validates_uniqueness_of :numero
-
-  named_scope :prev, lambda { |r| {:conditions => ["numero < ?", r.numero], :order => 'numero DESC' } }
-  named_scope :next, lambda { |r| {:conditions => ["numero > ?", r.numero], :order => :numero } }
-
-  def self.derniere
-    find(:last, :order => :numero)
-  end
-
-end
-
 

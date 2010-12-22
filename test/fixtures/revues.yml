@@ -1,5 +1,15 @@
+one:
+  numero: 1
+  date_sortie: 2010-01-27
+
+two:
+  numero: 1
+  date_sortie: 2010-01-27
+
+
+
 # == Schema Information
-# Schema version: 20101024124902
+# Schema version: 20101022172528
 #
 # Table name: revues
 #
@@ -16,13 +26,4 @@
 #  articles_count   :integer         default(0)
 #  pdf_url          :string(255)
 #
-
-one:
-  numero: 1
-  date_sortie: 2010-01-27
-
-two:
-  numero: 1
-  date_sortie: 2010-01-27
-
 
