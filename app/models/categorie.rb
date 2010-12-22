@@ -3,13 +3,15 @@ class Categorie < ActiveRecord::Base
   has_and_belongs_to_many :articles, :join_table => "articles_categories", :include => :revue, :order => "revue_id DESC"
 end
 
+
 # == Schema Information
+# Schema version: 20101022172528
 #
 # Table name: categories
 #
-#  id         :integer         not null, primary key
+#  id         :integer         primary key
 #  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :timestamp
+#  updated_at :timestamp
 #
 

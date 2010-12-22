@@ -12,6 +12,7 @@ fr:
       long_ordinal: "%e %B %Y"
       only_day: "%e"
       month_year: "%B %Y"
+      only_month: "%B"
 
     day_names: [dimanche, lundi, mardi, mercredi, jeudi, vendredi, samedi]
     abbr_day_names: [dim, lun, mar, mer, jeu, ven, sam]

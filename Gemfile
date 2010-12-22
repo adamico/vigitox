@@ -2,19 +2,20 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.3'
 gem 'haml'
 gem "RedCloth"
 gem 'meta_where'
 gem 'meta_search'
-gem 'formtastic', '~> 1.1.0'
+gem 'simple_form'
+gem 'nested_form', :git => "git@github.com:adamico/nested_form.git"
 gem 'will_paginate', '3.0.pre2'
 gem 'paperclip'
 gem 'prawn'
 gem 'acts_as_list'
-gem 'devise', '~> 1.1.rc2'
+gem 'devise'
 
-gem 'pg', :group => :production
+#gem 'pg', :group => :production
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
@@ -29,8 +30,15 @@ group :development do
 end
 
 group :development, :test do
-  gem 'factory_girl_rails'
-  gem 'rspec-rails', ">= 2.0.0.beta.17"
+  gem 'rspec-rails', "~> 2.1"
+end
+
+group :test do
+  gem 'factory_girl_rails', "~> 1.1.beta1"
+  gem "autotest"
+  gem 'spork', '0.9.0.rc2'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :cucumber do
@@ -38,9 +46,9 @@ group :cucumber do
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec-rails', ">= 2.0.0.beta.17"
-  gem 'spork'
+  gem 'rspec-rails', "~> 2.1"
+  gem 'spork', '0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "~> 1.1.beta1"
 end

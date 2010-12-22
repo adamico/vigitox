@@ -1,18 +1,22 @@
-#encoding: utf-8
 module ArticlesHelper
-  def links_to_associations(article, association)
+  def links_to_associations(article, association, method = "name")
     unless article.send(association).empty?
-      haml_tag :p do
-        title = association.classify.constantize.human_name.pluralize
-        haml_tag :strong do
-          haml_concat "#{title} : "
-        end
-        links = []
-        article.send(association).each do |item|
-          links << link_to(h(item.name), polymorphic_path(item))
-        end
-        haml_concat links.join(', ').html_safe
+      links = []
+      article.send(association).each do |item|
+        links << link_to(item.send(method), polymorphic_path(item))
       end
+      haml_concat links.join(', ').html_safe
+    end
+  end
+  def links_to_arguments(article)
+    if article.arguments == "aucun argument"
+      return article.arguments
+    else
+      links = []
+      article.arguments.split(', ').each do |argument|
+        links << link_to(argument, argument_path(Argument.find_by_name(argument)))
+      end
+      haml_concat links.join(' / ').html_safe
     end
   end
 end

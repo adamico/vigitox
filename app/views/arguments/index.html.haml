@@ -4,20 +4,26 @@
 
 %p= link_to 'Index PDF', arguments_path(:format => "pdf")
 
-%table
-  %tr
-    %th Name
-    %th Nature
-  - for argument in @arguments_paginate
-    %tr
-      %td= link_to h(argument.name), argument
-      %td= h argument.nature
-      - if user_signed_in?
-        %td= link_to 'Edit', edit_argument_path(argument)
-        %td= link_to 'Destroy', argument, :confirm => 'Are you sure?', :method => :delete
+%table.list
+  %thead
+    %tr{:class => "#{cycle('odd', 'even')}"}
+      %th Name
+      %th Nature
+      %th Articles
+      %th &nbsp;
+  %tbody
+    - for argument in @arguments
+      %tr{:class => "#{cycle('odd', 'even')}"}
+        %td= link_to h(argument.name), argument
+        %td= h argument.nature
+        %td= argument.articles_as_main.count + argument.articles_as_aux.count
+        - if user_signed_in?
+          %td
+            %ul.actions
+              %li= link_to 'Edit', edit_argument_path(argument)
+              %li= link_to 'Destroy', argument, :confirm => 'Are you sure?', :method => :delete
 
-%p= page_entries_info @arguments_paginate
-%p= will_paginate @arguments_paginate, :previous_label => "<--", :next_label => "-->"
+%p= will_paginate @arguments, :previous_label => "<--", :next_label => "-->"
 %hr/
 
 - if user_signed_in?

@@ -1,0 +1,13 @@
+- title "Archive"
+
+.clear
+
+%p= link_to "Index générale en PDF", revues_path(:format => "pdf")
+
+- @revue_annees.each do |annee, revues|
+  %h3= annee.strftime("%Y")
+  %table
+    - revues.each do |revue|
+      %tr
+        %td= l(revue.date_sortie, :format => :only_month)
+        %td= link_to revue.numero, revue

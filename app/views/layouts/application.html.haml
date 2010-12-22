@@ -4,7 +4,12 @@
     %title
       = yield(:title) || "Untitled"
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}/
-    = javascript_include_tag :defaults
+    - if Rails.env.production? 
+      = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js', 'rails', 'application'
+    - else
+      = javascript_include_tag :defaults
+    = javascript_include_tag 'nested_form'
+
     = stylesheet_link_tag 'application', 'jquery-ui', 'formtastic', 'formtastic_changes', :cache => 'base'
     = csrf_meta_tag
     = yield(:head)
@@ -13,7 +18,7 @@
       #corner
         &nbsp;
       #banner
-        %h1= link_to "Index VIGItox", root_path
+        %h1= link_to_unless_current "VIGItox", root_path
         #user_nav
           - if user_signed_in?
             = "Bonjour, #{current_user.email}."
@@ -23,10 +28,23 @@
     #main
       #menu
         %ul
-          %li= link_to "Revues", revues_path
-          %li= link_to "Autheurs", authors_path
-          %li= link_to "Categories", categories_path
-          %li= link_to "Arguments", arguments_path
+          %li= link_to "Recherche", search_path
+          %li
+            %ul.links
+              %li= link_to "Archives", archive_path
+              %li= link_to "+", new_revue_path if user_signed_in?
+          %li
+            %ul.links
+              %li= link_to "Autheurs", authors_path
+              %li= link_to "+", new_author_path if user_signed_in?
+          %li
+            %ul.links
+              %li= link_to "Categories", categories_path
+              %li= link_to "+", new_categorie_path if user_signed_in?
+          %li
+            %ul.links
+              %li= link_to "Arguments", arguments_path
+              %li= link_to "+", new_argument_path if user_signed_in?
       #container
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"

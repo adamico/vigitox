@@ -1,7 +1,9 @@
 .clear
-= semantic_form_for(@argument) do |f|
-  = f.inputs do
-    = f.input :name
-    = f.input :nature, :as => :select, :collection => Argument::NATURES
-  = f.buttons do
-    = f.commit_button 'Submit'
+
+= simple_form_for @argument do |f|
+  = f.error_messages
+  .inputs
+    = f.input :name, :label => "Libéllé"
+    = f.input :nature, :collection => Argument::NATURES
+  .buttons
+    = f.button :submit

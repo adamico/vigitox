@@ -10,14 +10,16 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = @revue.articles.order(:position).
-      paginate(:page => params[:page], :per_page => Article.per_page)
+      paginate(:page => params[:page], :per_page => 1)
+  end
+
+  def search
+    @search = Article.search(params[:search])
+    @articles = @search.order("revue_id DESC").paginate :page => params[:page]
   end
 
   def new
     @article = @revue.articles.build
-    4.times do
-      @article.authorships.build
-    end
   end
 
   def create
@@ -31,10 +33,6 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    total = 4
-    (total - @article.authorships.size).times do
-      @article.authorships.build
-    end
   end
 
   def update
@@ -51,7 +49,9 @@ class ArticlesController < ApplicationController
     @article.destroy
     redirect_to revue_path(@article.revue_id), :notice => "Successfully destroyed article."
   end
+
   private
+
   def find_revue
     @revue = Revue.find(params[:revue_id])
   end

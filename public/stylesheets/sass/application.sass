@@ -39,6 +39,9 @@ a
 
 #banner h1
   :color = !vigitox_front
+  a
+    :color = !vigitox_front
+
 
 #header
   :height 100px
@@ -103,14 +106,19 @@ td.right
   :background-color white
 
 #revue, #article
+  margin: 1em 0
   :padding 1em
   :border 1px solid black
   h2, h3
     :float left
     :margin-top 0
 
+#revue
+  background: #EEE
+
 ul.articles
-  :padding 0 1em
+  padding: 0
+  margin: 0
   :list-style none
 
   li .handle
@@ -123,7 +131,6 @@ span.title
   :font-size 0.85em
 
 #menu ul
-  :padding 0 1em
   :list-style none
 
 #banner a
@@ -132,14 +139,45 @@ span.title
 #container h1
   :float left
 
-ul.actions
-  :margin 0
-  :padding 0
-  :float left
-  :list-style none
+ul.inline, ul.links, ul.actions
+  margin: 0
+  padding: 0
+  list-style: none
   li
-    :padding-left 1em
-    :float left
+    display: inline
+
+ul.links
+  margin-left: 0
+
+ul.inline, ul.actions
+  float: left
+  clear: right
+  li
+    &:last-child:after
+      content: ""
+
+ul.actions li
+  &:after
+    content: " |"
+
+ul.inline li
+  &:after
+    content: ", "
+
+ul.actions
+  margin-left: 0.5em
+  padding-left: 0.5em
+  li
+    padding-left: 0 0.5em
+
+span.label
+  margin-right: 0.5em
+  font-weight: bold
+  text-align: right
+  display: block
+  width: 8em
+  clear: left
+  float: left
 
 ul.revues
   :list-style none
@@ -193,3 +231,17 @@ input, textarea
   input
     margin-top: 10px
     margin-left: 150px
+
+table.list
+  border-collapse: collapse
+  th
+    border-bottom: 1px solid black
+  td
+    vertical-align: top
+    padding-left: 0.3em
+    padding-right: 0.3em
+
+.odd
+  background: #FFF
+.even
+  background: #EEE

@@ -1,0 +1,22 @@
+- title "Rechercher des articles"
+
+.clear
+
+= simple_form_for @search do |f|
+  .inputs
+    = f.input :titre_or_contenu_like, :label => false, :hint => "mot(s) dans le titre ou le contenu d'un article"
+  .buttons
+    = f.button :submit, 'OK'
+
+- if params[:search]
+  - if @articles.empty?
+    %p
+      Aucun résultat
+    - if user_signed_in?
+      %p
+        Params :
+        = params[:search] || "None"
+
+  - else
+    = render 'shared/article_line', :articles => @articles
+    = will_paginate @articles, :previous_label => "<--", :next_label => "-->"

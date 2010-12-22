@@ -1,24 +1,23 @@
 class AuthorsController < ApplicationController
   def index
-    if params[:search]
-      @authors = Author.where(['nom LIKE ?', "%#{params[:search]}%"]).order(:nom)
-    else
-      @authors = Author.includes(:authorships).order(:nom)
-    end
+    @authors = Author.order(:nom).includes(:authorships).
+      paginate(:page => params[:page], :per_page => 20)
   end
-  
+
   def names
     @authors = Author.where(:nom =~ "%#{params[:term]}%")
   end
 
   def show
     @author = Author.find(params[:id])
+    @articles = @author.articles.order("revue_id DESC").
+      paginate(:page => params[:page], :per_page => 20)
   end
-  
+
   def new
     @author = Author.new
   end
-  
+
   def create
     @author = Author.new(params[:author])
     if @author.save
@@ -27,11 +26,11 @@ class AuthorsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @author = Author.find(params[:id])
   end
-  
+
   def update
     @author = Author.find(params[:id])
     if @author.update_attributes(params[:author])
@@ -40,7 +39,7 @@ class AuthorsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @author = Author.find(params[:id])
     @author.destroy

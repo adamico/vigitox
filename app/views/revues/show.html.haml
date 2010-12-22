@@ -1,42 +1,33 @@
-- title "Vigitox N° #{@revue.numero}", false
+- title "Vigitox N° #{@revue.numero}"
 
-%h1
-  - prev_and_next_item("préc. <--", "Vigitox N°#{@revue.numero}", "--> succ.", @prev, @next)
-
-.clear
-#revue
-
-  - if @revue.pdf?
-    %p= link_to 'Télécharger le PDF', @revue.pdf.url
-  - else
-    - if user_signed_in?
-      = form_for @revue, :html => { :multipart => true } do |f|
-        %fieldset
-          %legend Joindre le PDF
-          = f.file_field :pdf
-          = f.submit "OK"
-
-  %p
-    %strong= "Date de sortie : "
-    = l(@revue.date_sortie, :format => :month_year)
-
-  - if !@revue.articles.empty?
-    %h2 Liste des articles
-    .clear
-    %ul.articles#articles
-      - @revue.articles.each do |article|
-        - content_tag_for :li, article do
-          - if user_signed_in?
-            %span.handle [drag]
-          = article.authors_list
-          %strong
-            = link_to article.full_title, revue_articles_path(@revue, :page => article.position)
-  - else
-    %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
-
-  - if user_signed_in?
-    = sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
 - if user_signed_in?
   - actions(@revue)
-  .clear
+
+.clear
+
+%p
+  - prev_and_next_item("Préc. <--", raw("&nbsp;"), "--> Suiv.", @prev, @next)
+
+- unless @revue.pdf_url.blank?
+  %p= link_to 'Version PDF', @revue.pdf_url
+
+%p
+  %strong= "Date de sortie : "
+  = l(@revue.date_sortie, :format => :month_year)
+
+- if !@revue.articles.empty?
+  %h2 Articles
+  %ul.articles#articles
+    - @revue.articles.each do |article|
+      - content_tag_for :li, article do
+        - if user_signed_in?
+          %span.handle [drag]
+        %strong
+          = link_to article.full_title, revue_articles_path(@revue, :page => article.position)
+- else
+  %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
+
+- if user_signed_in?
+  = sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
+  %hr/
   %p= link_to "Rajouter un article", new_revue_article_path(@revue)

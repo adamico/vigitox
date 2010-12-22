@@ -17,16 +17,16 @@ class Argumentaire < ActiveRecord::Base
   end
 end
 
-
 # == Schema Information
+# Schema version: 20101022172528
 #
 # Table name: argumentaires
 #
-#  id               :integer         not null, primary key
+#  id               :integer         primary key
 #  main_argument_id :integer
 #  aux_argument_id  :integer
 #  article_id       :integer
-#  created_at       :datetime
-#  updated_at       :datetime
+#  created_at       :timestamp
+#  updated_at       :timestamp
 #
 

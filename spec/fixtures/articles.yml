@@ -6,15 +6,17 @@ two:
 
 
 
+
 # == Schema Information
+# Schema version: 20101022172528
 #
 # Table name: articles
 #
-#  id                :integer         not null, primary key
+#  id                :integer         primary key
 #  titre             :text
 #  revue_id          :integer
-#  created_at        :datetime
-#  updated_at        :datetime
+#  created_at        :timestamp
+#  updated_at        :timestamp
 #  contenu           :text
 #  fiche_technique   :boolean
 #  position          :integer

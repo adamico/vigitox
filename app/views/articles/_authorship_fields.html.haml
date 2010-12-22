@@ -1,3 +1,3 @@
-= f.fields_for :authorships do |authorship_form|
-  .field
-    = authorship_form.text_field :author_name
+= f.text_field :author_name
+= f.link_to_remove "Enlever cet autheur"
+%hr/

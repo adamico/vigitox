@@ -1,37 +1,33 @@
 - @article.build_argumentaire unless @article.argumentaire
+- @article.authorships.build if @article.authorships.empty?
 
 .clear
-= form_for [@revue, @article] do |f|
+= nested_form_for [@revue, @article] do |f|
   = f.error_messages
+  %ol
+    %li
+      = f.label :titre, 'Titre'
+      = f.text_field :titre, :size => "50x2"
+    %li
+      = f.label :fiche_technique, "Fiche Technique ?"
+      = f.check_box :fiche_technique
+    %li
+      = f.label :contenu
+      = f.text_area :contenu
 
-  %fieldset
-    %ol
-      %li
-        = f.label :fiche_technique, "Fiche Technique ?"
-        = f.check_box :fiche_technique
-      %li
-        = f.label :titre, "Titre"
-        = f.text_area :titre, { :rows => "3", :cols => "60"}
-      %li
-        = f.label :contenu
-        = f.text_area :contenu, { :rows => "2", :cols => "60"}
+  %h4 Autheurs
+  = f.fields_for :authorships do |authorship_form|
+    = render 'authorship_fields', :f => authorship_form
+  = f.link_to_add 'Rajouter un autheur', :authorships
 
-      %li
-        %fieldset
-          %legend Autheurs
-          = render 'authorship_fields', :f => f
+  %h4 Catégories
+  - Categorie.all.each do |categorie|
+    %div
+      = check_box_tag "article[categorie_ids][]",
+        categorie.id, @article.categories.include?(categorie)
+      = categorie.name
+  %h4 Argumentaire
+  = f.fields_for :argumentaire do |argumentaire_form|
+    = render 'argumentaire_fields', :f => argumentaire_form
 
-      %li
-        %fieldset.checkboxes
-          %legend Categories
-          - Categorie.all.each do |cat|
-            = check_box_tag "article[categorie_ids][]", cat.id, @article.categories.include?(cat)
-            = cat.name
-
-      %li
-        %fieldset
-          %legend Arguments
-          = render 'argumentaire_fields', :f => f
-
-  .actions
-    = f.submit
+  = f.submit "Enregistrer"

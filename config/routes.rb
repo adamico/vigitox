@@ -11,7 +11,15 @@ Vigitox::Application.routes.draw do
     get :names, :on => :collection
   end
 
+  match "/search" => "articles#search"
+  match "/archive" => "revues#archive"
+
+  resource :articles do
+    get :search, :on => :collection
+  end
+
   resources :revues, :shallow => true do
+    get :archive, :on => :collection
     resources :articles do
       post :sort, :on => :collection
     end

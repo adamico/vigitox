@@ -2,17 +2,22 @@
 
 .clear
 
-%table
-  %tr
-    %th Nom
-    %th N. Articles
-  - for categorie in @categories
+%table.list
+  %thead
     %tr
-      %td= link_to categorie.name, categorie
-      %td= categorie.articles.count
-      - if user_signed_in?
-        %td= link_to 'Edit', edit_categorie_path(categorie)
-        %td= link_to 'Destroy', categorie, :confirm => 'Are you sure?', :method => :delete
+      %th Nom
+      %th N. Articles
+      %th &nbsp;
+  %tbody
+    - for categorie in @categories
+      %tr{:class => "#{cycle('odd', 'even')}"}
+        %td= link_to categorie.name, categorie
+        %td= categorie.articles.count
+        - if user_signed_in?
+          %td
+            %ul.actions
+              %li= link_to 'Edit', edit_categorie_path(categorie)
+              %li= link_to 'Destroy', categorie, :confirm => 'Are you sure?', :method => :delete
 
 - if user_signed_in?
   %p= link_to "Nouvelle Categorie", new_categorie_path

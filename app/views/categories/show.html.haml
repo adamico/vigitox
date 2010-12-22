@@ -1,4 +1,4 @@
-- title @categorie.name
+- title h(@categorie.name)
 
 - if user_signed_in?
   %ul.actions
@@ -7,18 +7,15 @@
 
 .clear
 
-= link_to "Index au format PDF", categorie_path(@categorie, :format => 'pdf')
-
 - if !@articles.blank?
-  %table
-    - for article in @articles
-      %tr
-        %td.right
-          = link_to "##{article.revue.numero}", revue_path(article.revue)
-        %td
-          %span.title= article.titre
+
+  %p= link_to "Index articles au format PDF", categorie_path(@categorie, :format => 'pdf')
+
+  %h3 Articles appartenant à cette categorie :
+  = render 'shared/article_line', :articles => @articles
+
 - else
-  Pas d'articles
+  %h3 Pas d'articles
 
 %p= page_entries_info @articles
 %p= will_paginate @articles, :previous_label => "<--", :next_label => "-->"

@@ -1,7 +1,7 @@
-= f.fields_for :argumentaire do |arg_form|
-  .field
-    = arg_form.label :main_argument_name, "Principal"
-    = arg_form.text_field :main_argument_name
-  .field
-    = arg_form.label :aux_argument_name, "Secondaire"
-    = arg_form.text_field :aux_argument_name
+%ol
+  %li
+    = f.label :main_argument_name, "principal"
+    = f.text_field :main_argument_name
+  %li
+    = f.label :aux_argument_name, "secondaire"
+    = f.text_field :aux_argument_name
