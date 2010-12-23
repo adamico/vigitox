@@ -1,15 +1,20 @@
-$vigitox_back = #FFCC33
-$vigitox_front = #0078FF
+$vigitox_back = #FFCB31
+$vigitox_front = #3265FF
 $primary_color = #FFF
+$left_block = 120px
 
 body
-  :background-color = !primary_color
+  :background-color = $primary_color
   :font
     :family Verdana, Helvetica, Arial
     :size 14px
 
 a
-  :color #0000FF
+  &:link, &:visited
+    text-decoration: none
+    color: $vigitox_front
+  &:hover
+    text-decoration: underline
   img
     :border none
 
@@ -22,7 +27,7 @@ a
   :float left
 
 #corner, #menu
-  :width 18%
+  width: $left_block
 
 #banner, #container
   :width 75%
@@ -48,8 +53,11 @@ a
   :padding 0
   :margin 0
 
-#container, #banner
-  :padding-left 2em
+#banner
+  padding-left: 1em
+
+#container
+  padding: 1em
 
 #flash_notice,
 #flash_error
@@ -99,28 +107,25 @@ td.buttons
 td.right
   :text-align right
 
-.even
-  :background-color #ddd
-
-.odd
-  :background-color white
-
 #revue, #article
-  margin: 1em 0
-  :padding 1em
-  :border 1px solid black
+  margin: 0
+  padding-top: 1em
+
+#article
+  h2
+    background: #ddd
+
+#revue
   h2, h3
     :float left
     :margin-top 0 1em
 
-#revue
-  background: #EEE
-
 ul.articles
   padding: 0
   margin: 0
-  :list-style none
-
+  margin-bottom: 1em
+  margin-left: 1em
+  list-style: none
   li .handle
     :color #777
     :cursor move
@@ -130,14 +135,26 @@ span.title
   :font-weight bold
   :font-size 0.85em
 
-#menu ul
-  :list-style none
+#menu
+  ul
+    padding: 0
+    margin: 0
+    list-style: none
+    li a
+      padding-left: 10px
+      float: left
+      width: $left_block - 10px
+      &:hover
+        background: #FFE497
+    li.plus a
+      padding-left: 20px
+      width: $left_block - 20px
 
 #banner a
-  :text-decoration none
+  text-decoration: none
 
 #container h1
-  :float left
+  float: left
 
 ul.inline, ul.links, ul.actions
   margin: 0
@@ -149,16 +166,22 @@ ul.inline, ul.links, ul.actions
 ul.links
   margin-left: 0
 
-ul.inline, ul.actions
+ul.inline
   float: left
   clear: right
   li
     &:last-child:after
       content: ""
 
-ul.actions li
-  &:after
-    content: " |"
+ul.actions
+  margin: 0
+  padding: 0
+  float: right
+  li
+    &:last-child:after
+      content: ""
+    &:after
+      content: " |"
 
 ul.inline li
   &:after
@@ -181,6 +204,8 @@ span.label
 
 ul.revues
   :list-style none
+
+.search
 
 // this is to temp replace formtastic
 fieldset

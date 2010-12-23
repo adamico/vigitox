@@ -1,9 +1,9 @@
 #article
-  %h3= article.full_title
   - if user_signed_in?
     %ul.actions
       %li= link_to "Modifier", edit_article_path(article)
       %li= link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"
+  %h2= article.full_title
   .clear
   - unless article.authors.empty?
     %div

@@ -3,11 +3,7 @@
   - unless revue.pdf_url.blank?
     = link_to revue.pdf_url do
       = image_tag("pdficon_small.gif", :alt => "Version PDF", :title => "Version PDF", :class => "pdf_link")
-  - if user_signed_in?
-    %ul.actions
-      %li= link_to "Modifier", edit_revue_path(revue)
-      %li= link_to "Détruire", revue,
-        :confirm => 'Are you sure?', :method => :delete
+
   .clear
   %ul.articles
     - revue.articles.each do |article|

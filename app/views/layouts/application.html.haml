@@ -29,22 +29,15 @@
       #menu
         %ul
           %li= link_to "Recherche", search_path
-          %li
-            %ul.links
-              %li= link_to "Archives", archive_path
-              %li= link_to "+", new_revue_path if user_signed_in?
-          %li
-            %ul.links
-              %li= link_to "Autheurs", authors_path
-              %li= link_to "+", new_author_path if user_signed_in?
-          %li
-            %ul.links
-              %li= link_to "Categories", categories_path
-              %li= link_to "+", new_categorie_path if user_signed_in?
-          %li
-            %ul.links
-              %li= link_to "Arguments", arguments_path
-              %li= link_to "+", new_argument_path if user_signed_in?
+          %li= link_to "Archives", archive_path
+          %li.plus= link_to "+ Revue", new_revue_path if user_signed_in?
+          %li= link_to "Autheurs", authors_path
+          %li.plus= link_to "+ Autheur", new_author_path if user_signed_in?
+          %li= link_to "Categories", categories_path
+          %li.plus= link_to "+ Categorie", new_categorie_path if user_signed_in?
+          %li= link_to "Arguments", arguments_path
+          %li.plus= link_to "+ Argument", new_argument_path if user_signed_in?
+
       #container
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
