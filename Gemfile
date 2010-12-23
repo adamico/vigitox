@@ -8,14 +8,16 @@ gem "RedCloth"
 gem 'meta_where'
 gem 'meta_search'
 gem 'simple_form'
-gem 'nested_form', :git => "git@github.com:adamico/nested_form.git"
 gem 'will_paginate', '3.0.pre2'
 gem 'paperclip'
 gem 'prawn'
 gem 'acts_as_list'
 gem 'devise'
+gem 'nested_form', :git => "https://github.com/madebydna/nested_form.git"
 
-#gem 'pg', :group => :production
+group :production do
+  gem 'pg'
+end
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'

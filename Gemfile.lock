@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:adamico/nested_form.git
+  remote: https://github.com/madebydna/nested_form.git
   revision: 5d8054c05da3c20ff828d44041706c3d36ae86dc
   specs:
     nested_form (0.0.0)
@@ -114,6 +114,7 @@ GEM
     paperclip (2.3.8)
       activerecord
       activesupport
+    pg (0.10.0)
     pickle (0.4.4)
       cucumber (>= 0.8)
       rake
@@ -212,6 +213,7 @@ DEPENDENCIES
   nested_form!
   nifty-generators
   paperclip
+  pg
   pickle
   prawn
   rails (= 3.0.3)
