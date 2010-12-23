@@ -1,2 +1,0 @@
-class ArgumentairesController < ApplicationController
-end

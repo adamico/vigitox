@@ -1,0 +1,10 @@
+- title 'Connexion'
+
+.clear
+
+= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  .inputs
+    = f.input :email
+    = f.input :password, :label => "Mot de passe"
+  .actions
+    = f.button :submit, "Connexion"
