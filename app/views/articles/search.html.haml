@@ -2,9 +2,11 @@
 
 .clear
 
+%p par môt(s) dans le titre ou le contenu d'un article
+
 = simple_form_for @search, :url => { :action => "search" } do |f|
   .inputs
-    = f.input :titre_or_contenu_like, :label => false, :hint => "mot(s) dans le titre ou le contenu d'un article"
+    = f.input :titre_or_contenu_like, :label => false
   .buttons
     = f.button :submit, 'OK'
 
@@ -12,7 +14,7 @@
   - if @articles.empty?
     %p
       Aucun résultat
-    - if user_signed_in?
+    - if Rails.env.development?
       %p
         Params :
         = params[:search] || "None"

@@ -16,7 +16,7 @@
         - if user_signed_in?
           %td
             %ul.actions
-              %li= link_to 'Edit', edit_author_path(author)
-              %li= link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete
+              %li= link_to 'Modifier', edit_author_path(author)
+              %li= link_to 'Détruire', author, :confirm => 'Etes-vous sur ?', :method => :delete
 
 = will_paginate @authors, :previous_label => "<--", :next_label => "-->"

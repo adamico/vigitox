@@ -104,7 +104,7 @@ td.right {
   border: 1px solid black; }
   #revue h2, #revue h3, #article h2, #article h3 {
     float: left;
-    margin-top: 0; }
+    margin-top: 0 1em; }
 
 #revue {
   background: #eeeeee; }
@@ -239,3 +239,6 @@ table.list, #article table {
 
 .contenu {
   margin-top: 1em; }
+
+.pdf_link {
+  padding: 1em; }

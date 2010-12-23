@@ -1,5 +1,9 @@
 - title "Vigitox N° #{@revue.numero}"
 
+- unless @revue.pdf_url.blank?
+  = link_to @revue.pdf_url do
+    = image_tag("pdficon_large.gif", :alt => "Version PDF", :title => "Version PDF", :class => "pdf_link")
+
 - if user_signed_in?
   - actions(@revue)
 
@@ -7,9 +11,6 @@
 
 %p
   - prev_and_next_item("Préc. <--", raw("&nbsp;"), "--> Suiv.", @prev, @next)
-
-- unless @revue.pdf_url.blank?
-  %p= link_to 'Version PDF', @revue.pdf_url
 
 %p
   %strong= "Date de sortie : "

@@ -1,5 +1,8 @@
 #revue
   %h3= link_to "VIGItox##{revue.numero}", revue
+  - unless revue.pdf_url.blank?
+    = link_to revue.pdf_url do
+      = image_tag("pdficon_small.gif", :alt => "Version PDF", :title => "Version PDF", :class => "pdf_link")
   - if user_signed_in?
     %ul.actions
       %li= link_to "Modifier", edit_revue_path(revue)
