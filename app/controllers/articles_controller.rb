@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
 
   def search
     @search = Article.search(params[:search])
-    @articles = @search.order("revue_id DESC").paginate(:page => params[:page])
+    @articles = @search.order("revue_id DESC").includes(:revue).paginate(:page => params[:page])
   end
 
   def new

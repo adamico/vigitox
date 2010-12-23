@@ -1,8 +1,7 @@
 class RevuesController < ApplicationController
   def index
     params[:search] ||= {}
-    @revues = Revue.recent.all.paginate(:page => params[:page], :per_page => 3)
-    @derniere = Revue.derniere
+    @revues = Revue.recent.includes(:articles).all.paginate(:page => params[:page], :per_page => 3)
   end
 
   def archive

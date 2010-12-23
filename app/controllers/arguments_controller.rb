@@ -10,6 +10,8 @@ class ArgumentsController < ApplicationController
 
   def show
     @argument = Argument.find(params[:id])
+    @articles_as_main = @argument.articles_as_main
+    @articles_as_aux = @argument.articles_as_aux
   end
 
   def new

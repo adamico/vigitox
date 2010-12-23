@@ -20,11 +20,7 @@
         - if user_signed_in?
           %td
             %ul.actions
-              %li= link_to 'Edit', edit_argument_path(argument)
-              %li= link_to 'Destroy', argument, :confirm => 'Are you sure?', :method => :delete
+              %li= link_to 'Modifier', edit_argument_path(argument)
+              %li= link_to 'Détruire', argument, :confirm => 'Etes-vous sur ?', :method => :delete
 
 %p= will_paginate @arguments, :previous_label => "<--", :next_label => "-->"
-%hr/
-
-- if user_signed_in?
-  %p= link_to "Nouvel Argument", new_argument_path

@@ -12,13 +12,13 @@
     %span.label Nature:
     = h @argument.nature
 
-- if !@argument.articles_as_main.blank?
+- if !@articles_as_main.empty?
   %h3 Articles avec cet argument comme principal
   = render 'shared/article_line', :articles => @argument.articles_as_main
 - else
   %h3 Pas d'articles avec cet argument comme principal
 
-- if !@argument.articles_as_aux.blank?
+- if !@articles_as_aux.empty?
   %h4 Articles avec cet argument comme secondaire
   = render 'shared/article_line', :articles => @argument.articles_as_aux
 

@@ -11,7 +11,7 @@
   .clear
   %ul.articles
     - revue.articles.each do |article|
-      - content_tag_for :li, article do
+      = content_tag_for :li, article do
         %strong
           = link_to article.full_title,
             revue_articles_path(article.revue, :page => article.position)

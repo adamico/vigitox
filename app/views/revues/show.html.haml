@@ -20,7 +20,7 @@
   %h2 Articles
   %ul.articles#articles
     - @revue.articles.each do |article|
-      - content_tag_for :li, article do
+      = content_tag_for :li, article do
         - if user_signed_in?
           %span.handle [drag]
         %strong

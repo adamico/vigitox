@@ -7,11 +7,11 @@ class Argument < ActiveRecord::Base
 
   # custom methods
   def articles_as_main
-    Article.joins(:argumentaire).where(:argumentaires => {:main_argument_id => self.id})
+    Article.joins(:argumentaire).includes(:revue).where(:argumentaires => {:main_argument_id => self.id})
   end
 
   def articles_as_aux
-    Article.joins(:argumentaire).where(:argumentaires => {:aux_argument_id => self.id})
+    Article.joins(:argumentaire).includes(:revue).where(:argumentaires => {:aux_argument_id => self.id})
   end
 
   def articles_revue_numbers_as_main
