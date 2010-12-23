@@ -104,7 +104,7 @@ td.right {
   border: 1px solid black; }
   #revue h2, #revue h3, #article h2, #article h3 {
     float: left;
-    margin-top: 0; }
+    margin-top: 0 1em; }
 
 #revue {
   background: #eeeeee; }
@@ -171,17 +171,26 @@ span.label {
 ul.revues {
   list-style: none; }
 
-table.list {
+table.list, #article table {
   border-collapse: collapse; }
-  table.list th {
+  table.list th, #article table th {
     border-bottom: 1px solid black; }
-  table.list td {
+  table.list td, #article table td {
     vertical-align: top;
     padding-left: 0.3em;
     padding-right: 0.3em; }
+
+#article table td {
+  border-bottom: 1px solid black; }
 
 .odd {
   background: white; }
 
 .even {
   background: #eeeeee; }
+
+.contenu {
+  margin-top: 1em; }
+
+.pdf_link {
+  padding: 1em; }

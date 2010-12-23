@@ -5,8 +5,9 @@
 - semantic_form_for [@revue, @article] do |f|
   = f.error_messages
   - f.inputs do
-    = f.input :titre, :label => 'Titre', :input_html => {:size => "50x2"}
-    = f.input :contenu
+    = f.input :titre, :label => 'Titre', :input_html => {:size => "80x2"}
+    = f.input :fiche_technique, :label => "Fiche Technique ?"
+    = f.input :contenu, :input_html => {:size => "80x30"}
   - f.inputs :name => 'Autheurs' do
     - f.fields_for :authorships do |authorship|
       = render 'authorship_fields', :f => authorship
@@ -16,6 +17,5 @@
   - f.inputs :name => 'Argumentaire' do
     - f.fields_for :argumentaire do |argumentaire|
       = render 'argumentaire_fields', :f => argumentaire
-    = f.input :fiche_technique, :label => "Fiche Technique ?"
   - f.buttons do
     = f.commit_button "Enregistrer"

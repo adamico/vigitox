@@ -111,7 +111,7 @@ td.right
   :border 1px solid black
   h2, h3
     :float left
-    :margin-top 0
+    :margin-top 0 1em
 
 #revue
   background: #EEE
@@ -182,7 +182,8 @@ span.label
 ul.revues
   :list-style none
 
-table.list
+
+table.list, #article table
   border-collapse: collapse
   th
     border-bottom: 1px solid black
@@ -191,8 +192,17 @@ table.list
     padding-left: 0.3em
     padding-right: 0.3em
 
+#article table
+  td
+    border-bottom: 1px solid black
+
 .odd
   background: #FFF
 .even
   background: #EEE
 
+.contenu
+  margin-top: 1em
+
+.pdf_link
+  padding: 1em

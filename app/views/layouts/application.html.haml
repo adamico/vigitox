@@ -4,8 +4,11 @@
     %title
       = h(yield(:title) || "Untitled")
     = stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'jquery-ui'
-    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js', 'jrails', 'application'
-    = javascript_include_tag 'jquery', 'jquery-ui', 'jrails', 'application'
+    - if Rails.env.production?
+      = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js'
+    - else
+      = javascript_include_tag 'jquery', 'jquery-ui'
+    = javascript_include_tag 'jrails', 'application'
 
     = yield(:head)
   %body
@@ -23,6 +26,7 @@
     #main
       #menu
         %ul
+          %li= link_to "Recherche", search_path
           %li
             %ul.links
               %li= link_to "Archives", archive_path
@@ -44,6 +48,5 @@
           = content_tag :div, msg, :id => "flash_#{name}"
 
         - if show_title?
-          %h1
-            = h yield(:title)
+          %h1= h yield(:title)
         = yield
