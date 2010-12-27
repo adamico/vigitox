@@ -1,11 +1,26 @@
+- @revue.redactionships.build if @revue.redactionships.empty?
+
 .clear
 
-= simple_form_for @revue do |f|
+= nested_form_for @revue do |f|
   = f.error_messages
-  .inputs
-    = f.input :numero, :label => 'Numéro'
-    = f.input :date_sortie, :label => 'Sortie',
-      :discard_day => true, :include_blank => true
-    = f.input :pdf_url, :label => 'Lien PDF'
-  .buttons
-    = f.button :submit
+  %ol
+    %li
+      = f.label       :numero, 'Numéro'
+      = f.text_field  :numero, :size => 1
+    %li
+      = f.label       :date_sortie, 'Sortie'
+      = f.date_select :date_sortie, :discard_day => true,
+        :include_blank => true
+    %li
+      = f.label     :pdf_url, 'Lien PDF'
+      = f.text_area :pdf_url, :size => "80x3"
+
+  %h4 Comité de rédaction
+  = f.fields_for :redactionships do |redactionship_form|
+    = render 'redactionship_fields', :f => redactionship_form
+  = f.link_to_add 'Rajouter un rédacteur', :redactionships
+
+  .clear
+
+  = f.submit "Enregistrer"

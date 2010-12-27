@@ -1,16 +1,16 @@
-Factory.define :revue do |f|
-  f.sequence(:numero) {|n| n}
-  f.date_sortie Time.now.to_date
-end
+FactoryGirl.define  do
 
-Factory.define(:article) do |a|
-  a.sequence(:titre) {|n| "article#{n}"}
-end
+  factory :author do
+    sequence(:nom) {|n| "nom#{n}"}
+    sequence(:prenom) {|n| "prenom#{n}"}
+  end
 
-Factory.define(:categorie) do |c|
-  c.name 'CAP'
-end
+  factory :revue do
+    sequence(:numero) {|n| n}
+  end
 
-Factory.define :argument do |f|
-  f.sequence(:name) {|n| "argument#{n}"}
+  factory :article do
+    sequence(:titre) {|n| "article#{n}"}
+  end
+
 end

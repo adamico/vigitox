@@ -13,8 +13,15 @@
   - prev_and_next_item("Préc. <--", raw("&nbsp;"), "--> Suiv.", @prev, @next)
 
 %p
-  %strong= "Date de sortie : "
+  %strong Sortie :
   = l(@revue.date_sortie, :format => :month_year)
+
+- unless @revue.redacteurs.empty?
+  %div
+    %strong Comité de rédaction :
+    %ul.inline
+      - @revue.redacteurs.each do |redacteur|
+        %li= link_to redacteur.short_name, author_path(redacteur)
 
 - if !@revue.articles.empty?
   %h2 Articles
