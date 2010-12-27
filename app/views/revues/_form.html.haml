@@ -1,4 +1,5 @@
 - @revue.redactionships.build if @revue.redactionships.empty?
+- @revue.build_editorial unless @revue.editorial
 
 .clear
 
@@ -15,6 +16,10 @@
     %li
       = f.label     :pdf_url, 'Lien PDF'
       = f.text_area :pdf_url, :size => "80x3"
+
+  %h4 Editorial
+  = f.fields_for :editorial do |editorial_form|
+    = render 'editorial_fields', :f => editorial_form
 
   %h4 Comité de rédaction
   = f.fields_for :redactionships do |redactionship_form|

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101227140935) do
+ActiveRecord::Schema.define(:version => 20101227151605) do
 
   create_table "argumentaires", :force => true do |t|
     t.integer   "main_argument_id"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(:version => 20101227140935) do
     t.string    "name"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+  end
+
+  create_table "editorials", :force => true do |t|
+    t.text     "titre"
+    t.text     "contenu"
+    t.integer  "author_id"
+    t.integer  "revue_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pathologies", :force => true do |t|

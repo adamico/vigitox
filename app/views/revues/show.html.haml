@@ -23,6 +23,16 @@
       - @revue.redacteurs.each do |redacteur|
         %li= link_to redacteur.short_name, author_path(redacteur)
 
+- if @revue.editorial
+  %h2 Editorial
+  #editorial
+    %h4= @revue.editorial.titre
+    = raw textilize @revue.editorial.contenu
+    %p.redacteur
+      %strong= @revue.editorial.author.short_name
+
+  .clear
+
 - if !@revue.articles.empty?
   %h2 Articles
   %ul.articles#articles

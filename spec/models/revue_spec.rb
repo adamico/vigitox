@@ -13,4 +13,6 @@ describe Revue do
       subject.redacteurs.should == Author.all
     end
   end
+  # #editorial
+  it {should respond_to(:editorial)}
 end

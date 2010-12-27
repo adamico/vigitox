@@ -263,3 +263,11 @@ table.list, #article table {
 
 .pdf_link {
   padding: 1em; }
+
+#editorial {
+  font-size: 0.8em;
+  margin-left: 1em; }
+
+.redacteur {
+  margin-top: 0;
+  float: right; }

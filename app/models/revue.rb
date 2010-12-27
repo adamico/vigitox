@@ -5,9 +5,13 @@ class Revue < ActiveRecord::Base
   has_many :articles, :dependent => :destroy, :order => "position"
   has_many :redacteurs, :through => :redactionships, :source => :author
   has_many :redactionships, :dependent => :destroy
+  has_one :editorial
 
   accepts_nested_attributes_for :redactionships,
     :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }, :allow_destroy => true
+
+  accepts_nested_attributes_for :editorial,
+    :reject_if => proc { |attrs| attrs.all? { |k,v| v.blank? } }
 
   scope :prev, lambda {|r| where(["numero < ?", r.numero]).order('numero DESC')}
   scope :next, lambda {|r| where(["numero > ?", r.numero]).order(:numero)}
