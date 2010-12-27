@@ -11,9 +11,9 @@ class Author < ActiveRecord::Base
   end
 
   def short_name
-    output = "#{nom} "
     initiales = prenom.split.map {|p| p.first + "."}
-    output += initiales.join
+    output = initiales.join
+    output += " #{nom}"
   end
 end
 
