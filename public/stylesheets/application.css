@@ -1,63 +1,150 @@
-body {
-  background-color: white;
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 14px; }
+body, p, h1, h2, h3, h4, h5, h6, ul, li, form {
+  margin: 9px;
+  padding: 0;
+  line-height: 18px; }
 
-a:link, a:visited {
-  text-decoration: none;
-  color: #3265ff; }
-a:hover {
-  text-decoration: underline; }
-a img {
-  border: none; }
+h2 {
+  line-height: 36px; }
 
-acronym {
-  border-bottom: 1px dotted black; }
+p, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 18px; }
+
+#page {
+  display: block;
+  width: 990px;
+  margin: 0px auto; }
+
+#header {
+  height: 90px;
+  width: 100%; }
+  #header #corner {
+    height: 90px;
+    width: 126px;
+    float: left; }
+  #header #banner {
+    height: 90px;
+    width: 846px;
+    float: left; }
+
+#user_nav {
+  float: right;
+  margin: 18px 18px 0 0;
+  text-align: right; }
+
+#footer {
+  height: 36px;
+  width: 100%; }
+
+#middle {
+  width: 100%;
+  float: left; }
+  #middle #sidebar {
+    height: 600px;
+    width: 126px;
+    float: left; }
+  #middle #main {
+    padding: 18px 0 18px 18px;
+    width: 828px;
+    float: left; }
 
 .clear {
   clear: both;
   height: 0;
   overflow: hidden; }
 
-#corner, #banner, #menu, #container {
-  float: left; }
+#site_header {
+  float: left;
+  margin: 18px 0 0 18px; }
 
-#corner, #menu {
-  width: 120px; }
+#banner h1 {
+  color: #1036a6; }
+  #banner h1 a {
+    text-decoration: none; }
 
-#banner, #container {
-  width: 75%;
-  overflow: auto; }
+a:link, a:visited {
+  text-decoration: none;
+  color: #1036a6; }
+a:hover {
+  text-decoration: underline; }
+a img {
+  border: none; }
 
-#corner, #banner, #menu {
-  height: 100%; }
+#page {
+  background-color: #ffdb18; }
 
 #corner {
   background-color: #3265ff; }
 
-#banner, #menu {
-  background-color: #ffcb31; }
+#sidebar {
+  background: white url("../images/sidebar_back.png") repeat-x; }
 
-#banner h1 {
-  color: #3265ff; }
-  #banner h1 a {
-    color: #3265ff; }
+#banner, #sidebar {
+  background-color: #ffdb18; }
 
-#header {
-  height: 100px;
+#main {
+  background-color: white; }
+
+body {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 14px; }
+
+acronym {
+  border-bottom: 1px dotted black; }
+
+span.label {
+  margin-right: 0.5em;
+  font-weight: bold;
+  text-align: right;
+  display: block;
+  width: 8em;
+  clear: left;
+  float: left; }
+
+.odd {
+  background: white; }
+
+.even {
+  background: #eeeeee; }
+
+.pdf_link {
+  padding-top: 9px; }
+
+table.list {
+  border-collapse: collapse; }
+  table.list td:last-child {
+    border-left: 1px solid black; }
+  table.list th, table.list tr:last-child td {
+    border-bottom: 1px solid black; }
+  table.list td {
+    vertical-align: top;
+    padding-left: 0.3em;
+    padding-right: 0.3em; }
+
+#sidebar ul#links {
+  margin: 0;
+  margin-top: 9px;
   padding: 0;
+  list-style: none; }
+  #sidebar ul#links li {
+    margin: 0;
+    padding: 0; }
+    #sidebar ul#links li a {
+      text-decoration: none;
+      padding-left: 9px;
+      float: left;
+      width: 117px; }
+      #sidebar ul#links li a:hover {
+        background: #ffeb80; }
+    #sidebar ul#links li.plus a {
+      padding-left: 18px;
+      width: 108px; }
+      #sidebar ul#links li.plus a:before {
+        content: "+ "; }
+
+#flash_notice, #flash_error {
+  width: 810px;
+  padding: 9px;
   margin: 0; }
-
-#banner {
-  padding-left: 1em; }
-
-#container {
-  padding: 1em; }
-
-#flash_notice,
-#flash_error {
-  padding: 5px 8px;
-  margin: 10px 0; }
 
 #flash_notice {
   background-color: #ccffcc;
@@ -81,10 +168,11 @@ acronym {
     text-align: left;
     padding: 5px 5px 5px 15px;
     margin: 0;
-    font-weight: bold;
-    font-size: 12px;
     background-color: #cc0000;
     color: white; }
+    #errorExplanation h2 font {
+      weight: bold;
+      size: 12px; }
   #errorExplanation p {
     color: #333333;
     margin-bottom: 0;
@@ -95,57 +183,57 @@ acronym {
       font-size: 12px;
       list-style: disc; }
 
-td.buttons {
-  padding-left: 1em; }
+#main h1 {
+  float: left; }
 
-td.right {
-  text-align: right; }
+#revue h3 a, h1.revue a {
+  text-decoration: none; }
+  #revue h3 a:hover, h1.revue a:hover {
+    color: #1036a6;
+    background-color: #ffbd80; }
 
 #revue, #article {
-  margin: 0;
-  padding-top: 1em; }
+  width: 810px;
+  margin-top: 1em;
+  border-bottom: 4px solid #ffbd80; }
 
-#article h2 {
-  background: #dddddd; }
+#article {
+  border-top: 4px solid #ffbd80; }
 
 #revue h2, #revue h3 {
   float: left;
-  margin-top: 0 1em; }
+  margin: 9px; }
 
-ul.articles {
+ol.articles {
   padding: 0;
   margin: 0;
   margin-bottom: 1em;
   margin-left: 1em;
-  list-style: none; }
-  ul.articles li .handle {
-    color: #777777;
-    cursor: move;
-    font-size: 12px; }
+  list-style-position: inside; }
+  ol.articles li {
+    margin: 0; }
+    ol.articles li .handle {
+      color: #777777;
+      cursor: move;
+      font-size: 12px; }
 
 span.title {
   font-weight: bold;
   font-size: 0.85em; }
 
-#menu ul {
-  padding: 0;
-  margin: 0;
-  list-style: none; }
-  #menu ul li a {
-    padding-left: 10px;
-    float: left;
-    width: 110px; }
-    #menu ul li a:hover {
-      background: #ffe497; }
-  #menu ul li.plus a {
-    padding-left: 20px;
-    width: 100px; }
+#article table td {
+  border-bottom: 1px solid black; }
 
-#banner a {
-  text-decoration: none; }
+.contenu {
+  margin-top: 1em; }
 
-#container h1 {
-  float: left; }
+#editorial {
+  font-size: 0.8em;
+  margin-left: 1em; }
+
+.redacteur {
+  margin-top: 0;
+  float: right; }
 
 ul.inline, ul.links, ul.actions {
   margin: 0;
@@ -166,10 +254,12 @@ ul.actions {
   margin: 0;
   padding: 0;
   float: right; }
-  ul.actions li:last-child:after {
-    content: ""; }
-  ul.actions li:after {
-    content: " |"; }
+  ul.actions li {
+    margin: 0; }
+    ul.actions li:last-child:after {
+      content: ""; }
+    ul.actions li:after {
+      content: " |"; }
 
 ul.inline li:after {
   content: ", "; }
@@ -179,18 +269,6 @@ ul.actions {
   padding-left: 0.5em; }
   ul.actions li {
     padding-left: 0 0.5em; }
-
-span.label {
-  margin-right: 0.5em;
-  font-weight: bold;
-  text-align: right;
-  display: block;
-  width: 8em;
-  clear: left;
-  float: left; }
-
-ul.revues {
-  list-style: none; }
 
 fieldset ol, fieldset ul, fieldset p {
   line-height: 1.5; }
@@ -239,35 +317,3 @@ input, textarea {
 .actions input {
   margin-top: 10px;
   margin-left: 150px; }
-
-table.list, #article table {
-  border-collapse: collapse; }
-  table.list th, #article table th {
-    border-bottom: 1px solid black; }
-  table.list td, #article table td {
-    vertical-align: top;
-    padding-left: 0.3em;
-    padding-right: 0.3em; }
-
-#article table td {
-  border-bottom: 1px solid black; }
-
-.odd {
-  background: white; }
-
-.even {
-  background: #eeeeee; }
-
-.contenu {
-  margin-top: 1em; }
-
-.pdf_link {
-  padding: 1em; }
-
-#editorial {
-  font-size: 0.8em;
-  margin-left: 1em; }
-
-.redacteur {
-  margin-top: 0;
-  float: right; }

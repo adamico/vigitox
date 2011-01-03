@@ -1,163 +1,297 @@
-$vigitox_back = #FFCB31
-$vigitox_front = #3265FF
-$primary_color = #FFF
-$left_block = 120px
+// from http://colorschemedesigner.com/#3O31TsZ--w0w0 
 
-body
-  :background-color = $primary_color
-  :font
-    :family Verdana, Helvetica, Arial
-    :size 14px
+// Primary Color:
+
+$primary_color_a = #3265FF
+$primary_color_b = #4C69BF
+$primary_color_c = #1036A6
+$primary_color_d = #658CFF
+$primary_color_e = #8EABFF
+
+// Secondary Color A:
+
+$secondary_color_aa = #FFDB18
+$secondary_color_ab = #BFAB3D
+$secondary_color_ac = #A68D08
+$secondary_color_ad = #FFE452
+$secondary_color_ae = #FFEB80
+
+// Secondary Color B:
+
+$secondary_color_ba = #FF8718
+$secondary_color_bb = #BF7C3D
+$secondary_color_bc = #A65408
+$secondary_color_bd = #FFA552
+$secondary_color_be = #FFBD80
+
+$global_background = #FFF
+
+$page_block = 990px
+$left_block = 126px
+$right_block = $page_block - $left_block - 18px
+
+$front = $primary_color_a
+$back = $secondary_color_aa
+// new stuff here
+
+
+/////////////////////
+// resetting css
+
+body, p, h1, h2, h3, h4, h5, h6, ul, li, form
+  margin: 9px
+  padding: 0
+  line-height: 18px
+
+h2
+  line-height: 36px
+
+p, h1, h2, h3, h4, h5, h6
+  margin-bottom: 18px
+//
+
+// dimensions and blocks
+#page
+  display: block
+  width: $page_block
+  margin: 0px auto
+
+#header
+  height: 90px
+  width: 100%
+  #corner
+    height: 90px
+    width: $left_block
+    float: left
+  #banner
+    height: 90px
+    width: $right_block
+    float: left
+
+#user_nav
+  float: right
+  margin: 18px 18px 0 0
+  text-align: right
+#footer
+  height: 36px
+  width: 100%
+
+#middle
+  width: 100%
+  float: left
+  #sidebar
+    height: 600px
+    width: $left_block
+    float: left
+  #main
+    padding: 18px 0 18px 18px
+    width: $right_block - 18px
+    float: left
+
+.clear
+  clear: both
+  height: 0
+  overflow: hidden
+
+
+#site_header
+  float: left
+  margin: 18px 0 0 18px
+
+// colors
+#banner
+  h1
+    color: $primary_color_c
+    a
+      text-decoration: none
 
 a
   &:link, &:visited
     text-decoration: none
-    color: $vigitox_front
+    color: $primary_color_c
   &:hover
     text-decoration: underline
   img
-    :border none
+    border: none
+
+#page
+  background-color: $back
+#corner
+  background-color: $front
+#sidebar
+  background: #fff url('../images/sidebar_back.png') repeat-x
+#banner, #sidebar
+  background-color: $back
+#main
+  background-color: $global_background
+
+// fonts
+body
+  font:
+    family: Verdana, Helvetica, Arial, sans-serif
+    size: 14px
+//
+
+// common
 
 acronym
   border-bottom: 1px dotted black
 
-.clear
-  :clear both
-  :height 0
-  :overflow hidden
+span.label
+  margin-right: 0.5em
+  font-weight: bold
+  text-align: right
+  display: block
+  width: 8em
+  clear: left
+  float: left
 
-#corner, #banner, #menu, #container
-  :float left
+.odd
+  background: #FFF
+.even
+  background: #EEE
 
-#corner, #menu
-  width: $left_block
+.pdf_link
+  padding-top: 9px
 
-#banner, #container
-  :width 75%
-  :overflow auto
+table.list
+  border-collapse: collapse
+  td:last-child
+    border-left: 1px solid black
+  th, tr:last-child td
+    border-bottom: 1px solid black
+  td
+    vertical-align: top
+    padding-left: 0.3em
+    padding-right: 0.3em
 
-#corner, #banner, #menu
-  :height 100%
+//sidebar
+#sidebar
+  ul#links
+    margin: 0
+    margin-top: 9px
+    padding: 0
+    list-style: none
+    li
+      margin: 0
+      padding: 0
+      a
+        text-decoration: none
+        padding-left: 9px
+        float: left
+        width: $left_block - 9px
+        &:hover
+          background: $secondary_color_ae
+      &.plus
+        a
+          padding-left: 18px
+          width: $left_block - 18px
+          &:before
+            content: "+ "
+// flash
 
-#corner
-  :background-color = $vigitox_front
-
-#banner, #menu
-  :background-color = $vigitox_back
-
-#banner h1
-  :color = $vigitox_front
-  a
-    :color = $vigitox_front
-
-
-#header
-  :height 100px
-  :padding 0
-  :margin 0
-
-#banner
-  padding-left: 1em
-
-#container
-  padding: 1em
-
-#flash_notice,
-#flash_error
-  :padding 5px 8px
-  :margin 10px 0
+#flash_notice, #flash_error
+  width: $right_block - 36px
+  padding: 9px
+  margin: 0
 
 #flash_notice
-  :background-color #CFC
-  :border solid 1px #6C6
+  background-color: #CFC
+  border: solid 1px #6C6
 
 #flash_error
-  :background-color #FCC
-  :border solid 1px #C66
+  background-color: #FCC
+  border: solid 1px #C66
 
 .fieldWithErrors
-  :display inline
+  display: inline
 
 #errorExplanation
-  :width 400px
-  :border 2px solid #CF0000
-  :padding 0
-  :padding-bottom 12px
-  :margin-bottom 20px
-  :background-color #f0f0f0
+  width: 400px
+  border: 2px solid #CF0000
+  padding: 0
+  padding-bottom: 12px
+  margin-bottom: 20px
+  background-color: #f0f0f0
   h2
-    :text-align left
-    :padding 5px 5px 5px 15px
-    :margin 0
-    :font
-      :weight bold
-      :size 12px
-    :background-color #c00
-    :color #fff
+    text-align: left
+    padding: 5px 5px 5px 15px
+    margin: 0
+    font
+      weight: bold
+      size: 12px
+    background-color: #c00
+    color: #fff
   p
-    :color #333
-    :margin-bottom 0
-    :padding 8px
+    color: #333
+    margin-bottom: 0
+    padding: 8px
   ul
-    :margin 2px 24px
+    margin: 2px 24px
     li
-      :font-size 12px
-      :list-style disc
+      font-size: 12px
+      list-style: disc
 
-td.buttons
-  :padding-left 1em
+// main
+#main
+  h1
+    float: left
 
-td.right
-  :text-align right
+// revues and articles
+
+#revue h3, h1.revue
+  a
+    text-decoration: none
+    &:hover
+      color: $primary_color_c
+      background-color: $secondary_color_be
 
 #revue, #article
-  margin: 0
-  padding-top: 1em
+  width: $right_block - 36px
+  margin-top: 1em
+  border-bottom: 4px solid $secondary_color_be 
 
 #article
-  h2
-    background: #ddd
+  border-top: 4px solid $secondary_color_be 
 
 #revue
   h2, h3
-    :float left
-    :margin-top 0 1em
+    float: left
+    margin: 9px
 
-ul.articles
+ol.articles
   padding: 0
   margin: 0
   margin-bottom: 1em
   margin-left: 1em
-  list-style: none
-  li .handle
-    :color #777
-    :cursor move
-    :font-size 12px
+  list-style-position: inside
+  li
+    margin: 0
+    .handle
+      color: #777
+      cursor: move
+      font-size: 12px
 
 span.title
   :font-weight bold
   :font-size 0.85em
 
-#menu
-  ul
-    padding: 0
-    margin: 0
-    list-style: none
-    li a
-      padding-left: 10px
-      float: left
-      width: $left_block - 10px
-      &:hover
-        background: #FFE497
-    li.plus a
-      padding-left: 20px
-      width: $left_block - 20px
+#article table
+  td
+    border-bottom: 1px solid black
 
-#banner a
-  text-decoration: none
+.contenu
+  margin-top: 1em
 
-#container h1
-  float: left
+#editorial
+  font-size: 0.8em
+  margin-left: 1em
+
+.redacteur
+  margin-top: 0
+  float: right
+
+//lists
 
 ul.inline, ul.links, ul.actions
   margin: 0
@@ -180,6 +314,7 @@ ul.actions
   padding: 0
   float: right
   li
+    margin: 0
     &:last-child:after
       content: ""
     &:after
@@ -194,20 +329,6 @@ ul.actions
   padding-left: 0.5em
   li
     padding-left: 0 0.5em
-
-span.label
-  margin-right: 0.5em
-  font-weight: bold
-  text-align: right
-  display: block
-  width: 8em
-  clear: left
-  float: left
-
-ul.revues
-  :list-style none
-
-.search
 
 // this is to temp replace formtastic
 fieldset
@@ -258,35 +379,3 @@ input, textarea
   input
     margin-top: 10px
     margin-left: 150px
-
-table.list, #article table
-  border-collapse: collapse
-  th
-    border-bottom: 1px solid black
-  td
-    vertical-align: top
-    padding-left: 0.3em
-    padding-right: 0.3em
-
-#article table
-  td
-    border-bottom: 1px solid black
-
-.odd
-  background: #FFF
-.even
-  background: #EEE
-
-.contenu
-  margin-top: 1em
-
-.pdf_link
-  padding: 1em
-
-#editorial
-  font-size: 0.8em
-  margin-left: 1em
-
-.redacteur
-  margin-top: 0
-  float: right

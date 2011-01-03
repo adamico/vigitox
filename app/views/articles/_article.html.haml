@@ -7,7 +7,7 @@
   .clear
   - unless article.authors.empty?
     %div
-      %span.label Autheurs :
+      %span.label Auteurs :
       %ul.inline
         - article.authors.each do |author|
           %li= link_to author.short_name, author_path(author)
@@ -21,7 +21,7 @@
           %li= link_to article.aux_argument.name, argument_path(article.aux_argument)
   - unless article.categories.empty?
     %div
-      %span.label Categories :
+      %span.label Catégories :
       %ul.inline
         - article.categories.each do |categorie|
           %li= link_to categorie.name, categorie_path(categorie)

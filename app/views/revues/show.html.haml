@@ -35,7 +35,7 @@
 
 - if !@revue.articles.empty?
   %h2 Articles
-  %ul.articles#articles
+  %ol.articles
     - @revue.articles.each do |article|
       = content_tag_for :li, article do
         - if user_signed_in?

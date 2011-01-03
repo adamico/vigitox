@@ -15,7 +15,7 @@
       = f.label :contenu
       = f.text_area :contenu, :size => "80x30"
 
-  %h4 Autheurs
+  %h4 Auteurs
   = f.fields_for :authorships do |authorship_form|
     = render 'authorship_fields', :f => authorship_form
   = f.link_to_add 'Rajouter un autheur', :authorships

@@ -14,34 +14,42 @@
     = csrf_meta_tag
     = yield(:head)
   %body
-    #header
-      #corner
-        &nbsp;
-      #banner
-        %h1= link_to_unless_current "VIGItox", root_path
-        #user_nav
-          - if user_signed_in?
-            = "Bonjour, #{current_user.email}."
-            = link_to "Déconnection", destroy_user_session_path
-          - else
-            = link_to "Connection", new_user_session_path
-    #main
-      #menu
-        %ul
-          %li= link_to "Recherche", search_path
-          %li= link_to "Archives", archive_path
-          %li.plus= link_to "+ Revue", new_revue_path if user_signed_in?
-          %li= link_to "Autheurs", authors_path
-          %li.plus= link_to "+ Autheur", new_author_path if user_signed_in?
-          %li= link_to "Categories", categories_path
-          %li.plus= link_to "+ Categorie", new_categorie_path if user_signed_in?
-          %li= link_to "Arguments", arguments_path
-          %li.plus= link_to "+ Argument", new_argument_path if user_signed_in?
+    %section#page
+      %header#header
+        %section#corner
+          &nbsp;
+        %section#banner
+          %h1#site_header= link_to_unless_current "VIGItox", root_path
+          %section#user_nav
+            - if user_signed_in?
+              Bonjour, 
+              %strong= current_user.email
+              %br
+              = link_to "Déconnection", destroy_user_session_path
+            - else
+              %br
+              = link_to "Connection", new_user_session_path
+      %section#middle
+        %aside#sidebar
+          %ul#links
+            %li= link_to "Recherche", search_path
+            %li= link_to "Archives", archive_path
+            %li.plus= link_to "Revue", new_revue_path if user_signed_in?
+            %li= link_to "Auteurs", authors_path
+            %li.plus= link_to "Auteur", new_author_path if user_signed_in?
+            %li= link_to "Catégories", categories_path
+            %li.plus= link_to "Catégorie", new_categorie_path if user_signed_in?
+            %li= link_to "Arguments", arguments_path
+            %li.plus= link_to "Argument", new_argument_path if user_signed_in?
 
-      #container
-        - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "flash_#{name}"
+        %section#main
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => "flash_#{name}"
 
-        - if show_title?
-          %h1= yield(:title)
-        = yield
+          - if show_title?
+            %h1= yield(:title)
+          = yield
+        .clear
+        %footer#footer
+          - if Rails.env.development?
+            %p This is the footer!

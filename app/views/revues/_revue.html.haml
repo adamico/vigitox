@@ -1,11 +1,11 @@
 #revue
-  %h3= link_to "VIGItox##{revue.numero}", revue
+  %h3= link_to "VIGItox##{revue.numero} (#{l(revue.date_sortie, :format => :month_year)})", revue
   - unless revue.pdf_url.blank?
     = link_to revue.pdf_url do
       = image_tag("pdficon_small.gif", :alt => "Version PDF", :title => "Version PDF", :class => "pdf_link")
 
   .clear
-  %ul.articles
+  %ol.articles
     - revue.articles.each do |article|
       = content_tag_for :li, article do
         %strong

@@ -1,7 +1,7 @@
 class AuthorsController < ApplicationController
   def index
     @authors = Author.order(:nom).includes(:authorships).
-      paginate(:page => params[:page], :per_page => 20)
+      paginate(:page => params[:page], :per_page => 18)
   end
 
   def names
