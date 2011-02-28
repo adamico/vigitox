@@ -8,3 +8,5 @@ db/*.sqlite3
 rerun.txt
 *.csv
 .bundle
+vendor/ruby
+vendor/cache
