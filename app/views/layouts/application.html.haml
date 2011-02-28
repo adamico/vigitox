@@ -24,15 +24,18 @@
             - if user_signed_in?
               Bonjour, 
               %strong= current_user.email
-              %br
               = link_to "Déconnection", destroy_user_session_path
             - else
-              %br
               = link_to "Connection", new_user_session_path
+          %section#search
+            = form_tag search_path, :method => :get do
+              = text_field_tag :search, {}, {:type => "search",
+                               :placeholder => "Rechercher le site par...",
+                               :value => (params[:search] if params[:search])}
+              = submit_tag "Recherche", :name => nil
       %section#middle
         %aside#sidebar
           %ul#links
-            %li= link_to "Recherche", search_path
             %li= link_to "Archives", archive_path
             %li.plus= link_to "Revue", new_revue_path if user_signed_in?
             %li= link_to "Auteurs", authors_path

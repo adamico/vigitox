@@ -1,24 +1,15 @@
-- title "Rechercher des articles"
+- title "Rechercher des articles", false
 
 .clear
 
-%p par môt(s) dans le titre ou le contenu d'un article
-
-= simple_form_for @search, :url => { :action => "search" } do |f|
-  .inputs
-    = f.input :titre_or_contenu_like, :label => false
-  .buttons
-    = f.button :submit, 'OK'
-
-- if params[:search]
-  - if @articles.empty?
+- if @articles.empty?
+  %h2 Aucun résultat pour '#{params[:search]}'
+  - if Rails.env.development?
     %p
-      Aucun résultat
-    - if Rails.env.development?
-      %p
-        Params :
-        = params[:search] || "None"
+      Params :
+      = params[:search] || "None"
 
-  - else
-    = render 'shared/article_line', :articles => @articles
-    = will_paginate @articles, :previous_label => "<--", :next_label => "-->"
+- else
+  %h2 Résultats de la recherche pour '#{params[:search]}'
+  = render 'shared/article_line', :articles => @articles
+  = will_paginate @articles, :previous_label => "<--", :next_label => "-->"

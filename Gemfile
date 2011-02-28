@@ -14,6 +14,8 @@ gem 'prawn'
 gem 'acts_as_list'
 gem 'devise'
 gem 'nested_form', :git => "https://github.com/madebydna/nested_form.git"
+gem 'acts_as_indexed'
+gem 'stringex'
 
 group :production do
   gem 'pg'

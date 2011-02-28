@@ -1,7 +1,10 @@
+require 'stringex'
 class Article < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 20
   acts_as_list :scope => :revue
+
+  acts_as_indexed :fields => [:ascii_titre, :ascii_contenu]
   belongs_to :revue, :counter_cache => true
   has_and_belongs_to_many :categories, :join_table => "articles_categories"
   has_many :authors, :through => :authorships
@@ -49,6 +52,19 @@ class Article < ActiveRecord::Base
     title += titre
   end
 
+  def self.search(query, page = 1)
+    with_query(query)
+  end
+
+  private
+
+  def ascii_titre
+    self.titre.to_ascii
+  end
+
+  def ascii_contenu
+    self.contenu.to_ascii
+  end
 end
 
 

@@ -1,3 +1,4 @@
+require 'stringex'
 class ArticlesController < ApplicationController
   before_filter :find_revue, :only => [:index, :create, :new]
 
@@ -14,8 +15,8 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @search = Article.search(params[:search])
-    @articles = @search.order("revue_id DESC").includes(:revue).paginate(:page => params[:page])
+    @search = params[:search].to_ascii if params[:search]
+    @articles = Article.search(@search, params[:page]).order("revue_id DESC").includes(:revue).paginate(:page => params[:page])
   end
 
   def new
