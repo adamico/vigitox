@@ -13,7 +13,7 @@
       = f.check_box :fiche_technique
     %li
       = f.label :contenu
-      = f.text_area :contenu, :size => "80x30"
+      = f.text_area :contenu, :size => "80x30", :class => "wymeditor"
 
   %h4 Auteurs
   = f.fields_for :authorships do |authorship_form|

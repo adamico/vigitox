@@ -293,10 +293,10 @@ form ol, form ul {
   margin: 0;
   padding: 0; }
 
-form li {
-  clear: both;
-  margin: 0 0 0.75em;
-  padding: 0; }
+/*form ol li {*/
+  /*clear: both;*/
+  /*margin: 0 0 0.75em;*/
+  /*padding: 0; }*/
 
 label {
   display: block;
