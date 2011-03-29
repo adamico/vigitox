@@ -22,6 +22,9 @@
 /* basic */
   body  { background: #e1e8f1;}
  
+  p {
+    text-align: left;
+  }
 /* make HTML blocs visible */
   p,
   h1,
