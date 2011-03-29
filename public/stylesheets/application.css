@@ -25,9 +25,9 @@ p, h1, h2, h3, h4, h5, h6 {
     height: 90px;
     width: 846px;
     float: left; }
-    #header #banner #search {
-      margin-top: 18px;
-      margin-left: 280px;
+    #header #banner section#search {
+      margin-top: 48px;
+      margin-left: 550px;
       clear: both; }
 
 #user_nav {
@@ -293,10 +293,10 @@ form ol, form ul {
   margin: 0;
   padding: 0; }
 
-/*form ol li {*/
-  /*clear: both;*/
-  /*margin: 0 0 0.75em;*/
-  /*padding: 0; }*/
+form li {
+  clear: both;
+  margin: 0 0 0.75em;
+  padding: 0; }
 
 label {
   display: block;
