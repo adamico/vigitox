@@ -8,14 +8,13 @@
   %ol
     %li
       = f.label       :numero, 'Numéro'
-      = f.text_field  :numero, :size => 1
+      = f.text_field  :numero, :size => 3, :type => "number", :min => "#{Revue.last.numero}"
     %li
       = f.label       :date_sortie, 'Sortie'
-      = f.date_select :date_sortie, :discard_day => true,
-        :include_blank => true
+      = f.date_select :date_sortie, :discard_day => true, :include_blank => true
     %li
       = f.label     :pdf_url, 'Lien PDF'
-      = f.text_area :pdf_url, :size => "80x3"
+      = f.text_field :pdf_url, :size => "80x3", :type => "url"
 
   %h4 Editorial
   = f.fields_for :editorial do |editorial_form|

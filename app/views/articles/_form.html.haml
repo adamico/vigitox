@@ -6,6 +6,9 @@
   = f.error_messages
   %ol
     %li
+      = f.label :position
+      = f.text_field :position, :type => "number", :size => "3", :min => "1"
+    %li
       = f.label :titre, 'Titre'
       = f.text_area :titre, :size => "80x2"
     %li
