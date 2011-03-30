@@ -5,7 +5,7 @@
         update: function() {
           $.ajax({
             type: 'post',
-            data: $(this).sortable('serialize') + "&id=#{@revue.id}",
+            data: $(this).sortable('serialize') + "&id=#{revue.id}",
             dataType: 'script',
             complete: function(request){
               $('#sortable').effect('highlight');
@@ -16,14 +16,14 @@
       })
     })
 
-- title "Vigitox N° #{@revue.numero}"
+- title "Vigitox N° #{revue.numero}"
 
-- unless @revue.pdf_url.blank?
-  = link_to @revue.pdf_url do
+- unless revue.pdf_url.blank?
+  = link_to revue.pdf_url do
     = image_tag("pdficon_large.gif", :alt => "Version PDF", :title => "Version PDF", :class => "pdf_link")
 
 - if user_signed_in?
-  - actions(@revue)
+  - actions(revue)
 
 .clear
 
@@ -32,37 +32,37 @@
 
 %p
   %strong Sortie :
-  = l(@revue.date_sortie, :format => :month_year)
+  = l(revue.date_sortie, :format => :month_year)
 
-- unless @revue.redacteurs.empty?
+- unless revue.redacteurs.empty?
   %div
     %strong Comité de rédaction :
     %ul.inline
-      - @revue.redacteurs.each do |redacteur|
+      - revue.redacteurs.each do |redacteur|
         %li= link_to redacteur.short_name, author_path(redacteur)
 
-- if @revue.editorial
+- if revue.editorial
   %h2 Editorial
   #editorial
-    %h4= @revue.editorial.titre
-    = raw textilize @revue.editorial.contenu
+    %h4= revue.editorial.titre
+    = raw textilize revue.editorial.contenu
     %p.redacteur
-      %strong= @revue.editorial.author.short_name
+      %strong= revue.editorial.author.short_name
 
   .clear
 
-- if @revue.articles.any?
+- if revue.articles.any?
   %h2 Articles
   %ol.articles#sortable
-    - @revue.articles.each do |article|
+    - revue.articles.each do |article|
       = content_tag_for :li, article do
         - if user_signed_in?
           %span.handle [drag]
         %strong
-          = link_to article.full_title, [@revue, article]
+          = link_to article.full_title, [revue, article]
 - else
-  %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
+  %p= "Aucun article pour le vigitox numéro #{revue.numero}"
 
 - if user_signed_in?
   %hr/
-  %p= link_to "Rajouter un article", new_revue_article_path(@revue)
+  %p= link_to "Rajouter un article", new_revue_article_path(revue)

@@ -1,7 +1,10 @@
 class RevuesController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => :sort_articles
+  respond_to :html, :js
+  expose(:revue) { params[:id] ? Revue.includes(:articles).find(params[:revue_id]||params[:id]) : Revue.new(params[:revue])}
+  expose(:revues) { Revue.recent.includes(:articles).all.paginate(:page => params[:page], :per_page => 3) }
 
   def sort_articles
-    revue = Revue.includes(:articles).find(params[:id])
     articles = revue.articles
     articles.each do |article|
       article.position = params[:article].index(article.id.to_s) + 1
@@ -10,51 +13,31 @@ class RevuesController < ApplicationController
     render :nothing => true
   end
 
-  def index
-    @revues = Revue.recent.includes(:articles).all.paginate(:page => params[:page], :per_page => 3)
-  end
-
   def archive
     revues = Revue.order("numero DESC")
     @revue_annees = revues.group_by(&:annee_sortie)
+    respond_with(@revue_annees)
   end
 
   def show
-    @revue = Revue.includes(:articles).find(params[:id])
-    @prev = Revue.prev(@revue).first
-    @next = Revue.next(@revue).first
-    @article = Article.new(:revue => @revue)
-  end
-
-  def new
-    @revue = Revue.new
+    @prev = Revue.prev(revue).first
+    @next = Revue.next(revue).first
+    @article = Article.new(:revue => revue)
+    respond_with(revue)
   end
 
   def create
-    @revue = Revue.new(params[:revue])
-    if @revue.save
-      redirect_to @revue, :notice => "Successfully created revue."
-    else
-      render :action => 'new'
-    end
+    revue.save
+    respond_with(revue)
   end
-  
-  def edit
-    @revue = Revue.find(params[:id])
-  end
-  
+
   def update
-    @revue = Revue.find(params[:id])
-    if @revue.update_attributes(params[:revue])
-      redirect_to @revue, :notice => "Successfully updated revue."
-    else
-      render :action => 'edit'
-    end
+    revue.update_attributes(params[:revue])
+    respond_with(revue)
   end
-  
+
   def destroy
-    @revue = Revue.find(params[:id])
-    @revue.destroy
-    redirect_to revues_path, :notice => "Successfully destroyed revue."
+    revue.destroy
+    respond_with(revue)
   end
 end

@@ -1,5 +1,6 @@
 require 'stringex'
 class ArticlesController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => :update
   respond_to :html, :json
 
   expose(:revue)
@@ -8,8 +9,6 @@ class ArticlesController < ApplicationController
       paginate(:page => params[:page], :per_page => 1)
   end
   expose(:article)
-
-  skip_before_filter :authenticate_user!, :only => :update
 
   def search
     @search = params[:search].to_ascii if params[:search]
@@ -24,12 +23,12 @@ class ArticlesController < ApplicationController
   def create
     article.revue_id = revue.id
     article.save
-    respond_with(revue, article, :location => revue_path(revue))
+    respond_with(revue, article)
   end
 
   def update
     article.update_attributes(params[:article])
-    respond_with(revue, article, :location => revue_path(revue))
+    respond_with(revue, article)
   end
 
   def destroy

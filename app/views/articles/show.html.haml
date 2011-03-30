@@ -1,3 +1,5 @@
+%p= link_to "<= Retourner au Vigitox n°#{revue.numero}", revue_path(revue)
+
 #article
   - if user_signed_in?
     %ul.actions
@@ -30,3 +32,5 @@
 
   %div.contenu
     = raw textilize(article.contenu) unless article.contenu.blank?
+
+%p= link_to "<= Retourner au Vigitox n°#{revue.numero}", revue_path(revue)

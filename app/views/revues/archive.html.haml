@@ -2,8 +2,6 @@
 
 .clear
 
-%p= link_to "Index générale en PDF", revues_path(:format => "pdf")
-
 - @revue_annees.each do |annee, revues|
   %h3= annee.strftime("%Y")
   %table

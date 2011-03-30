@@ -1,9 +1,9 @@
-- @revue.redactionships.build if @revue.redactionships.empty?
-- @revue.build_editorial unless @revue.editorial
+- revue.redactionships.build if revue.redactionships.empty?
+- revue.build_editorial unless revue.editorial
 
 .clear
 
-= nested_form_for @revue do |f|
+= nested_form_for revue do |f|
   = f.error_messages
   %ol
     %li
