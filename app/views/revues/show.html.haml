@@ -1,3 +1,21 @@
+= content_for :head do
+  :javascript
+    $(function(){
+      $('#sortable').sortable({
+        update: function() {
+          $.ajax({
+            type: 'post',
+            data: $(this).sortable('serialize') + "&id=#{@revue.id}",
+            dataType: 'script',
+            complete: function(request){
+              $('#sortable').effect('highlight');
+            },
+            url: "/revues/sort_articles"
+          })
+        }
+      })
+    })
+
 - title "Vigitox N° #{@revue.numero}"
 
 - unless @revue.pdf_url.blank?
@@ -35,7 +53,7 @@
 
 - if !@revue.articles.empty?
   %h2 Articles
-  %ol.articles
+  %ol.articles#sortable
     - @revue.articles.each do |article|
       = content_tag_for :li, article do
         - if user_signed_in?
@@ -46,6 +64,5 @@
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
 
 - if user_signed_in?
-  = sortable_element('articles', :url => sort_revue_articles_path(@revue), :handle => 'handle')
   %hr/
   %p= link_to "Rajouter un article", new_revue_article_path(@revue)

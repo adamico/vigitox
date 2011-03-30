@@ -20,6 +20,7 @@ Vigitox::Application.routes.draw do
 
   resources :revues, :shallow => true do
     get :archive, :on => :collection
+    post :sort_articles, :on => :collection
     resources :articles do
       post :sort, :on => :collection
     end

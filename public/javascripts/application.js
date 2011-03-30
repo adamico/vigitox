@@ -2,6 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 
+
 //autocomplete
 $(function() {
   $("[id*=argument_name]").autocomplete({

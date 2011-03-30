@@ -1,4 +1,15 @@
 class RevuesController < ApplicationController
+
+  def sort_articles
+    revue = Revue.includes(:articles).find(params[:id])
+    articles = revue.articles
+    articles.each do |article|
+      article.position = params[:article].index(article.id.to_s) + 1
+      article.save
+    end
+    render :nothing => true
+  end
+
   def index
     @revues = Revue.recent.includes(:articles).all.paginate(:page => params[:page], :per_page => 3)
   end

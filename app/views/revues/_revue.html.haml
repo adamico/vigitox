@@ -5,7 +5,7 @@
       = image_tag("pdficon_small.gif", :alt => "Version PDF", :title => "Vigitox numéro #{revue.numero} en version PDF", :class => "pdf_link")
 
   .clear
-  %ol.articles
+  %ol.articles#sortable
     - revue.articles.each do |article|
       = content_tag_for :li, article do
         %strong
