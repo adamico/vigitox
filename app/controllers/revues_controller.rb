@@ -25,6 +25,10 @@ class RevuesController < ApplicationController
     respond_with(revue)
   end
 
+  def new
+    respond_with(revue)
+  end
+
   def create
     revue.save
     respond_with(revue)
