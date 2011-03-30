@@ -1,5 +1,4 @@
 class RevuesController < ApplicationController
-  skip_before_filter :authenticate_user!, :only => :sort_articles
   respond_to :html, :js
   expose(:revue) { params[:id] ? Revue.includes(:articles).find(params[:revue_id]||params[:id]) : Revue.new(params[:revue])}
   expose(:revues) { Revue.recent.includes(:articles).all.paginate(:page => params[:page], :per_page => 3) }
