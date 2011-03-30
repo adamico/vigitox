@@ -17,6 +17,7 @@ gem 'nested_form', :git => "https://github.com/madebydna/nested_form.git"
 gem 'acts_as_indexed'
 gem 'stringex'
 gem 'wymeditor'
+gem 'decent_exposure'
 
 group :production do
   gem 'pg'

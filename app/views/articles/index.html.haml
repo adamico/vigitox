@@ -9,6 +9,6 @@
 - if @articles.empty?
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
 - else
-  = render @articles
+  = render @articles, :revue => @revue
 
 = will_paginate @articles, :previous_label => "<--", :next_label => "-->"

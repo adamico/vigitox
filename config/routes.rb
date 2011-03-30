@@ -18,12 +18,10 @@ Vigitox::Application.routes.draw do
     get :search, :on => :collection
   end
 
-  resources :revues, :shallow => true do
+  resources :revues do
     get :archive, :on => :collection
     post :sort_articles, :on => :collection
-    resources :articles do
-      post :sort, :on => :collection
-    end
+    resources :articles
   end
 
   root :to => 'revues#index'

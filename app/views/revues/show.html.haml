@@ -51,7 +51,7 @@
 
   .clear
 
-- if !@revue.articles.empty?
+- if @revue.articles.any?
   %h2 Articles
   %ol.articles#sortable
     - @revue.articles.each do |article|
@@ -59,7 +59,7 @@
         - if user_signed_in?
           %span.handle [drag]
         %strong
-          = link_to article.full_title, revue_articles_path(@revue, :page => article.position)
+          = link_to article.full_title, [@revue, article]
 - else
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
 

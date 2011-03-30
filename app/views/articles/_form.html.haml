@@ -1,8 +1,8 @@
-- @article.build_argumentaire unless @article.argumentaire
-- @article.authorships.build if @article.authorships.empty?
+- article.build_argumentaire unless article.argumentaire
+- article.authorships.build if article.authorships.empty?
 
 .clear
-= nested_form_for [@revue, @article] do |f|
+= nested_form_for [revue, article] do |f|
   = f.error_messages
   %ol
     %li
@@ -27,7 +27,7 @@
   - Categorie.all.each do |categorie|
     %div
       = check_box_tag "article[categorie_ids][]",
-        categorie.id, @article.categories.include?(categorie)
+        categorie.id, article.categories.include?(categorie)
       = categorie.name
   %h4 Argumentaire
   = f.fields_for :argumentaire do |argumentaire_form|
