@@ -2,7 +2,7 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.7'
 gem 'haml'
 gem "RedCloth"
 gem 'meta_where'
@@ -41,9 +41,10 @@ end
 group :test do
   gem 'factory_girl_rails', "~> 1.1.beta1"
   gem "autotest"
-  gem 'spork', '0.9.0.rc2'
+  gem 'spork', '~> 0.9.0.rc'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'pickle'
 end
 
 group :cucumber do
@@ -52,8 +53,7 @@ group :cucumber do
   gem 'cucumber-rails'
   gem 'cucumber'
   gem 'rspec-rails', "~> 2.1"
-  gem 'spork', '0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'pickle'
   gem 'factory_girl_rails', "~> 1.1.beta1"
+  gem 'pickle'
 end
