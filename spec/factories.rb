@@ -7,6 +7,7 @@ FactoryGirl.define  do
 
   factory :revue do
     sequence(:numero) {|n| n}
+    date_sortie Time.now.to_date
   end
 
   factory :article do
