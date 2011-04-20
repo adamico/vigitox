@@ -8,7 +8,7 @@
   %ol
     %li
       = f.label       :numero, 'Numéro'
-      = f.text_field  :numero, :size => 3, :type => "number", :min => "#{Revue.last.numero}"
+      = f.text_field  :numero, :size => 3, :type => "number"
     %li
       = f.label       :date_sortie, 'Sortie'
       = f.date_select :date_sortie, :discard_day => true, :include_blank => true
