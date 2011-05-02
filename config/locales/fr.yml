@@ -146,3 +146,5 @@ fr:
       previous: "&lt;--"
       next: "--&gt;"
       truncate: '&hellip;'
+      first: "Premier(ère) |"
+      last: " | Dernier(ère)"
