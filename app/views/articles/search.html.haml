@@ -12,4 +12,4 @@
 - else
   %h2 Résultats de la recherche pour '#{params[:search]}'
   = render 'shared/article_line', :articles => @articles
-  = will_paginate @articles, :previous_label => "<--", :next_label => "-->"
+  = paginate @articles

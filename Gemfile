@@ -4,15 +4,16 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
 gem 'haml'
+gem 'sass'
 gem "RedCloth"
 gem 'meta_where'
 gem 'meta_search'
 gem 'simple_form'
-gem 'will_paginate', '3.0.pre2'
+gem 'kaminari'
 gem 'paperclip'
 gem 'acts_as_list'
 gem 'devise'
-gem 'nested_form', :git => "https://github.com/madebydna/nested_form.git"
+gem 'nested_form'
 gem 'acts_as_indexed'
 gem 'stringex'
 gem 'wymeditor'

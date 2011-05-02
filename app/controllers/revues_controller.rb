@@ -1,7 +1,9 @@
 class RevuesController < ApplicationController
   respond_to :html, :js
+
   expose(:revue) { params[:id] ? Revue.includes(:articles).find(params[:revue_id]||params[:id]) : Revue.new(params[:revue])}
-  expose(:revues) { Revue.recent.includes(:articles).all.paginate(:page => params[:page], :per_page => 3) }
+  expose(:revues) { Revue.includes(:articles).recent.
+    page(params[:page]) }
 
   def sort_articles
     articles = revue.articles

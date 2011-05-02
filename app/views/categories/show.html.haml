@@ -17,5 +17,5 @@
 - else
   %h3 Pas d'articles
 
-%p= page_entries_info @articles
-%p= will_paginate @articles, :previous_label => "<--", :next_label => "-->"
+%p= "#{@articles.offset_value + 1} - #{@articles.offset_value + @articles.length} de #{@articles.total_count}"
+%p= paginate @articles

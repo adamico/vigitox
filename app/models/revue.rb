@@ -16,7 +16,12 @@ class Revue < ActiveRecord::Base
   scope :prev, lambda {|r| where(["numero < ?", r.numero]).order('numero DESC')}
   scope :next, lambda {|r| where(["numero > ?", r.numero]).order(:numero)}
 
-  scope :recent, order("numero DESC").limit(5)
+  default_scope order("numero DESC")
+  paginates_per 3
+
+  def self.recent
+    limit(3)
+  end
 
   def self.derniere
     find(:last)

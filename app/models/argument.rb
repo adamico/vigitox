@@ -5,6 +5,9 @@ class Argument < ActiveRecord::Base
   # constants
   NATURES = %w(pathologie produit circonstance)
 
+  default_scope order("LOWER(name) ASC")
+  paginates_per 20
+
   # custom methods
   def articles_as_main
     Article.joins(:argumentaire).includes(:revue).where(:argumentaires => {:main_argument_id => self.id})

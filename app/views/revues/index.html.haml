@@ -3,8 +3,6 @@
 
 %h2 Derniers numéros publiés
 
-= will_paginate revues, :previous_label => "<--", :next_label => "-->"
-
 = render revues
 
-= will_paginate revues, :previous_label => "<--", :next_label => "-->"
+%p= link_to "Voir plus d'articles", archive_path

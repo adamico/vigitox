@@ -19,7 +19,7 @@ fr:
     month_names: [~, janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre]
     abbr_month_names: [~, jan., fév., mar., avr., mai, juin, juil., août, sept., oct., nov., déc.]
     order: [ :day, :month, :year ]
-  
+
   time:
     formats:
       default: "%d %B %Y %H:%M"
@@ -73,7 +73,7 @@ fr:
       hour:   "Heure"
       minute: "Minute"
       second: "Seconde"
-  
+
   number:
     format:
       precision: 3
@@ -111,7 +111,7 @@ fr:
       words_connector: ", "
       two_words_connector: " et "
       last_word_connector: " et "
-  
+
   activerecord:
     errors:
       template:
@@ -140,3 +140,9 @@ fr:
         odd: "doit être impair"
         even: "doit être pair"
         record_invalid: "La validation a échoué : {{errors}}"
+
+  views:
+    pagination:
+      previous: "&lt;--"
+      next: "--&gt;"
+      truncate: '&hellip;'
