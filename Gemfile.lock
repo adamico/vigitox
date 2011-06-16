@@ -1,3 +1,11 @@
+GIT
+  remote: git@github.com:adamico/pickle.git
+  revision: 71d7692834482d0422c41949ab1675999bccbb22
+  specs:
+    pickle (0.4.7)
+      cucumber (>= 0.8)
+      rake
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -113,9 +121,6 @@ GEM
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
     pg (0.11.0)
-    pickle (0.4.7)
-      cucumber (>= 0.8)
-      rake
     polyglot (0.3.1)
     rack (1.2.3)
     rack-google_analytics (1.0.1)
@@ -192,7 +197,6 @@ DEPENDENCIES
   annotate-models (= 1.0.4)
   autotest
   capybara
-  cucumber
   cucumber-rails
   database_cleaner
   decent_exposure
@@ -209,7 +213,7 @@ DEPENDENCIES
   nifty-generators
   paperclip
   pg
-  pickle
+  pickle!
   rack-google_analytics
   rails (= 3.0.9.rc3)
   rails-erd

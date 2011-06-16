@@ -10,7 +10,6 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
-
     when /login/
       '/users/sign_in'
 

@@ -45,17 +45,8 @@ group :test do
   gem "autotest"
   gem 'spork', '~> 0.9.0.rc'
   gem 'capybara'
-  gem 'database_cleaner'
-  gem 'pickle'
-end
-
-group :cucumber do
-  gem 'capybara'
-  gem 'database_cleaner'
   gem 'cucumber-rails'
-  gem 'cucumber'
-  gem 'rspec-rails', "~> 2.1"
+  gem 'database_cleaner'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'factory_girl_rails', "~> 1.1.beta1"
-  gem 'pickle'
+  gem 'pickle', :git => "git@github.com:adamico/pickle.git"
 end
