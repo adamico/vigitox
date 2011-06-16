@@ -10,7 +10,7 @@ class AuthorsController < ApplicationController
   def show
     @author = Author.find(params[:id])
     @articles = @author.articles.includes(:revue).order("revue_id DESC").
-      paginate(:page => params[:page], :per_page => 20)
+      page(params[:page]).per(20)
   end
 
   def new

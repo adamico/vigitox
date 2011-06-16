@@ -11,11 +11,6 @@ module ApplicationHelper
       end
     end
   end
-  def prev_and_next_item(ptext="préc.", sep=" ", ntext="succ.", pobject=@prev, nobject=@next, tag_options = {}, html_options = nil)
-    haml_concat(link_to ptext, pobject, tag_options, html_options) if pobject
-    haml_concat(sep)
-    haml_concat(link_to ntext, nobject, tag_options, html_options) if nobject
-  end
   def link_to_with_title(name, url, title=name)
     link_to name, url, :title => title
   end
