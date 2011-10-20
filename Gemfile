@@ -2,7 +2,7 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '~> 3.0.9'
 gem 'haml'
 gem 'sass'
 gem "RedCloth"
@@ -18,6 +18,7 @@ gem 'acts_as_indexed'
 gem 'stringex'
 gem 'wymeditor'
 gem 'decent_exposure'
+gem 'wicked_pdf'
 
 group :production do
   gem 'pg'
@@ -33,7 +34,7 @@ group :development do
   gem "haml-rails"
   gem "wirble"
   gem "hirb"
-  gem 'annotate-models', '1.0.4'
+  gem 'annotate'
 end
 
 group :development, :test do
@@ -48,5 +49,5 @@ group :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'pickle', :git => "git@github.com:adamico/pickle.git"
+  gem 'pickle'
 end
