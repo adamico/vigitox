@@ -140,11 +140,23 @@ fr:
         odd: "doit être impair"
         even: "doit être pair"
         record_invalid: "La validation a échoué : {{errors}}"
+    models:
+      author: "Autheur"
 
-  views:
-    pagination:
-      previous: "&lt;--"
-      next: "--&gt;"
-      truncate: '&hellip;'
-      first: "Premier(ère) |"
-      last: " | Dernier(ère)"
+  will_paginate:
+    previous_label: "&#8592; Préc."
+    next_label: "Suiv &#8594;"
+    page_gap: "&hellip;"
+    will_paginate:
+    page_entries_info:
+      single_page:
+        zero:  "Aucun(e) %{model} retrouvé(e)"
+        one:   "1 %{model} affiché(e)"
+        other: "Tous les %{count} %{model} affiché(e)s"
+      single_page_html:
+        zero:  "Aucun(e) %{model} retrouvé(e)"
+        one:   "<b>1</b> %{model} affiché(e)"
+        other: "<b>Tous les&nbsp;%{count}</b> %{model} affiché(e)s"
+
+      multi_page: "%{model} %{from} - %{to} sur %{count} au total affiché(e)s"
+      multi_page_html: "%{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> sur <b>%{count}</b> au total affiché(e)s"

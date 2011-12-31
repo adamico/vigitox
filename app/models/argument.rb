@@ -6,7 +6,7 @@ class Argument < ActiveRecord::Base
   NATURES = %w(pathologie produit circonstance)
 
   default_scope order("LOWER(name) ASC")
-  paginates_per 20
+  self.per_page = 20
 
   # custom methods
   def articles_as_main

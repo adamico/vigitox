@@ -2,14 +2,15 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.0.9'
+gem 'rails', '~> 3.0.11'
 gem 'haml'
 gem 'sass'
 gem "RedCloth"
 gem 'meta_where'
 gem 'meta_search'
 gem 'simple_form'
-gem 'kaminari'
+gem "jquery-rails"
+gem 'will_paginate', '~> 3.0'
 gem 'paperclip'
 gem 'acts_as_list'
 gem 'devise'

@@ -5,14 +5,13 @@ class ArticlesController < ApplicationController
 
   expose(:revue)
   expose(:articles) do
-    revue.articles.order(:position).
-      page(params[:page]).per(1)
+    revue.articles.paginate(:page => params[:page], :per_page => 1).order(:position)
   end
   expose(:article)
 
   def search
     @search = params[:search].to_ascii if params[:search]
-    @articles = Article.search(@search, params[:page]).order("revue_id DESC").includes(:revue).page(params[:page])
+    @articles = Article.search(@search, params[:page]).includes(:revue).page(params[:page]).order("revue_id DESC")
     respond_with @articles
   end
 

@@ -18,5 +18,5 @@
             %ul.actions
               %li= link_to 'Modifier', edit_author_path(author)
               %li= link_to 'Détruire', author, :confirm => 'Etes-vous sur ?', :method => :delete
-
-= paginate @authors
+= page_entries_info @authors
+= will_paginate @authors

@@ -22,7 +22,7 @@ class ArgumentsController < ApplicationController
     if @argument.save
       redirect_to @argument, :notice => "Successfully created argument."
     else
-      render :action => 'new'
+      render :new
     end
   end
 
@@ -35,7 +35,7 @@ class ArgumentsController < ApplicationController
     if @argument.update_attributes(params[:argument])
       redirect_to @argument, :notice => "Successfully updated argument."
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 

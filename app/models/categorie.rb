@@ -2,7 +2,7 @@ class Categorie < ActiveRecord::Base
   attr_accessible :name
   has_and_belongs_to_many :articles, :join_table => "articles_categories", :include => :revue, :order => "revue_id DESC"
 
-  paginates_per 20
+  self.per_page = 20
 end
 
 

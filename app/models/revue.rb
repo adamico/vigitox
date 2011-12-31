@@ -17,7 +17,7 @@ class Revue < ActiveRecord::Base
   scope :next, lambda {|r| where(["numero > ?", r.numero]).order(:numero)}
 
   default_scope order("numero DESC")
-  paginates_per 3
+  self.per_page = 3
 
   def self.recent
     limit(3)

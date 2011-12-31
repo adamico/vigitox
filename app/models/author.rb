@@ -7,7 +7,7 @@ class Author < ActiveRecord::Base
   has_many :redactionships, :dependent => :destroy
 
   default_scope order(:nom).includes(:authorships)
-  paginates_per 18
+  self.per_page = 18
   def self.human_name
     "Autheurs"
   end
@@ -17,6 +17,7 @@ class Author < ActiveRecord::Base
     output = initiales.join
     output += " #{nom}"
   end
+
 end
 
 

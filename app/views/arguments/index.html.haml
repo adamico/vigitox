@@ -23,4 +23,5 @@
               %li= link_to 'Modifier', edit_argument_path(argument)
               %li= link_to 'Détruire', argument, :confirm => 'Etes-vous sur ?', :method => :delete
 
-= paginate @arguments
+= page_entries_info @arguments
+= will_paginate @arguments

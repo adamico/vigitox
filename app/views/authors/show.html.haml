@@ -1,9 +1,9 @@
-- title h(@author.short_name)
+- title @author.short_name
 
 - if user_signed_in?
   %ul.actions
-    %li= link_to "Edit", edit_author_path(@author)
-    %li= link_to "Destroy", @author, :confirm => 'Are you sure?', :method => :delete
+    %li= link_to "Modifier", edit_author_path(@author)
+    %li= link_to "Détruire", @author, :confirm => 'Etes-vous sûr?', :method => :delete
 
 .clear
 
@@ -22,4 +22,4 @@
   %h3 Pas d'articles
 
 %p= page_entries_info @articles
-%p= will_paginate @articles, :previous_label => "<--", :next_label => "-->"
+%p= will_paginate @articles

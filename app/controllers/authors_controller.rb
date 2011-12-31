@@ -9,8 +9,8 @@ class AuthorsController < ApplicationController
 
   def show
     @author = Author.find(params[:id])
-    @articles = @author.articles.includes(:revue).order("revue_id DESC").
-      page(params[:page]).per(20)
+    @articles = @author.articles.includes(:revue).
+      page(params[:page]).order("revue_id DESC")
   end
 
   def new
