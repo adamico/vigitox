@@ -2,14 +2,21 @@
 # This preamble is the current preamble for Rails 3 apps; edit as needed.
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.0.11'
-gem 'haml'
-gem 'sass'
+gem 'rails', '3.2.1'
+
+group :assets do
+  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'coffee-rails', "~> 3.2.1"
+  gem 'uglifier', '>=1.0.3'
+end
+
+gem 'jquery-rails'
+
 gem "RedCloth"
-gem 'meta_where'
-gem 'meta_search'
+
+#gem 'meta_where'
+#gem 'meta_search'
 gem 'simple_form'
-gem "jquery-rails"
 gem 'will_paginate', '~> 3.0'
 gem 'paperclip'
 gem 'acts_as_list'
@@ -20,31 +27,22 @@ gem 'stringex'
 gem 'wymeditor'
 gem 'decent_exposure'
 gem 'wicked_pdf'
+gem 'pg'
 
 group :production do
-  gem 'pg'
   gem 'rack-google_analytics', :require => "rack/google_analytics"
 end
 
 group :development do
-  gem 'sqlite3'
-  gem "ruby-graphviz"
-  gem "rails-erd"
-  gem "nifty-generators"
-  gem "rails3-generators"
   gem "haml-rails"
-  gem "wirble"
-  gem "hirb"
-  gem 'annotate'
 end
 
 group :development, :test do
-  gem 'rspec-rails', "~> 2.1"
+  gem 'rspec-rails', "~> 2.6"
 end
 
 group :test do
-  gem 'factory_girl_rails', "~> 1.1.beta1"
-  gem "autotest"
+  gem 'factory_girl_rails'
   gem 'spork', '~> 0.9.0.rc'
   gem 'capybara'
   gem 'cucumber-rails'
