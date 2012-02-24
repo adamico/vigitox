@@ -11,3 +11,5 @@ rerun.txt
 vendor/ruby
 vendor/cache
 index
+.simplecov
+.sass-cache
