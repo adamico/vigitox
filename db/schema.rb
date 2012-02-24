@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -16,22 +17,22 @@ ActiveRecord::Schema.define(:version => 20101227151605) do
     t.integer  "main_argument_id"
     t.integer  "aux_argument_id"
     t.integer  "article_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "arguments", :force => true do |t|
     t.string   "name"
     t.string   "nature"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "articles", :force => true do |t|
     t.text     "titre"
     t.integer  "revue_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.text     "contenu"
     t.boolean  "fiche_technique"
     t.integer  "position"
@@ -47,22 +48,22 @@ ActiveRecord::Schema.define(:version => 20101227151605) do
     t.string   "nom"
     t.string   "prenom"
     t.boolean  "current"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "authorships_count", :default => 0
   end
 
   create_table "authorships", :force => true do |t|
     t.integer  "article_id"
     t.integer  "author_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "editorials", :force => true do |t|
@@ -70,8 +71,8 @@ ActiveRecord::Schema.define(:version => 20101227151605) do
     t.text     "contenu"
     t.integer  "author_id"
     t.integer  "revue_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "redactionships", :force => true do |t|
@@ -82,8 +83,8 @@ ActiveRecord::Schema.define(:version => 20101227151605) do
   create_table "revues", :force => true do |t|
     t.integer  "numero"
     t.date     "date_sortie"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "pdf_file_name"
     t.string   "pdf_content_type"
     t.integer  "pdf_file_size"
@@ -96,7 +97,6 @@ ActiveRecord::Schema.define(:version => 20101227151605) do
   create_table "users", :force => true do |t|
     t.string   "email",                              :default => "", :null => false
     t.string   "encrypted_password",  :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                      :default => "", :null => false
     t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                      :default => 0
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(:version => 20101227151605) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
