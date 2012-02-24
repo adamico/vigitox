@@ -11,6 +11,7 @@ fr:
       default: "%d/%m/%Y"
       short: "%e %b"
       long: "%e %B %Y"
+      month_year: "%B %Y"
     day_names:
       - dimanche
       - lundi
