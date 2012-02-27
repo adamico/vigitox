@@ -1,3 +1,6 @@
+= content_for :head do
+  %script{type: "text/javascript", src: "/javascripts/wymeditor/jquery.wymeditor.min.js"}
+
 - article.build_argumentaire unless article.argumentaire
 - article.authorships.build if article.authorships.empty?
 
@@ -34,3 +37,8 @@
     = render 'argumentaire_fields', :f => argumentaire_form
 
   = f.submit "Enregistrer"
+
+:coffeescript
+  $(".wymeditor").wymeditor
+    lang: "fr"
+  $('input[type=submit]').addClass('wymupdate')
