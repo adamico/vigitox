@@ -29,6 +29,7 @@ gem 'decent_exposure'
 gem 'wicked_pdf'
 gem 'pg'
 gem 'coffee-filter'
+gem "bootstrap-sass", "~> 2.0.0"
 
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"

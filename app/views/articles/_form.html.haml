@@ -5,38 +5,34 @@
 - article.authorships.build if article.authorships.empty?
 
 .clear
-= nested_form_for [revue, article] do |f|
-  = f.error_messages
-  %ol
-    %li
-      = f.label :position
-      = f.text_field :position, :type => "number", :size => "3", :min => "1"
-    %li
-      = f.label :titre, 'Titre'
-      = f.text_area :titre, :size => "80x2"
-    %li
-      = f.label :fiche_technique, "Fiche Technique ?"
-      = f.check_box :fiche_technique
-    %li
-      = f.label :contenu
-      = f.text_area :contenu, :size => "80x30", :class => "wymeditor"
+= simple_form_for [revue, article], html: {class: 'form-horizontal'} do |f|
+  = f.error_notification if f.error_notification
+  = f.input :position, as: :integer, input_html: {class: "span1", :min => "1"}
+  .control-group
+    %label.control-label Titre
+    .controls
+      = f.text_area :titre, class: "span6", rows: 2
+      %label.checkbox.inline
+        = f.check_box :fiche_technique
+        Fiche Technique ?
+  = f.input :contenu, input_html: {:size => "80x30", :class => "wymeditor"}
 
   %h4 Auteurs
-  = f.fields_for :authorships do |authorship_form|
-    = render 'authorship_fields', :f => authorship_form
-  = f.link_to_add 'Rajouter un autheur', :authorships
+  -#= f.fields_for :authorships do |authorship_form|
+    -#= render 'authorship_fields', :f => authorship_form
+  -#= f.link_to_add 'Rajouter un autheur', :authorships
 
-  %h4 Catégories
-  - Categorie.all.each do |categorie|
-    %div
-      = check_box_tag "article[categorie_ids][]",
-        categorie.id, article.categories.include?(categorie)
-      = categorie.name
-  %h4 Argumentaire
+  = f.association :categories, as: :check_boxes, item_wrapper_class: "inline"
   = f.fields_for :argumentaire do |argumentaire_form|
-    = render 'argumentaire_fields', :f => argumentaire_form
+    .control-group
+      %label.control-label Arguments
+      .controls
+        = argumentaire_form.text_field :main_argument_name, placeholder: "principal"
+        = argumentaire_form.text_field :aux_argument_name, placeholder: "secondaire"
 
-  = f.submit "Enregistrer"
+  .actions
+    = f.button :submit, "Enregistrer", class: "btn-success", disable_with: "Enregistrer"
+    = link_to "Retour à la revue", revue_path(revue), class: 'btn btn-danger'
 
 :coffeescript
   $(".wymeditor").wymeditor

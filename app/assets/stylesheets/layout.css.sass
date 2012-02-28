@@ -117,6 +117,9 @@ a
     text-decoration: underline
   img
     border: none
+a.btn
+  &:link, &:visited
+    color: white
 
 #page
   background-color: $back
@@ -236,11 +239,6 @@ table.list
       font-size: 12px
       list-style: disc
 
-// main
-#main
-  h1
-    float: left
-
 // revues and articles
 
 #revue h3, h1.revue
@@ -333,49 +331,3 @@ ul.actions
   padding-left: 0.5em
   li
     padding-left: 0 0.5em
-
-// this is to temp replace formtastic
-fieldset
-  ol, ul, p
-    line-height: 1.5
-
-form, fieldset, legend
-  border: 0
-  padding: 0
-  margin: 0
-
-legend
-  font-size: 1.2em
-  line-height: 1.8
-  padding-bottom: 0.5em
-
-form ol, form ul
-  list-style: none
-  margin: 0
-  padding: 0
-
-label
-  display: block
-  float: left
-  line-height: 1.6
-  margin-right: 10px
-  text-align: right
-  width: 140px
-  &:after
-    content: ' : '
-
-textarea
-  line-height: 1.3em
-  padding: 0, 3px
-
-input, textarea
-  background: #ddd
-  font: 1em Arial, Helvetica, sans-serif
-  padding: 1px 3px
-  &:focus
-    background: #fff
-
-.actions
-  input
-    margin-top: 10px
-    margin-left: 150px
