@@ -21,8 +21,8 @@
     .control-group
       %label.control-label Arguments
       .controls
-        = argumentaire_form.text_field :main_argument_name, placeholder: "principal"
-        = argumentaire_form.text_field :aux_argument_name, placeholder: "secondaire"
+        = argumentaire_form.autocomplete_field :main_argument_name, autocomplete_argument_name_articles_path, placeholder: "principal"
+        = argumentaire_form.autocomplete_field :aux_argument_name, autocomplete_argument_name_articles_path, placeholder: "secondaire"
 
   .actions
     = f.button :submit, "Enregistrer", class: "btn-success", disable_with: "Enregistrer"

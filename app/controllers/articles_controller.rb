@@ -1,6 +1,7 @@
 require 'stringex'
 class ArticlesController < InheritedResources::Base
   autocomplete :author, :nom
+  autocomplete :argument, :name, full: true
   respond_to :html, :json
   belongs_to :revue
   custom_actions collection: :search
