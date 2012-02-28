@@ -32,22 +32,10 @@ $right_block: $page_block - $left_block - 18px
 
 $front: $primary_color_a
 $back: $secondary_color_aa
-// new stuff here
 
-
-/////////////////////
-// resetting css
-
-body, p, h1, h2, h3, h4, h5, h6, ul, li, form
-  margin: 9px
-  padding: 0
-  line-height: 18px
-
-h2
-  line-height: 36px
-
-p, h1, h2, h3, h4, h5, h6
-  margin-bottom: 18px
+// bootstrap with navbar requires padding
+body
+  padding-top: 60px
 
 // dimensions and blocks
 #page
@@ -143,15 +131,6 @@ body
 
 acronym
   border-bottom: 1px dotted black
-
-span.label
-  margin-right: 0.5em
-  font-weight: bold
-  text-align: right
-  display: block
-  width: 8em
-  clear: left
-  float: left
 
 .odd
   background: #FFF

@@ -13,7 +13,6 @@ class Revue < ActiveRecord::Base
   accepts_nested_attributes_for :editorial,
     :reject_if => proc { |attrs| attrs.all? { |k,v| v.blank? } }
 
-  default_scope order("numero DESC")
   self.per_page = 3
 
   attr_reader :redactionship_tokens
@@ -31,7 +30,7 @@ class Revue < ActiveRecord::Base
   end
 
   def self.derniere
-    find(:last)
+    recent.first
   end
 
   def redactionship_tokens=(ids)

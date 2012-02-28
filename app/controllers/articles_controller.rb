@@ -12,6 +12,13 @@ class ArticlesController < InheritedResources::Base
     search!
   end
 
+  def show
+    @article = parent.articles.find_by_position(params[:id])
+    @prev = resource_class.prev(@article).first
+    @next = resource_class.next(@article).first
+    show!
+  end
+
   protected
 
   def collection

@@ -9,16 +9,15 @@ class RevuesController < InheritedResources::Base
   end
 
   def show
-    @revue = Revue.find(params[:id])
-    @prev = Revue.prev(@revue).first
-    @next = Revue.next(@revue).first
-    @article = Article.new(:revue => @revue)
+    @prev = resource_class.prev(resource).first
+    @next = resource_class.next(resource).first
+    @article = Article.new(:revue => resource)
     show!
   end
 
   protected
 
   def collection
-    @revues ||= Revue.includes(:articles).recent.page(params[:page])
+    @revues ||= Revue.includes(:articles).recent.page(params[:page]).order("numero DESC")
   end
 end

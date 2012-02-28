@@ -2,6 +2,10 @@ Vigitox::Application.routes.draw do
   devise_for :users
 
   resources :categories
+  as :user do
+    get "/login", :to => "devise/sessions#new"
+    get "/logout", :to=> "devise/sessions#destroy"
+  end
 
   resources :authors do
     get :names, :on => :collection

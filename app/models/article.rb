@@ -24,12 +24,19 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :titre
 
-  scope :prev, lambda { |a|
-    where(["position < ?", a.position]).order('position DESC')
-  }
-  scope :next, lambda { |a|
-    where(["position > ?", a.position]).order(:position)
-  }
+  def to_param
+    position if position
+  end
+
+  def self.from_same_revue(a)
+    joins(:revue).where('revues.id' => a.revue_id)
+  end
+  def self.prev(a)
+    from_same_revue(a).where("position < ?", a.position).order('position DESC')
+  end
+  def self.next(a)
+    from_same_revue(a).where("position > ?", a.position).order(:position)
+  end
 
   def authorship_tokens=(ids)
     self.authorship_ids = ids.split(",")

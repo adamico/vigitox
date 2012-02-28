@@ -11,10 +11,15 @@ module ApplicationHelper
       end
     end
   end
-  def prev_and_next_item(ptext="préc.", sep=" ", ntext="succ.", pobject=@prev, nobject=@next, tag_options = {}, html_options = nil)
-    haml_concat(link_to ptext, pobject, tag_options, html_options) if pobject
-    haml_concat(sep)
-    haml_concat(link_to ntext, nobject, tag_options, html_options) if nobject
+  def prev_and_next_item(ptext="préc.", ntext="succ.", ppath=@prev, npath=@next, pobject=@prev, nobject=@next)
+    haml_tag 'ul.pager' do
+      haml_tag 'li.previous' do
+        haml_concat(link_to ptext.html_safe, ppath) if pobject
+      end
+      haml_tag 'li.next' do
+        haml_concat(link_to ntext.html_safe, npath) if nobject
+      end
+    end
   end
   def link_to_with_title(name, url, title=name)
     link_to name, url, :title => title
