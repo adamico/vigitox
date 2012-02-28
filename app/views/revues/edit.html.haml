@@ -1,5 +1,3 @@
-- title "Modification VIGItox##{revue.numero}"
+- title "Modification VIGItox##{@revue.numero}"
 
-= render :partial => 'form'
-
-%p= link_to "Annuler", revue_path(revue)
+= render 'form', revue: @revue

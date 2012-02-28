@@ -1,18 +1,6 @@
-class RevuesController < ApplicationController
+class RevuesController < InheritedResources::Base
   respond_to :html, :js
-
-  expose(:revue) { params[:id] ? Revue.includes(:articles).find(params[:revue_id]||params[:id]) : Revue.new(params[:revue])}
-  expose(:revues) { Revue.includes(:articles).recent.
-    page(params[:page]) }
-
-  def sort_articles
-    articles = revue.articles
-    articles.each do |article|
-      article.position = params[:article].index(article.id.to_s) + 1
-      article.save
-    end
-    render :nothing => true
-  end
+  custom_actions collection: :archive
 
   def archive
     revues = Revue.order("numero DESC")
@@ -21,28 +9,16 @@ class RevuesController < ApplicationController
   end
 
   def show
-    @prev = Revue.prev(revue).first
-    @next = Revue.next(revue).first
-    @article = Article.new(:revue => revue)
-    respond_with(revue)
+    @revue = Revue.find(params[:id])
+    @prev = Revue.prev(@revue).first
+    @next = Revue.next(@revue).first
+    @article = Article.new(:revue => @revue)
+    show!
   end
 
-  def new
-    respond_with(revue)
-  end
+  protected
 
-  def create
-    revue.save
-    respond_with(revue)
-  end
-
-  def update
-    revue.update_attributes(params[:revue])
-    respond_with(revue)
-  end
-
-  def destroy
-    revue.destroy
-    respond_with(revue)
+  def collection
+    @revues ||= Revue.includes(:articles).recent.page(params[:page])
   end
 end

@@ -5,6 +5,9 @@ class Article < ActiveRecord::Base
   acts_as_list :scope => :revue
 
   acts_as_indexed :fields => [:ascii_titre, :ascii_contenu]
+
+  attr_reader :authorship_tokens
+
   belongs_to :revue, :counter_cache => true
   has_and_belongs_to_many :categories, :join_table => "articles_categories"
   has_many :authors, :through => :authorships
@@ -27,6 +30,10 @@ class Article < ActiveRecord::Base
   scope :next, lambda { |a|
     where(["position > ?", a.position]).order(:position)
   }
+
+  def authorship_tokens=(ids)
+    self.authorship_ids = ids.split(",")
+  end
 
   def arguments
     if argumentaire

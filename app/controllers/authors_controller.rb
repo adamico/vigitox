@@ -4,7 +4,10 @@ class AuthorsController < ApplicationController
   end
 
   def names
-    @authors = Author.where(:nom =~ "%#{params[:term]}%")
+    @authors = Author.where("LOWER(nom) like ?", "%#{params[:q]}%").order(:nom)
+    respond_to do |format|
+      format.json { render json: @authors}
+    end
   end
 
   def show

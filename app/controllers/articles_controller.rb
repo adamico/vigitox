@@ -1,37 +1,19 @@
 require 'stringex'
-class ArticlesController < ApplicationController
-  skip_before_filter :authenticate_user!, :only => :update
+class ArticlesController < InheritedResources::Base
+  autocomplete :author, :nom
   respond_to :html, :json
-
-  expose(:revue)
-  expose(:articles) do
-    revue.articles.paginate(:page => params[:page], :per_page => 1).order(:position)
-  end
-  expose(:article)
+  belongs_to :revue
+  custom_actions collection: :search
 
   def search
     @search = params[:search].to_ascii if params[:search]
     @articles = Article.search(@search, params[:page]).includes(:revue).page(params[:page]).order("revue_id DESC")
-    respond_with @articles
+    search!
   end
 
-  def new
-    article = revue.articles.build
-  end
+  protected
 
-  def create
-    article.revue_id = revue.id
-    article.save
-    respond_with(revue, article)
-  end
-
-  def update
-    article.update_attributes(params[:article])
-    respond_with(revue, article)
-  end
-
-  def destroy
-    article.destroy
-    respond_with(revue, article, :location => revue_path(revue))
+  def collection
+    @articles ||= end_of_association_chain.order(:position).page(params[:page])
   end
 end

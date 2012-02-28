@@ -9,7 +9,7 @@ class Author < ActiveRecord::Base
   default_scope order(:nom).includes(:authorships)
   self.per_page = 18
   def self.human_name
-    "Autheurs"
+    "Auteurs"
   end
 
   def short_name

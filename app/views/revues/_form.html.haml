@@ -1,30 +1,32 @@
-- revue.redactionships.build if revue.redactionships.empty?
+= content_for :head do
+  %script{type: "text/javascript", src: "/javascripts/wymeditor/jquery.wymeditor.min.js"}
+
 - revue.build_editorial unless revue.editorial
+- revue.redactionships.build if revue.redactionships.empty?
 
-.clear
-
-= nested_form_for revue do |f|
-  = f.error_messages
-  %ol
-    %li
-      = f.label       :numero, 'Numéro'
-      = f.text_field  :numero, :size => 3, :type => "number"
-    %li
-      = f.label       :date_sortie, 'Sortie'
-      = f.date_select :date_sortie, :discard_day => true, :include_blank => true
-    %li
-      = f.label     :pdf_url, 'Lien PDF'
-      = f.text_field :pdf_url, :size => "80x3", :type => "url"
+= simple_form_for revue, html: {class: "form-horizontal"} do |f|
+  = f.error_notification if f.error_notification
+  .control-group
+    = f.label       :numero, "Numéro", class: "control-label"
+    .controls
+      = f.number_field :numero, class: "span1", value: Revue.recent.first.numero + 1
+      Sortie :
+      = f.date_select :date_sortie, {:discard_day => true, :include_blank => true}, {class: "span2"}
+  = f.input :pdf_url, label: 'Lien PDF', input_html: {class: "span8"}
 
   %h4 Editorial
   = f.fields_for :editorial do |editorial_form|
-    = render 'editorial_fields', :f => editorial_form
+    = editorial_form.input :titre, as: :text, input_html: {class: "span8", rows: 2}
+    = editorial_form.input :contenu, as: :text, input_html: {class: "span8 wymeditor", rows: 10}
+    = editorial_form.input :author_name, label: "Autheur", as: :autocomplete, url: autocomplete_author_nom_articles_path
 
-  %h4 Comité de rédaction
-  = f.fields_for :redactionships do |redactionship_form|
-    = render 'redactionship_fields', :f => redactionship_form
-  = f.link_to_add 'Rajouter un rédacteur', :redactionships
+  = f.input :redactionship_tokens, as: :text, label: "Comité rédaction", input_html: {"data-pre" => revue.redacteurs.map(&:attributes).to_json}
 
-  .clear
+  .actions
+    = f.button :submit, "Enregistrer", class: "btn-success", disable_with: "Enregistrer"
+    = link_to "Retour à la liste", revues_path, class: "btn btn-danger"
 
-  = f.submit "Enregistrer"
+:coffeescript
+  $(".wymeditor").wymeditor
+    lang: "fr"
+  $('input[type=submit]').addClass('wymupdate')

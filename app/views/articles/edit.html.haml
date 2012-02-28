@@ -1,5 +1,5 @@
 - title "Modification article"
 
-= render :partial => 'form'
+= render 'form', revue: @revue, article: @article
 
-%p= link_to "<= Revue", revue_path(revue.id)
+%p= link_to "<= Revue", revue_path(@revue)

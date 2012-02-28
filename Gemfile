@@ -25,11 +25,12 @@ gem 'nested_form'
 gem 'acts_as_indexed'
 gem 'stringex'
 gem 'wymeditor'
-gem 'decent_exposure'
 gem 'wicked_pdf'
+gem 'inherited_resources'
 gem 'pg'
 gem 'coffee-filter'
 gem "bootstrap-sass", "~> 2.0.0"
+gem 'rails3-jquery-autocomplete'
 
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"

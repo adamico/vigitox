@@ -13,11 +13,18 @@ class Revue < ActiveRecord::Base
   accepts_nested_attributes_for :editorial,
     :reject_if => proc { |attrs| attrs.all? { |k,v| v.blank? } }
 
-  scope :prev, lambda {|r| where(["numero < ?", r.numero]).order('numero DESC')}
-  scope :next, lambda {|r| where(["numero > ?", r.numero]).order(:numero)}
-
   default_scope order("numero DESC")
   self.per_page = 3
+
+  attr_reader :redactionship_tokens
+
+  def self.prev(revue)
+    where("numero < ?", revue.numero).order('numero DESC')
+  end
+
+  def self.next(revue)
+    where("numero > ?", revue.numero).order(:numero)
+  end
 
   def self.recent
     limit(3)
@@ -25,6 +32,10 @@ class Revue < ActiveRecord::Base
 
   def self.derniere
     find(:last)
+  end
+
+  def redactionship_tokens=(ids)
+    self.redactionship_ids = ids.split(",")
   end
 
   def annee_sortie

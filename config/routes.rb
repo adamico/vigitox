@@ -16,6 +16,7 @@ Vigitox::Application.routes.draw do
 
   resource :articles do
     get :search, :on => :collection
+    get :autocomplete_author_nom, on: :collection
   end
 
   resources :revues do
