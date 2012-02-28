@@ -7,7 +7,7 @@
   .clear
   - unless article.authors.empty?
     %div
-      %span.label Auteurs :
+      %span.label.label-info Auteurs :
       %ul.inline
         - article.authors.each do |author|
           %li= link_to author.short_name, author_path(author)

@@ -1,12 +1,13 @@
-#revue
-  %h3= link_to_with_title "VIGItox##{revue.numero} (#{l(revue.date_sortie, :format => :month_year)})", revue
-  - unless revue.pdf_url.blank?
-    = link_to revue.pdf_url do
-      = image_tag("pdficon_small.gif", :alt => "Version PDF", :title => "Vigitox numéro #{revue.numero} en version PDF", :class => "pdf_link")
+.row-fluid
+  #revue.span10
+    %h3= link_to_with_title "VIGItox##{revue.numero} (#{l(revue.date_sortie, :format => :month_year)})", revue
+    - unless revue.pdf_url.blank?
+      = link_to revue.pdf_url do
+        = image_tag("pdficon_small.gif", :alt => "Version PDF", :title => "Vigitox numéro #{revue.numero} en version PDF", :class => "pdf_link")
 
-  .clear
-  %ol.articles#sortable
+    .clear
     - revue.articles.each do |article|
-      = content_tag_for :li, article do
-        %strong
-          = link_to_with_title article.full_title, [revue, article]
+      = content_tag_for :div, article do
+        = link_to [revue, article] do
+          %i.icon-book
+          %strong= article.full_title

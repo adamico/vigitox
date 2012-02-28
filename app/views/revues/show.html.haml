@@ -31,14 +31,11 @@
   .clear
 
 - if @revue.articles.any?
-  %h2 Articles
-  %ol.articles#sortable
-    - @revue.articles.each do |article|
-      = content_tag_for :li, article do
-        - if user_signed_in?
-          %span.handle [drag]
-        %strong
-          = link_to article.full_title, [@revue, article]
+  - @revue.articles.each do |article|
+    = content_tag_for :div, article do
+      = link_to [@revue, article] do
+        %i.icon-book
+        %strong= article.full_title
 - else
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
 
