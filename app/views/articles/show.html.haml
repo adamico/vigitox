@@ -1,48 +1,50 @@
 - title @article.full_title
 
 = content_for :subnav do
-  - prev_and_next_item("&larr; Préc.", "Suiv. &rarr;", [@revue, @prev], [@revue, @next])
+  .subnav
+    .back-to-revue
+      = link_to revue_path(@revue) do
+        &larr; Retour au n°#{@revue.numero}
+    - prev_and_next_item("&larr; Préc.", "Suiv. &rarr;", [@revue, @prev], [@revue, @next])
+    .article-title
+      %h3
+        %small
+          = link_to revue_path(@revue) do
+            Vigitox n°#{@revue.numero} :
+        = @article.full_title
+
+- if user_signed_in?
+  %ul.actions
+    %li= link_to "Modifier", edit_revue_article_path(@revue, @article)
+    %li= link_to "Detruire", [@revue, @article], :method => :delete, :confirm => "Are you sure?"
+
+.well
+  - unless @article.authors.empty?
+    %div
+      %span.label.label-info
+        %i.icon-user.icon-white
+        Auteurs :
+      %ul.inline
+        - @article.authors.each do |author|
+          %li= link_to author.short_name, author_path(author)
+  - if @article.argumentaire
+    %div
+      %span.label.label-info
+        %i.icon-tag.icon-white
+        Arguments :
+      %ul.inline
+        - unless @article.main_argument.nil?
+          %li= link_to @article.main_argument.name, argument_path(@article.main_argument)
+        - unless @article.aux_argument.nil?
+          %li= link_to @article.aux_argument.name, argument_path(@article.aux_argument)
+  - unless @article.categories.empty?
+    %div
+      %span.label.label-info
+        %i.icon-tags.icon-white
+        Catégories :
+      %ul.inline
+        - @article.categories.each do |categorie|
+          %li= link_to categorie.name, categorie_path(categorie)
 
 #article
-  - if user_signed_in?
-    %ul.actions
-      %li= link_to "Modifier", edit_revue_article_path(@revue, @article)
-      %li= link_to "Detruire", [@revue, @article], :method => :delete, :confirm => "Are you sure?"
-
-  = link_to revue_path(@revue) do
-    &larr; Retourner au Vigitox n°#{@revue.numero}
-
-  .well
-    - unless @article.authors.empty?
-      %div
-        %span.label.label-info
-          %i.icon-user.icon-white
-          Auteurs :
-        %ul.inline
-          - @article.authors.each do |author|
-            %li= link_to author.short_name, author_path(author)
-    - if @article.argumentaire
-      %div
-        %span.label.label-info
-          %i.icon-tag.icon-white
-          Arguments :
-        %ul.inline
-          - unless @article.main_argument.nil?
-            %li= link_to @article.main_argument.name, argument_path(@article.main_argument)
-          - unless @article.aux_argument.nil?
-            %li= link_to @article.aux_argument.name, argument_path(@article.aux_argument)
-    - unless @article.categories.empty?
-      %div
-        %span.label.label-info
-          %i.icon-tags.icon-white
-          Catégories :
-        %ul.inline
-          - @article.categories.each do |categorie|
-            %li= link_to categorie.name, categorie_path(categorie)
-
-  .clear
-
   %div.contenu= raw textilize(@article.contenu) unless @article.contenu.blank?
-
-= link_to revue_path(@revue) do
-  &larr; Retourner au Vigitox n°#{@revue.numero}

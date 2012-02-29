@@ -43,8 +43,7 @@
           .alert.fade.in{:class => "alert-#{key}"}
             %a.close{"data-dismiss" => "alert"} &times;
             = value
-        .subnav
-          = yield(:subnav)
+        = yield(:subnav)
 
       %section#main
         = yield

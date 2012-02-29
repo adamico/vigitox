@@ -37,97 +37,16 @@ $back: $secondary_color_aa
 body
   padding-top: 60px
 
-// dimensions and blocks
-#page
-  display: block
-  width: $page_block
-  margin: 0px auto
-
-#header
-  height: 90px
-  width: 100%
-  #corner
-    height: 90px
-    width: $left_block
-    float: left
-  #banner
-    height: 90px
-    width: $right_block
-    float: left
-    section#search
-      margin-top: 48px
-      margin-left: 550px
-      clear: both
-
-#user_nav
-  float: right
-  margin: 18px 18px 0 0
-  padding: 0
-  text-align: right
-#footer
-  height: 36px
-  width: 100%
-
-#middle
-  width: 100%
-  float: left
-  #sidebar
-    height: 600px
-    width: $left_block
-    float: left
-  #main
-    padding: 18px 0 18px 18px
-    width: $right_block - 18px
-    float: left
+#main
+  color: black
+  background-color: #ddd
+  padding: 10px
+  text-shadow: 0px 1px 1px #fff
 
 .clear
   clear: both
   height: 0
   overflow: hidden
-
-
-#site_header
-  float: left
-  margin: 18px 0 0 18px
-
-// colors
-#banner
-  h1
-    color: $primary_color_c
-    a
-      text-decoration: none
-
-a
-  &:link, &:visited
-    text-decoration: none
-    color: $primary_color_c
-  &:hover
-    text-decoration: underline
-  img
-    border: none
-a.btn
-  &:link, &:visited
-    color: white
-
-#page
-  background-color: $back
-#corner
-  background-color: $front
-#sidebar
-  background: #fff image-url('sidebar_back.png') repeat-x
-#banner, #sidebar
-  background-color: $back
-#main
-  background-color: $global_background
-
-// fonts
-body
-  font:
-    family: Verdana, Helvetica, Arial, sans-serif
-    size: 14px
-//
-
-// common
 
 acronym
   border-bottom: 1px dotted black
@@ -151,75 +70,6 @@ table.list
     padding-left: 0.3em
     padding-right: 0.3em
 
-//sidebar
-#sidebar
-  ul#links
-    margin: 0
-    margin-top: 9px
-    padding: 0
-    list-style: none
-    li
-      margin: 0
-      padding: 0
-      a
-        text-decoration: none
-        padding-left: 9px
-        float: left
-        width: $left_block - 9px
-        &:hover
-          background: $secondary_color_ae
-      &.plus
-        a
-          padding-left: 18px
-          width: $left_block - 18px
-          &:before
-            content: "+ "
-// flash
-
-#flash_notice, #flash_error
-  width: $right_block - 36px
-  padding: 9px
-  margin: 0
-
-#flash_notice
-  background-color: #CFC
-  border: solid 1px #6C6
-
-#flash_error
-  background-color: #FCC
-  border: solid 1px #C66
-
-.fieldWithErrors
-  display: inline
-
-#errorExplanation
-  width: 400px
-  border: 2px solid #CF0000
-  padding: 0
-  padding-bottom: 12px
-  margin-bottom: 20px
-  background-color: #f0f0f0
-  h2
-    text-align: left
-    padding: 5px 5px 5px 15px
-    margin: 0
-    font
-      weight: bold
-      size: 12px
-    background-color: #c00
-    color: #fff
-  p
-    color: #333
-    margin-bottom: 0
-    padding: 8px
-  ul
-    margin: 2px 24px
-    li
-      font-size: 12px
-      list-style: disc
-
-// revues and articles
-
 #revue h3, h1.revue
   a
     text-decoration: none
@@ -228,10 +78,11 @@ table.list
       background-color: $secondary_color_be
 
 #revue, #article
-  margin-top: 1em
+  margin-top: 0.5em
   border-bottom: 4px solid $secondary_color_be 
 
 #article
+  clear: both
   border-top: 4px solid $secondary_color_be 
 
 .article
@@ -314,7 +165,7 @@ ul.actions
   li
     padding-left: 0 0.5em
 
-#article
+.well
   span.label
     line-height: 15px
     display: inline-block
@@ -323,3 +174,61 @@ ul.actions
     text-align: right
     i
       float: left
+
+.subnav-fixed
+  border-color: #D5D5D5
+  border-radius: 0 0 0 0
+  border-width: 0 0 1px
+  box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1)
+  left: 0
+  position: fixed !important
+  right: 0
+  top: 40px
+  z-index: 1020
+  height: 60px !important
+  .back-to-revue
+    visibility: hidden
+  .article-title
+    position: fixed
+    left: 0
+    right: 0
+    top: 40px
+    z-index: 1040
+    visibility: visible
+
+.subnav
+  position: relative
+  background-color: #EEEEEE
+  background-image: -moz-linear-gradient(center top , #F5F5F5 0%, #EEEEEE 100%)
+  background-repeat: repeat-x
+  border: 1px solid #E5E5E5
+  border-radius: 4px 4px 4px 4px
+  height: 41px
+  width: 100%
+
+.back-to-revue
+  visibility: visible
+  position: absolute
+  top: 5px
+  text-align: center
+  width: 100%
+  margin: auto
+  a
+    background-color: #FFFFFF
+    border: 1px solid #DDDDDD
+    border-radius: 15px 15px 15px 15px
+    display: inline-block
+    padding: 5px 14px
+    &:hover
+      background-color: #F5F5F5
+      text-decoration: none
+
+.article-title
+  width: 80%
+  margin: auto
+  text-align: center
+  visibility: hidden
+
+.pager
+  margin: 5px
+  margin-bottom: 0
