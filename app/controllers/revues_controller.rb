@@ -3,9 +3,9 @@ class RevuesController < InheritedResources::Base
   custom_actions collection: :archive
 
   def archive
-    revues = Revue.order("numero DESC")
-    @revue_annees = revues.group_by(&:annee_sortie)
-    respond_with(@revue_annees)
+    @revues = Revue.order("numero DESC")
+    @revue_annees = @revues.group_by(&:annee_sortie)
+    @annees = @revue_annees.keys
   end
 
   def show
