@@ -26,7 +26,7 @@ class Revue < ActiveRecord::Base
   end
 
   def self.recent
-    limit(3)
+    order('numero DESC').limit(3)
   end
 
   def self.derniere

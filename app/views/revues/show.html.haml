@@ -7,7 +7,8 @@
       = image_tag("pdficon_large.gif", :alt => "Version PDF", :title => "Version PDF", :class => "pdf_link")
 
 = content_for :subnav do
-  - prev_and_next_item("&larr; Préc.", "Suiv. &rarr;")
+  .subnav
+    - prev_and_next_item("&larr; Préc.", "Suiv. &rarr;")
 
 
 - if user_signed_in?
