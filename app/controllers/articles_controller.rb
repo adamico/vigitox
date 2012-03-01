@@ -9,7 +9,6 @@ class ArticlesController < InheritedResources::Base
   def search
     @search = params[:search].to_ascii if params[:search]
     @articles = Article.search(@search, params[:page]).includes(:revue).page(params[:page]).order("revue_id DESC")
-    search!
   end
 
   def show

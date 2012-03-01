@@ -1,16 +1,19 @@
-- title "Rechercher des articles", false
+- title "Rechercher des articles"
 
-.clear
+= content_for :subtitle do
+  contenant '#{params[:search]}'
 
-- if @articles.empty?
-  %h2 Aucun résultat pour '#{params[:search]}'
-  - if Rails.env.development?
-    %p
-      Params :
-      = params[:search] || "None"
+- if @articles.any?
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Numéro
+        %th Titre
+    %tbody
+      = render partial: 'shared/article', collection: @articles
 
-- else
-  %h2 Résultats de la recherche pour '#{params[:search]}'
-  = render 'shared/article_line', :articles => @articles
   = page_entries_info @articles
   = will_paginate @articles
+
+- else
+  %h2 Aucun article.
