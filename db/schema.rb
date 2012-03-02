@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301122426) do
+ActiveRecord::Schema.define(:version => 20120302084953) do
 
   create_table "argumentaires", :force => true do |t|
     t.integer  "main_argument_id"
@@ -45,13 +45,6 @@ ActiveRecord::Schema.define(:version => 20120301122426) do
   create_table "articles_categories", :id => false, :force => true do |t|
     t.integer "article_id"
     t.integer "categorie_id"
-  end
-
-  create_table "attribution_pathologies", :force => true do |t|
-    t.integer  "article_id"
-    t.integer  "pathologie_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "authors", :force => true do |t|
@@ -88,12 +81,6 @@ ActiveRecord::Schema.define(:version => 20120301122426) do
     t.datetime "updated_at"
   end
 
-  create_table "pathologies", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "redactionships", :force => true do |t|
     t.integer "revue_id"
     t.integer "author_id"
@@ -104,26 +91,8 @@ ActiveRecord::Schema.define(:version => 20120301122426) do
     t.date     "date_sortie"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "pdf_file_name"
-    t.string   "pdf_content_type"
-    t.integer  "pdf_file_size"
-    t.datetime "pdf_updated_at"
-    t.string   "issn"
-    t.integer  "articles_count",   :default => 0
+    t.integer  "articles_count", :default => 0
     t.string   "pdf_url"
-  end
-
-  create_table "taggings", :force => true do |t|
-    t.integer  "article_id"
-    t.integer  "tag_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tags", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
