@@ -8,14 +8,13 @@ group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>=1.0.3'
+  gem "bootstrap-sass", "~> 2.0.0"
 end
 
 gem 'jquery-rails'
 
 gem "RedCloth"
 
-#gem 'meta_where'
-#gem 'meta_search'
 gem 'simple_form'
 gem 'kaminari'
 gem 'paperclip'
@@ -29,7 +28,6 @@ gem 'wicked_pdf'
 gem 'inherited_resources'
 gem 'pg'
 gem 'coffee-filter'
-gem "bootstrap-sass", "~> 2.0.0"
 gem 'rails3-jquery-autocomplete'
 gem 'friendly_id'
 
