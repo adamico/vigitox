@@ -14,3 +14,4 @@ vendor/cache
 index
 .simplecov
 .sass-cache
+*.dump
