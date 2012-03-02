@@ -1,5 +1,6 @@
 Vigitox::Application.routes.draw do
   get "home/index"
+  match "/mentionslegales" => "home#disclaimer", as: "disclaimer"
 
   devise_for :users
 
