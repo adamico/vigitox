@@ -8,4 +8,10 @@ class CategoriesController < InheritedResources::Base
       page(params[:page])
     show!
   end
+
+  protected
+
+  def collection
+    @categories ||= Categorie.order(:name)
+  end
 end
