@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301124458) do
+ActiveRecord::Schema.define(:version => 20120301122426) do
 
   create_table "argumentaires", :force => true do |t|
     t.integer  "main_argument_id"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20120301124458) do
     t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "importance"
   end
 
   create_table "arguments", :force => true do |t|
