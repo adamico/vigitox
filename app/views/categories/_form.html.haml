@@ -1,8 +1,4 @@
-
-.clear
-- simple_form_for @categorie do |f|
-  = f.error_messages
-  .inputs
-    = f.input :name, :label => "Libéllé"
-  .buttons
-    = f.button :submit
+= simple_form_for categorie, html: {class: 'form-inline'} do |f|
+  = f.error_notification if f.error_notification
+  = f.text_field :name, placeholder: "libéllé"
+  = f.submit "Enregistrer", class: "btn-success", disable_with: "Enregistrer"

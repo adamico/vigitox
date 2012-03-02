@@ -1,47 +1,15 @@
-class ArgumentsController < ApplicationController
-  def index
-    @arguments = Argument.page(params[:page])
-  end
-
-  def names
-    @arguments = Argument.where(:name =~ "%#{params[:term]}%")
-  end
+class ArgumentsController < InheritedResources::Base
+  respond_to :html
 
   def show
-    @argument = Argument.find(params[:id])
-    @articles_as_main = @argument.articles_as_main
-    @articles_as_aux = @argument.articles_as_aux
+    @articles_as_main = Article.with_main_argument(resource).order("revue_id DESC").page(params[:page])
+    @articles_as_aux = Article.with_aux_argument(resource).order("revue_id DESC").page(params[:page])
+    show!
   end
 
-  def new
-    @argument = Argument.new
-  end
+  protected
 
-  def create
-    @argument = Argument.new(params[:argument])
-    if @argument.save
-      redirect_to @argument, :notice => "Successfully created argument."
-    else
-      render :new
-    end
-  end
-
-  def edit
-    @argument = Argument.find(params[:id])
-  end
-
-  def update
-    @argument = Argument.find(params[:id])
-    if @argument.update_attributes(params[:argument])
-      redirect_to @argument, :notice => "Successfully updated argument."
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @argument = Argument.find(params[:id])
-    @argument.destroy
-    redirect_to arguments_path, :notice => "Successfully destroyed argument."
+  def collection
+    @arguments ||= Argument.page(params[:page])
   end
 end

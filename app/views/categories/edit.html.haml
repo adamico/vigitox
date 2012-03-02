@@ -1,5 +1,3 @@
-- title "Modification d'une Categorie"
+- title "Modification de la categorie #{@categorie.name}"
 
-= render :partial => 'form'
-
-%p= link_to "Annuler", categorie_path(@categorie)
+= render 'form', categorie: @categorie

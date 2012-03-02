@@ -17,7 +17,7 @@ gem "RedCloth"
 #gem 'meta_where'
 #gem 'meta_search'
 gem 'simple_form'
-gem 'will_paginate', '~> 3.0'
+gem 'kaminari'
 gem 'paperclip'
 gem 'acts_as_list'
 gem 'devise'
@@ -31,6 +31,7 @@ gem 'pg'
 gem 'coffee-filter'
 gem "bootstrap-sass", "~> 2.0.0"
 gem 'rails3-jquery-autocomplete'
+gem 'friendly_id'
 
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"

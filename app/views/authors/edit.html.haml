@@ -1,5 +1,3 @@
-- title "Modification d'un Autheur"
+- title "Modification de l'auteur #{@author.short_name}"
 
-= render :partial => 'form'
-
-%p= link_to "Annuler", author_path(@author)
+= render 'form', author: @author

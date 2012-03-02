@@ -1,9 +1,7 @@
 - title "Archive"
 
-.clear
-
 - if @revues.any?
-  %table
+  %table.table.table-condensed
     - @annees.in_groups_of(4, false) do |annees|
       %tr
         - annees.each do |annee|

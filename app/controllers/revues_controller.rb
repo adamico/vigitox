@@ -1,5 +1,5 @@
 class RevuesController < InheritedResources::Base
-  respond_to :html, :js
+  respond_to :html
   custom_actions collection: :archive
 
   def archive
@@ -18,6 +18,6 @@ class RevuesController < InheritedResources::Base
   protected
 
   def collection
-    @revues ||= Revue.includes(:articles).recent.page(params[:page]).order("numero DESC")
+    @revues ||= Revue.includes(:articles).recent.order("numero DESC").page(params[:page])
   end
 end

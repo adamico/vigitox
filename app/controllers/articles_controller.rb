@@ -1,14 +1,15 @@
 require 'stringex'
 class ArticlesController < InheritedResources::Base
+  respond_to :html, :json
   autocomplete :author, :nom
   autocomplete :argument, :name, full: true
-  respond_to :html, :json
   belongs_to :revue
   custom_actions collection: :search
 
   def search
     @search = params[:search].to_ascii if params[:search]
-    @articles = Article.search(@search, params[:page]).includes(:revue).page(params[:page]).order("revue_id DESC")
+    @articles = Article.search(@search, params[:page]).includes(:revue).
+      order("revue_id DESC").page(params[:page])
   end
 
   def show
@@ -16,11 +17,5 @@ class ArticlesController < InheritedResources::Base
     @prev = resource_class.prev(@article).first
     @next = resource_class.next(@article).first
     show!
-  end
-
-  protected
-
-  def collection
-    @articles ||= end_of_association_chain.order(:position).page(params[:page])
   end
 end

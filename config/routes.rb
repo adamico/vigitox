@@ -1,36 +1,43 @@
 Vigitox::Application.routes.draw do
+  get "home/index"
+
   devise_for :users
 
-  resources :categories
   as :user do
     get "/login", :to => "devise/sessions#new"
     get "/logout", :to=> "devise/sessions#destroy"
   end
 
-  resources :authors do
-    get :names, :on => :collection
+  # ressources de nom féminin
+  scope path_names: {new: "nouvelle", edit: "modifier"} do
+    resources :categories
+    resources :revues do
+      get :archive, :on => :collection
+      post :sort_articles, :on => :collection
+      resources :articles, path_names: {new: "nouveau", edit: "modifier"}
+    end
   end
 
-  resources :arguments do
-    get :names, :on => :collection
+  # ressources de nom masculin commençant par voyelle
+  scope path_names: {new: "nouveau", edit: "modifier"} do
+    resources :authors, path: "auteurs" do
+      get :names, :on => :collection
+    end
+    resources :arguments do
+      get :names, :on => :collection
+    end
+    resource :articles, except: :index do
+      get :autocomplete_author_nom, on: :collection
+      get :autocomplete_argument_name, on: :collection
+      get :search, on: :collection
+    end
   end
 
   match "/search" => "articles#search"
   match "/archive" => "revues#archive"
 
-  resource :articles do
-    get :search, :on => :collection
-    get :autocomplete_author_nom, on: :collection
-    get :autocomplete_argument_name, on: :collection
-  end
 
-  resources :revues do
-    get :archive, :on => :collection
-    post :sort_articles, :on => :collection
-    resources :articles
-  end
-
-  root :to => 'revues#index'
+  root :to => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

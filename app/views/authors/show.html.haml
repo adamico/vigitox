@@ -1,25 +1,11 @@
-- title @author.short_name
+- title "Articles par : #{@author.short_name}"
 
 - if user_signed_in?
   %ul.actions
     %li= link_to "Modifier", edit_author_path(@author)
     %li= link_to "Détruire", @author, :confirm => 'Etes-vous sûr?', :method => :delete
 
-.clear
-
-%div
-  %span.label Nom :
-  = h @author.nom
-
-%div
-  %span.label Prénom :
-  = h @author.prenom
-
-- if !@articles.blank?
-  %h3 Articles par cet autheur :
-  = render 'shared/article_line', :articles => @articles
+- if @articles.any?
+  = render 'articles/articles', articles: @articles
 - else
   %h3 Pas d'articles
-
-%p= page_entries_info @articles
-%p= will_paginate @articles

@@ -1,8 +1,6 @@
-.clear
 = simple_form_for @author do |f|
-  = f.error_messages
-  .inputs
-    = f.input :nom
-    = f.input :prenom, :label => "Prénom"
+  = f.error_notification if f.error_notification
+  = f.input :nom
+  = f.input :prenom, :label => "Prénom"
   .buttons
-    = f.button :submit
+    = f.button :submit, "Enregistrer", class: "btn-success", disable_with: "Enregistrer"

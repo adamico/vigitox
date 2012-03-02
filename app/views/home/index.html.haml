@@ -1,0 +1,7 @@
+= content_for :page_header do
+  .hero-unit
+    %h1 VIGItox
+    %p Le bulletin du Centre Antipoison de Lyon.
+
+%h2 Dernier numéro publié
+= render "revues/revue", revue: @last

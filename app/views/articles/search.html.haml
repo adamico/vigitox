@@ -4,16 +4,7 @@
   contenant '#{params[:search]}'
 
 - if @articles.any?
-  %table.table.table-condensed
-    %thead
-      %tr
-        %th Numéro
-        %th Titre
-    %tbody
-      = render partial: 'shared/article', collection: @articles
-
-  = page_entries_info @articles
-  = will_paginate @articles
+  = render 'articles/articles', articles: @articles
 
 - else
   %h2 Aucun article.

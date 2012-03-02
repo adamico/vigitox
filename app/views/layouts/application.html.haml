@@ -30,12 +30,20 @@
           = link_to "VIGItox", root_path, class: "brand"
           .nav-collapse
             %ul.nav
-              %li= link_to "Dernier numéro", revue_path(Revue.derniere)
               %li= link_to "Archives", archive_path
+              %li.dropdown
+                = link_to "#", class: "dropdown-toggle", "data-toggle" => "dropdown" do
+                  Filtres
+                  %b.caret
+                %ul.dropdown-menu
+                  %li= link_to "Catégories", categories_path
+                  %li= link_to "Arguments", arguments_path
+                  %li= link_to "Auteurs", authors_path
             = render 'layouts/user_nav'
             = render 'layouts/search'
     .container
       %header#page_header
+        = yield(:page_header)
         %h1
           = yield(:title) if show_title?
           %small= yield(:subtitle)

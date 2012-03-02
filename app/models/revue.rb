@@ -1,22 +1,24 @@
 class Revue < ActiveRecord::Base
+  #validations
   validates_presence_of :numero
   validates_uniqueness_of :numero
 
+  #associations
   has_many :articles, :dependent => :destroy, :order => "position"
   has_many :redacteurs, :through => :redactionships, :source => :author
   has_many :redactionships, :dependent => :destroy
   has_one :editorial
 
-  accepts_nested_attributes_for :redactionships,
-    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }, :allow_destroy => true
-
   accepts_nested_attributes_for :editorial,
     :reject_if => proc { |attrs| attrs.all? { |k,v| v.blank? } }
 
-  self.per_page = 3
+  # kaminari
+  paginates_per 3
 
+  # attr
   attr_reader :redactionship_tokens
 
+  # class methods
   def self.prev(revue)
     where("numero < ?", revue.numero).order('numero DESC')
   end
@@ -33,10 +35,12 @@ class Revue < ActiveRecord::Base
     recent.first
   end
 
+  # instance methods
   def redactionship_tokens=(ids)
     self.redactionship_ids = ids.split(",")
   end
 
+  #TODO: move to a decorator
   def annee_sortie
     date_sortie.beginning_of_year
   end

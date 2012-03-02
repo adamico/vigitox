@@ -1,26 +1,19 @@
-- title h(@argument.name.humanize)
+- title "Articles dont l'argument est : #{@argument.name.humanize}"
 
 - if user_signed_in?
   %ul.actions
     %li= link_to "Edit", edit_argument_path(@argument)
     %li= link_to "Destroy", @argument, :confirm => 'Are you sure?', :method => :delete
 
-.clear
-
-- if @argument.nature
-  %div
-    %span.label Nature:
-    = h @argument.nature
-
-- if !@articles_as_main.empty?
+- if @articles_as_main.any?
   %h3 Articles avec cet argument comme principal
-  = render 'shared/article_line', :articles => @argument.articles_as_main
+  = render 'articles/articles', :articles => @articles_as_main
 - else
   %h3 Pas d'articles avec cet argument comme principal
 
-- if !@articles_as_aux.empty?
+- if @articles_as_aux.any?
   %h4 Articles avec cet argument comme secondaire
-  = render 'shared/article_line', :articles => @argument.articles_as_aux
+  = render 'articles/articles', :articles => @articles_as_aux
 
 - else
   %h4 Pas d'articles avec cet argument comme secondaire

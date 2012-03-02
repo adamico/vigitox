@@ -1,23 +1,21 @@
 - title "Categories"
 
-.clear
-
-%table.list
+%table.table.table-condensed.table-striped
   %thead
     %tr
       %th Nom
       %th N. Articles
       %th &nbsp;
   %tbody
-    - for categorie in @categories
-      %tr{:class => "#{cycle('odd', 'even')}"}
+    - @categories.each do |categorie|
+      %tr
         %td= link_to categorie.name, categorie
         %td= categorie.articles.count
         - if user_signed_in?
           %td
             %ul.actions
-              %li= link_to 'Edit', edit_categorie_path(categorie)
-              %li= link_to 'Destroy', categorie, :confirm => 'Are you sure?', :method => :delete
+              %li= link_to 'Modifier', edit_categorie_path(categorie)
+              %li= link_to 'Détruire', categorie, :confirm => 'Sûr?', :method => :delete
 
 - if user_signed_in?
   %p= link_to "Nouvelle Categorie", new_categorie_path

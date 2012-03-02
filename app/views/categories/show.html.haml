@@ -1,21 +1,14 @@
-- title h(@categorie.name)
+- title "Articles appartenant à la catégorie : #{@categorie.name}"
 
 - if user_signed_in?
   %ul.actions
     %li= link_to "Edit", edit_categorie_path(@categorie)
     %li= link_to "Destroy", @categorie, :confirm => 'Are you sure?', :method => :delete
 
-.clear
-
-- if !@articles.blank?
-
-  %p= link_to "Index articles au format PDF", categorie_path(@categorie, :format => 'pdf')
-
-  %h3 Articles appartenant à cette categorie :
-  = render 'shared/article_line', :articles => @articles
+- if @articles.any?
+  = content_for :subtitle do
+    = link_to "Index articles au format PDF", categorie_path(@categorie, :format => 'pdf')
+  = render "articles/articles", articles: @articles
 
 - else
-  %h3 Pas d'articles
-
-= page_entries_info @articles
-= will_paginate @articles
+  Pas d'articles

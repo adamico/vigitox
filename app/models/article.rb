@@ -1,33 +1,34 @@
 require 'stringex'
 class Article < ActiveRecord::Base
-  cattr_reader :per_page
-  @@per_page = 20
+  # plugins
   acts_as_list :scope => :revue
-
   acts_as_indexed :fields => [:ascii_titre, :ascii_contenu]
 
-  attr_reader :authorship_tokens
-
+  # relations
   belongs_to :revue, :counter_cache => true
   has_and_belongs_to_many :categories, :join_table => "articles_categories"
   has_many :authors, :through => :authorships
   has_many :authorships, :dependent => :destroy
-
   has_one :argumentaire, :dependent => :destroy
+
+  attr_reader :authorship_tokens
+
   delegate :main_argument, :aux_argument, :to => :argumentaire
   delegate :numero, :to => :revue, :allow_nil => true, :prefix => true
 
   accepts_nested_attributes_for :argumentaire,
     :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
-  accepts_nested_attributes_for :authorships,
-    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }, :allow_destroy => true
 
   validates_presence_of :titre
+
+  # kaminari
+  paginates_per 20
 
   def to_param
     position if position
   end
 
+  # class methods
   def self.from_same_revue(a)
     joins(:revue).where('revues.id' => a.revue_id)
   end
@@ -38,6 +39,42 @@ class Article < ActiveRecord::Base
     from_same_revue(a).where("position > ?", a.position).order(:position)
   end
 
+  def self.with_main_argument(argument)
+    joins(:argumentaire).includes(:revue).where(:argumentaires => {:main_argument_id => argument.id})
+  end
+
+  def self.with_aux_argument(argument)
+    joins(:argumentaire).includes(:revue).where(:argumentaires => {:aux_argument_id => argument.id})
+  end
+
+  def self.articles_revue_numbers_as_main(argument)
+    returning liste = [] do
+      with_main_argument(argument).each do |article|
+        liste << article.revue.numero if article.aux_argument.nil?
+      end
+      liste.join(', ')
+    end
+  end
+
+  def articles_aux_arguments_names_and_revue_numbers_as_main(argument)
+    liste = []
+    temp = {}
+    with_main_argument(argument).each do |article|
+      if article.aux_argument
+        liste << [article.aux_argument.name, [article.revue.numero]]
+      end
+    end
+    liste.each do |item|
+      if temp[item[0]].nil?
+        temp[item[0]] = item[1]
+      else
+        temp[item[0]] = [temp[item[0]], item[1]].flatten.sort
+      end
+    end
+    temp.to_a
+  end
+
+  # instance methods
   def authorship_tokens=(ids)
     self.authorship_ids = ids.split(",")
   end

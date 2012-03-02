@@ -1,8 +1,6 @@
 - title "Auteurs"
 
-.clear
-
-%table.list
+%table.table.table-condensed.table-striped
   %thead
     %tr
       %th Nom
@@ -10,7 +8,7 @@
       %th &nbsp;
   %tbody
     - for author in @authors
-      %tr{:class => "#{cycle('odd', 'even')}"}
+      %tr
         %td= link_to author.short_name, author
         %td= author.authorships.size
         - if user_signed_in?
@@ -18,5 +16,7 @@
             %ul.actions
               %li= link_to 'Modifier', edit_author_path(author)
               %li= link_to 'Détruire', author, :confirm => 'Etes-vous sur ?', :method => :delete
-= page_entries_info @authors
-= will_paginate @authors
+= paginate @authors, theme: "twitter-bootstrap"
+
+- if user_signed_in?
+  %p= link_to "Nouvel Auteur", new_author_path

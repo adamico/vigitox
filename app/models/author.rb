@@ -1,4 +1,7 @@
 class Author < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :nom_and_prenom, use: :slugged
+
   validates_presence_of :nom, :prenom
 
   has_many :articles, :through => :authorships
@@ -7,7 +10,7 @@ class Author < ActiveRecord::Base
   has_many :redactionships, :dependent => :destroy
 
   default_scope order(:nom).includes(:authorships)
-  self.per_page = 18
+  paginates_per 18
   def self.human_name
     "Auteurs"
   end
@@ -18,20 +21,7 @@ class Author < ActiveRecord::Base
     output += " #{nom}"
   end
 
+  def nom_and_prenom
+    "#{nom} #{prenom}"
+  end
 end
-
-
-# == Schema Information
-# Schema version: 20101022172528
-#
-# Table name: authors
-#
-#  id                :integer         primary key
-#  nom               :string(255)
-#  prenom            :string(255)
-#  current           :boolean
-#  created_at        :timestamp
-#  updated_at        :timestamp
-#  authorships_count :integer         default(0)
-#
-
