@@ -1,7 +1,7 @@
 - title "Arguments"
 
 = content_for :subtitle do
-  = link_to 'Index PDF', arguments_path(:format => "pdf")
+  = link_to 'Index PDF', arguments_path(:format => "pdf") if Rails.env.development?
 
 - if @arguments.any?
   %table.table.table-condensed.table-striped
@@ -14,9 +14,9 @@
     %tbody
       - @arguments.each do |argument|
         %tr
-          %td= link_to h(argument.name), argument
-          %td= h argument.nature
-          %td= argument.articles_as_main.count + argument.articles_as_aux.count
+          %td= link_to argument.name, argument
+          %td= argument.nature
+          %td= Article.with_main_argument(argument).count + Article.with_aux_argument(argument).count
           - if user_signed_in?
             %td
               %ul.actions

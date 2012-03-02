@@ -11,7 +11,7 @@ class Argument < ActiveRecord::Base
   default_scope order("LOWER(name) ASC")
 
   #kaminari
-  paginates_per 20
+  paginates_per 18
 end
 
 

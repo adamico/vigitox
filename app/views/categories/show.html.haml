@@ -7,7 +7,7 @@
 
 - if @articles.any?
   = content_for :subtitle do
-    = link_to "Index articles au format PDF", categorie_path(@categorie, :format => 'pdf')
+    = link_to "Index articles au format PDF", categorie_path(@categorie, :format => 'pdf') if Rails.env.development?
   = render "articles/articles", articles: @articles
 
 - else
