@@ -116,6 +116,7 @@ GEM
     mime-types (1.17.2)
     multi_json (1.1.0)
     nested_form (0.2.0)
+    newrelic_rpm (3.3.2)
     nokogiri (1.5.0)
     orm_adapter (0.0.6)
     paperclip (2.6.0)
@@ -230,6 +231,7 @@ DEPENDENCIES
   kaminari
   launchy
   nested_form
+  newrelic_rpm
   paperclip
   pg
   pickle
