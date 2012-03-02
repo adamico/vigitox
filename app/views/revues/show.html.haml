@@ -24,10 +24,11 @@
 - if @revue.editorial
   %h2 Editorial
   #editorial
-    %h4= @revue.editorial.titre
-    = raw textilize @revue.editorial.contenu
-    %p.redacteur
-      %strong= @revue.editorial.author.short_name
+    %h3= @revue.editorial.titre
+    %blockquote
+      = raw textilize @revue.editorial.contenu
+      %small
+        %strong= @revue.editorial.author.short_name
 
   .clear
 
@@ -35,8 +36,9 @@
   - @revue.articles.each do |article|
     = content_tag_for :div, article do
       = link_to [@revue, article] do
-        %i.icon-book
-        %strong= article.full_title
+        %h4
+          %i.icon-book
+          = article.full_title
 - else
   %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
 

@@ -1,7 +1,11 @@
 = content_for :page_header do
   .hero-unit
     %h1 VIGItox
-    %p Le bulletin du Centre Antipoison de Lyon.
+    %p VIGItox est le bulletin d'information rédigé par les médecins et pharmaciens du service des Hospices Civils de Lyon "Centre Antipoison - Centre de Pharmacovigilance - Centre d'Évaluation et d'Information sur la Pharmacodépendance". Il parait à raison de 3 à 4 numéros par an depuis 1993. Nous espérons que sa lecture vous sera utile. N'hésitez pas à nous faire part de vos réactions, critiques et suggestions.
 
-%h2 Dernier numéro publié
+%h1
+  Dernier numéro :
+  %small
+    %strong= link_to_with_title "VIGItox##{@last.numero} (#{l(@last.date_sortie, :format => :month_year)})", @last
+
 = render "revues/revue", revue: @last

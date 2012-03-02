@@ -56,7 +56,15 @@
       %section#main
         = yield
 
-      %footer#footer
-        - if Rails.env.development?
-          %details= debug params if params
-        = yield :footer
+    %footer#footer
+      %ul.credits
+        %li
+          = link_to "mailto:centre.antipoison@chu-lyon.fr" do
+            %i.icon-envelope
+            Nous contacter
+        %li
+          = link_to "#" do
+            %i.icon-exclamation-sign
+            Mentions légales
+
+      = yield :footer

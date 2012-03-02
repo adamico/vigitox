@@ -2,4 +2,5 @@
   = text_field_tag :search, {}, {:type => "search",
                    :placeholder => "Recherche", class: "span2 search-query",
                    :value => (params[:search] if params[:search])}
-  = submit_tag "OK", name: nil, class: "btn btn-primary", style: "position: absolute; left: -9999px; width: 1px; height: 1px;"
+  = button_tag type: "submt", name: nil, class: "btn btn-primary" do
+    %i.icon-search.icon-white

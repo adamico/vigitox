@@ -26,16 +26,22 @@ $secondary_color_be: #FFBD80
 
 $global_background: #FFF
 
-$page_block: 990px
-$left_block: 126px
-$right_block: $page_block - $left_block - 18px
-
-$front: $primary_color_a
-$back: $secondary_color_aa
-
-// bootstrap with navbar requires padding
-body
-  padding-top: 60px
+#footer
+  border-top: 1px solid $secondary_color_bb
+  background-color: $secondary_color_be
+  background-image: -moz-linear-gradient(center top , $secondary_color_be, $secondary_color_bd)
+  background-repeat: repeat-x
+  text-shadow: 0px 1px 1px #fff
+  left: 0
+  right: 0
+  width: 100%
+  bottom: 0
+  z-index: 1030
+  position: fixed
+  height: auto
+  padding: 7px
+  a
+    color: $secondary_color_bc
 
 #main
   color: black
@@ -53,31 +59,8 @@ body
 acronym
   border-bottom: 1px dotted black
 
-.odd
-  background: #FFF
-.even
-  background: #EEE
-
 .pdf_link
   padding-top: 9px
-
-table.list
-  border-collapse: collapse
-  td:last-child
-    border-left: 1px solid black
-  th, tr:last-child td
-    border-bottom: 1px solid black
-  td
-    vertical-align: top
-    padding-left: 0.3em
-    padding-right: 0.3em
-
-#revue h3, h1.revue
-  a
-    text-decoration: none
-    &:hover
-      color: $primary_color_c
-      background-color: $secondary_color_be
 
 #revue, #article
   margin-top: 0.5em
@@ -96,22 +79,9 @@ table.list
     float: left
     margin: 9px
 
-ol.articles
-  padding: 0
-  margin: 0
-  margin-bottom: 1em
-  margin-left: 1em
-  list-style-position: inside
-  li
-    margin: 0
-    .handle
-      color: #777
-      cursor: move
-      font-size: 12px
-
 span.title
-  :font-weight bold
-  :font-size 0.85em
+  font-weight: bold
+  font-size: 0.85em
 
 #article table
   td
@@ -121,8 +91,11 @@ span.title
   margin-top: 1em
 
 #editorial
-  font-size: 0.8em
-  margin-left: 1em
+  blockquote
+    p
+      font-size: 1em
+    small
+      text-align: right
 
 .redacteur
   margin-top: 0
@@ -130,12 +103,23 @@ span.title
 
 //lists
 
-ul.inline, ul.links, ul.actions
+ul.inline, ul.links, ul.actions, ul.credits
   margin: 0
   padding: 0
   list-style: none
   li
     display: inline
+
+ul.credits
+  width: 100%
+  margin: auto
+  text-align: center
+  font-size: 0.8em
+  li
+    &:after
+      content: " | "
+    &:last-child:after
+      content: ""
 
 ul.links
   margin-left: 0
@@ -236,3 +220,6 @@ ul.actions
 
 td
   vertical-align: top
+
+.navbar .btn
+  margin-top: 0
