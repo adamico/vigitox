@@ -6,13 +6,13 @@
       %tr
         - annees.each do |annee|
           %td
-            %strong= annee.strftime("%Y")
+            %h3= annee.strftime("%Y")
             - revues_by_year = @revue_annees[annee]
             - if revues_by_year.any?
               %ul.unstyled
                 - revues_by_year.each do |revue|
                   %li
-                    = l(revue.date_sortie, :format => :only_month)
-                    = link_to revue.numero, revue
+                    %span.label= l(revue.date_sortie, :format => :only_month)
+                    = link_to "N° #{revue.numero}", revue
 - else
   Aucune revue.
