@@ -1,6 +1,7 @@
 $ = jQuery
 
 $ ->
+  $(".dropdown-toggle").dropdown()
   $(".alert-message").alert()
   $("#article_authorship_tokens").addtokenInput("/authors/names.json")
   $("#revue_redactionship_tokens").addtokenInput("/authors/names.json")
