@@ -1,4 +1,4 @@
--if revue.articles.any?
+- if revue.articles.any?
   - revue.articles.each do |article|
     = content_tag_for :div, article do
       = link_to [revue, article] do
