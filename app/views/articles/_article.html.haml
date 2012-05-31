@@ -1,8 +1,8 @@
 #article
   - if user_signed_in?
     %ul.actions
-      %li= link_to "Modifier", edit_revue_article_path(revue, article)
-      %li= link_to "Detruire", [revue, article], :method => :delete, :confirm => "Are you sure?"
+      %li= link_to "Modifier", edit_article_path(article)
+      %li= link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"
   %h2= link_to article.full_title, [revue, article]
   .clear
   - unless article.authors.empty?

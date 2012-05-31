@@ -37,7 +37,7 @@ class Revue < ActiveRecord::Base
 
   # instance methods
   def redactionship_tokens=(ids)
-    self.redactionship_ids = ids.split(",")
+    self.redacteur_ids = ids.split(",")
   end
 
   #TODO: move to a decorator

@@ -24,10 +24,6 @@ class Article < ActiveRecord::Base
   # kaminari
   paginates_per 20
 
-  def to_param
-    position if position
-  end
-
   # class methods
   def self.from_same_revue(a)
     joins(:revue).where('revues.id' => a.revue_id)
@@ -76,7 +72,7 @@ class Article < ActiveRecord::Base
 
   # instance methods
   def authorship_tokens=(ids)
-    self.authorship_ids = ids.split(",")
+    self.author_ids = ids.split(",")
   end
 
   def arguments
