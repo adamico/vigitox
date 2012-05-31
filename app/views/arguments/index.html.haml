@@ -27,3 +27,8 @@
 
 - else
   Aucun argument.
+
+- if user_signed_in?
+  = link_to new_argument_path, class: "btn btn-success" do
+    %i.icon-white.icon-plus
+    Nouvel Argument

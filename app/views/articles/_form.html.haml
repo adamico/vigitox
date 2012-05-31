@@ -25,7 +25,8 @@
         = argumentaire_form.autocomplete_field :aux_argument_name, autocomplete_argument_name_articles_path, placeholder: "secondaire"
 
   .actions
-    = f.button :submit, "Enregistrer", class: "btn-success", disable_with: "Enregistrer"
+    = button_tag "Enregistrer et créer un nouvel article", type: :submit, class: "btn btn-success", disable_with: "Enregistrer et créer un nouvel article", name: "_save_and_add_another"
+    = button_tag "Enregistrer et continuer", type: :submit, class: "btn btn-main", disable_with: "Enregistrer et continuer", name: "_save_and_continue"
     = link_to "Retour à la revue", revue_path(revue), class: 'btn btn-danger'
 
 :coffeescript

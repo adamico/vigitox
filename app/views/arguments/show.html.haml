@@ -2,8 +2,8 @@
 
 - if user_signed_in?
   %ul.actions
-    %li= link_to "Edit", edit_argument_path(@argument)
-    %li= link_to "Destroy", @argument, :confirm => 'Are you sure?', :method => :delete
+    %li= link_to "Modifier", edit_argument_path(@argument)
+    %li= link_to "Détruire", @argument, :confirm => 'Are you sure?', :method => :delete
 
 - if @articles_as_main.any?
   %h3 Articles avec cet argument comme principal
