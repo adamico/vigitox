@@ -9,7 +9,7 @@
   .control-group
     = f.label       :numero, "Numéro", class: "control-label"
     .controls
-      = f.number_field :numero, class: "span1", value: Revue.recent.first.numero + 1
+      = f.number_field :numero, class: "span1", value: assigned_numero
       Sortie :
       = f.date_select :date_sortie, {:discard_day => true, :include_blank => true}, {class: "span2"}
   = f.input :pdf_url, label: 'Lien PDF', input_html: {class: "span8"}

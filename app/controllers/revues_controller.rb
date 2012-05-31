@@ -2,6 +2,8 @@ class RevuesController < InheritedResources::Base
   respond_to :html
   custom_actions collection: :archive
 
+  helper_method :assigned_numero
+
   def archive
     @revues = Revue.order("numero DESC")
     @revue_annees = @revues.group_by(&:annee_sortie)
@@ -16,6 +18,10 @@ class RevuesController < InheritedResources::Base
   end
 
   protected
+
+  def assigned_numero
+    @assigned_numero ||= params[:id] ? resource.numero : resource_class.recent.first.numero + 1
+  end
 
   def collection
     @revues ||= Revue.includes(:articles).recent.order("numero DESC").page(params[:page])
