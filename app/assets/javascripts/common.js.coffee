@@ -3,8 +3,8 @@ $ = jQuery
 $ ->
   $(".dropdown-toggle").dropdown()
   $(".alert-message").alert()
-  $("#article_authorship_tokens").addtokenInput("/authors/names.json")
-  $("#revue_redactionship_tokens").addtokenInput("/authors/names.json")
+  $("#article_authorship_tokens").addtokenInput("/auteurs/names.json")
+  $("#revue_redactionship_tokens").addtokenInput("/auteurs/names.json")
   $(window).on 'scroll', -> dynamic_subnav()
 
 dynamic_subnav = ->
