@@ -44,15 +44,14 @@ class Article < ActiveRecord::Base
   end
 
   def self.articles_revue_numbers_as_main(argument)
-    returning liste = [] do
-      with_main_argument(argument).each do |article|
-        liste << article.revue.numero if article.aux_argument.nil?
-      end
-      liste.join(', ')
+    liste = []
+    with_main_argument(argument).each do |article|
+      liste << article.revue.numero if article.aux_argument.nil?
     end
+    liste.join(', ')
   end
 
-  def articles_aux_arguments_names_and_revue_numbers_as_main(argument)
+  def self.articles_aux_arguments_names_and_revue_numbers_as_main(argument)
     liste = []
     temp = {}
     with_main_argument(argument).each do |article|
