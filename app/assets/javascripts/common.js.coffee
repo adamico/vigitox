@@ -3,6 +3,8 @@ $ = jQuery
 $ ->
   $(".dropdown-toggle").dropdown()
   $(".alert-message").alert()
+  revue_numero = $("#revue_numero").attr("data-value")
+  $("#revue_numero").val(revue_numero)
   $("#article_authorship_tokens").addtokenInput("/auteurs/names.json")
   $("#revue_redactionship_tokens").addtokenInput("/auteurs/names.json")
   $(window).on 'scroll', -> dynamic_subnav()
