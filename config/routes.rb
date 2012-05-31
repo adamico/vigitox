@@ -27,7 +27,7 @@ Vigitox::Application.routes.draw do
     resources :arguments do
       get :names, :on => :collection
     end
-    resource :articles, except: :index do
+    resources :articles, except: :index do
       get :autocomplete_author_nom, on: :collection
       get :autocomplete_argument_name, on: :collection
       get :search, on: :collection
