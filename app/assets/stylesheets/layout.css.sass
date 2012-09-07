@@ -66,7 +66,7 @@ acronym
   border-bottom: 1px dotted black
 
 .pdf_link
-  padding-top: 9px
+  vertical-align: top
 
 #revue, #article
   margin-top: 0.5em
@@ -169,16 +169,14 @@ ul, .well
     i
       float: left
 
-.subnav-fixed
+.subnav.affix
+  top: 40px
+  left: 0
+  right: 0
   border-color: #D5D5D5
   border-radius: 0 0 0 0
   border-width: 0 0 1px
   box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1)
-  left: 0
-  position: fixed !important
-  right: 0
-  top: 40px
-  z-index: 1020
   height: 60px !important
   .back-to-revue
     visibility: hidden
@@ -186,25 +184,28 @@ ul, .well
     position: fixed
     left: 0
     right: 0
-    top: 40px
+    top: 50px
     z-index: 1040
     visibility: visible
+  .pager
+    margin: 12px 12px 0
 
 .subnav
-  position: relative
   background-color: #EEEEEE
   background-image: -moz-linear-gradient(center top , #F5F5F5 0%, #EEEEEE 100%)
   background-repeat: repeat-x
   border: 1px solid #E5E5E5
   border-radius: 4px 4px 4px 4px
   height: 41px
-  width: 100%
+
+.subnav.affix-top
+  position: relative
 
 .back-to-revue
-  visibility: visible
   position: absolute
   top: 5px
-  left: 370px
+  left: 460px
+  visibility: visible
   text-align: center
   a
     background-color: #FFFFFF
@@ -215,6 +216,8 @@ ul, .well
     &:hover
       background-color: #F5F5F5
       text-decoration: none
+.pager
+  margin: 5px 5px 0
 
 .article-title
   width: 80%
@@ -222,12 +225,12 @@ ul, .well
   text-align: center
   visibility: hidden
 
-.pager
-  margin: 5px
-  margin-bottom: 0
-
 td
   vertical-align: top
 
 .navbar .btn
   margin-top: 0
+
+.well
+  padding: 9px
+  margin-bottom: 10px

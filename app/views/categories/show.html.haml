@@ -1,13 +1,14 @@
 - title "Articles appartenant à la catégorie : #{@categorie.name}"
 
+= link_to "Retour à la liste", categories_path, class: "btn btn-primary"
+
 - if user_signed_in?
   %ul.actions
-    %li= link_to "Edit", edit_categorie_path(@categorie)
-    %li= link_to "Destroy", @categorie, :confirm => 'Are you sure?', :method => :delete
+    %li= link_to "Modifier", edit_categorie_path(@categorie)
+    %li= link_to "Détruire", @categorie, :confirm => 'Sûr ?', :method => :delete
 
 - if @articles.any?
-  = content_for :subtitle do
-    = link_to "Index articles au format PDF", categorie_path(@categorie, :format => 'pdf') if Rails.env.development?
+  %h2= link_to "Index articles au format PDF", categorie_path(@categorie, :format => 'pdf') if Rails.env.development?
   = render "articles/articles", articles: @articles
 
 - else

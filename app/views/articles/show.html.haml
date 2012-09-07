@@ -2,12 +2,12 @@
 
 = content_for :subnav do
   .subnav
+    - prev_and_next_item("&larr; Préc.", "Suiv. &rarr;", [@revue, @prev], [@revue, @next])
     .back-to-revue
       = link_to revue_path(@revue) do
-        &larr; Retour au n°#{@revue.numero}
-    - prev_and_next_item("&larr; Préc.", "Suiv. &rarr;", [@revue, @prev], [@revue, @next])
+        &larr; Retour au Vigitox n°#{@revue.numero}
     .article-title
-      %h3
+      %h4
         %small
           = link_to revue_path(@revue) do
             Vigitox n°#{@revue.numero} :
@@ -48,3 +48,8 @@
 
 #article
   %div.contenu= raw textilize(@article.contenu) unless @article.contenu.blank?
+
+.row
+  = link_to "#articles", class: "btn btn-primary pull-right" do
+    %i.icon-white.icon-chevron-up
+    Haut de page

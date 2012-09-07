@@ -1,9 +1,9 @@
-.clear
-
-= simple_form_for @argument do |f|
-  = f.error_messages
-  .inputs
-    = f.input :name, :label => "Libéllé"
-    = f.input :nature, :collection => Argument::NATURES
-  .buttons
-    = f.button :submit
+= simple_form_for resource, html: {class: "form-horizontal"} do |f|
+  = f.error_notification if f.error_notification
+  = f.input :name, :label => "Libéllé"
+  = f.input :nature, :collection => Argument::NATURES
+  .form-actions
+    .btn-group
+      = button_tag "Enregistrer", type: :submit, class: "btn btn-success"
+      = link_to "Annuler les modifications", resource, class: "btn btn-danger"
+      = link_to "Retour à la liste", arguments_path, class: "btn btn-danger"

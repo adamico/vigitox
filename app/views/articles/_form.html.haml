@@ -1,10 +1,10 @@
 = content_for :head do
   %script{type: "text/javascript", src: "/javascripts/wymeditor/jquery.wymeditor.min.js"}
 
-- article.build_argumentaire unless article.argumentaire
-- article.authorships.build if article.authorships.empty?
+- resource.build_argumentaire unless resource.argumentaire
+- resource.authorships.build if resource.authorships.empty?
 
-= simple_form_for [revue, article], html: {class: 'form-horizontal'} do |f|
+= simple_form_for [parent, resource], html: {class: 'form-horizontal'} do |f|
   = f.error_notification if f.error_notification
   = f.input :position, as: :integer, input_html: {class: "span1", :min => "1"}
   .control-group
@@ -15,7 +15,7 @@
         = f.check_box :fiche_technique
         Fiche Technique ?
   = f.input :contenu, input_html: {:size => "80x30", :class => "wymeditor"}
-  = f.input :authorship_tokens, as: :text, label: "Auteurs", input_html: {"data-pre" => article.authors.map(&:attributes).to_json}
+  = f.input :authorship_tokens, as: :text, label: "Auteurs", input_html: {"data-pre" => resource.authors.map(&:attributes).to_json}
   = f.association :categories, as: :check_boxes, item_wrapper_class: "inline"
   = f.fields_for :argumentaire do |argumentaire_form|
     .control-group
@@ -24,10 +24,11 @@
         = argumentaire_form.autocomplete_field :main_argument_name, autocomplete_argument_name_articles_path, placeholder: "principal"
         = argumentaire_form.autocomplete_field :aux_argument_name, autocomplete_argument_name_articles_path, placeholder: "secondaire"
 
-  .actions
-    = button_tag "Enregistrer et créer un nouvel article", type: :submit, class: "btn btn-success", disable_with: "Enregistrer et créer un nouvel article", name: "_save_and_add_another"
-    = button_tag "Enregistrer et continuer", type: :submit, class: "btn btn-main", disable_with: "Enregistrer et continuer", name: "_save_and_continue"
-    = link_to "Retour à la revue", revue_path(revue), class: 'btn btn-danger'
+  .form-actions
+    .btn-group
+      = button_tag "Enregistrer et créer un nouvel article", type: :submit, class: "btn btn-success", disable_with: "Enregistrer et créer un nouvel article", name: "_save_and_add_another"
+      = button_tag "Enregistrer et continuer", type: :submit, class: "btn btn-main", disable_with: "Enregistrer et continuer", name: "_save_and_continue"
+      = link_to "Retour à la revue", revue_path(parent), class: 'btn btn-danger'
 
 :coffeescript
   $(".wymeditor").wymeditor

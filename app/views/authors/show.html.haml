@@ -1,5 +1,7 @@
 - title "Articles par : #{@author.short_name}"
 
+= link_to "Retour à la liste", authors_path, class: "btn btn-primary"
+
 - if user_signed_in?
   %ul.actions
     %li= link_to "Modifier", edit_author_path(@author)

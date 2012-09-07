@@ -18,8 +18,7 @@
     %link{:href => "images/apple-touch-icon-114x114.png", :rel => "apple-touch-icon", :sizes => "114x114"}/
     = yield(:head)
 
-  %body{class: params[:controller]}
-
+  %body{class: (kontroller = params[:controller]), id: kontroller}
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
@@ -30,9 +29,18 @@
           = link_to "VIGItox", root_path, class: "brand"
           .nav-collapse
             %ul.nav
-              %li= link_to "Archives", archive_path
+              %li
+                = link_to revue_path(Revue.last) do
+                  %i.icon-star.icon-white
+                  Dernier Numéro
+              %li
+                = link_to archive_path do
+                  %i.icon-book.icon-white
+                  Archive
+
               %li.dropdown
                 = link_to "#", class: "dropdown-toggle", "data-toggle" => "dropdown" do
+                  %i.icon-filter.icon-white
                   Filtres
                   %b.caret
                 %ul.dropdown-menu
@@ -43,14 +51,14 @@
             = render 'layouts/search'
     .container
       %header#page_header
-        = yield(:page_header)
-        %h1
-          = yield(:title) if show_title?
-          %small= yield(:subtitle)
         - flash && flash.each do |key, value|
           .alert.fade.in{:class => "alert-#{key}"}
             %a.close{"data-dismiss" => "alert"} &times;
             = value
+        = yield(:page_header)
+        %h1
+          = yield(:title) if show_title?
+          %small= yield(:subtitle)
         = yield(:subnav)
 
       %section#main

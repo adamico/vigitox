@@ -1,4 +1,5 @@
-= simple_form_for categorie, html: {class: 'form-inline'} do |f|
+= simple_form_for resource, html: {class: 'form-inline'} do |f|
   = f.error_notification if f.error_notification
-  = f.text_field :name, placeholder: "libéllé"
-  = f.submit "Enregistrer", class: "btn-success", disable_with: "Enregistrer"
+  .input-append
+    = f.text_field :name, placeholder: "libéllé"
+    = button_tag "Enregistrer", type: :submit, class: "btn btn-success", disable_with: "Enregistrer"

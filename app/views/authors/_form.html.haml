@@ -1,6 +1,10 @@
-= simple_form_for @author do |f|
+= simple_form_for resource, html: {class: "form-inline"} do |f|
   = f.error_notification if f.error_notification
-  = f.input :nom
-  = f.input :prenom, :label => "Prénom"
-  .buttons
-    = f.button :submit, "Enregistrer", class: "btn-success", disable_with: "Enregistrer"
+  .controls.controls-row
+    = f.text_field :nom, placeholder: "Nom", class: "span2"
+    = f.text_field :prenom, placeholder: "Prénom", class: "span2"
+  .form-actions
+    .btn-group
+      = button_tag "Enregistrer", type: :submit, class: "btn btn-success", disable_with: "Enregistrer"
+      = link_to "Annuler les modifications", resource, class: "btn btn-danger"
+      = link_to "Retour à la liste", authors_path, class: "btn btn-danger"
