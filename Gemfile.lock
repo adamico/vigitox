@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/paranoida/ckeditor.git
+  revision: 37614dbf14c20f7cf555a35cdf8e13dd9803bc40
+  specs:
+    ckeditor (3.7.1)
+      mime-types
+      orm_adapter
+
+GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
   revision: 433891e27d0ca43db7b6078621149b6c8d51c46c
   branch: 2.1-wip
@@ -52,9 +60,6 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
-    ckeditor (3.7.1)
-      mime-types
-      orm_adapter
     cocaine (0.3.0)
     coffee-filter (0.1.1)
       coffee-script (>= 2.2.0)
@@ -236,7 +241,7 @@ DEPENDENCIES
   acts_as_list
   bootstrap-sass!
   capybara
-  ckeditor (= 3.7.1)
+  ckeditor!
   coffee-filter
   coffee-rails (~> 3.2.1)
   cucumber-rails
