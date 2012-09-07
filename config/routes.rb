@@ -1,4 +1,6 @@
 Vigitox::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   get "home/index"
   match "/mentionslegales" => "home#disclaimer", as: "disclaimer"
 

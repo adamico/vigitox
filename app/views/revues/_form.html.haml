@@ -1,6 +1,3 @@
-= content_for :head do
-  %script{type: "text/javascript", src: "/javascripts/wymeditor/jquery.wymeditor.min.js"}
-
 - resource.build_editorial unless resource.editorial
 - resource.redactionships.build if resource.redactionships.empty?
 
@@ -17,7 +14,7 @@
   %h4 Editorial
   = f.fields_for :editorial do |editorial_form|
     = editorial_form.input :titre, as: :text, input_html: {class: "span8", rows: 2}
-    = editorial_form.input :contenu, as: :text, input_html: {class: "span8 wymeditor", rows: 10}
+    = editorial_form.input :contenu, as: :ckeditor
     = editorial_form.input :author_name, label: "Autheur", as: :autocomplete, url: autocomplete_author_nom_articles_path
 
   = f.input :redactionship_tokens, as: :text, label: "Comité rédaction", input_html: {"data-pre" => resource.redacteurs.map(&:attributes).to_json}
@@ -26,8 +23,3 @@
     .btn-group
       = button_tag "Enregistrer", type: :submit, class: "btn btn-success", disable_with: "Enregistrer"
       = link_to "Retour à la liste", revues_path, class: "btn btn-danger"
-
-:coffeescript
-  $(".wymeditor").wymeditor
-    lang: "fr"
-  $('input[type=submit]').addClass('wymupdate')
