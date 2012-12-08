@@ -30,7 +30,7 @@ gem 'pg'
 gem 'coffee-filter'
 gem 'rails3-jquery-autocomplete'
 gem 'friendly_id'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', "~> 3.5.3.25"
 
 group :production do
   gem 'rack-google_analytics', :require => "rack/google_analytics"
