@@ -23,7 +23,7 @@ gem 'devise'
 gem 'nested_form'
 gem 'acts_as_indexed'
 gem 'stringex'
-gem "ckeditor", github: "paranoida/ckeditor"
+gem "ckeditor"
 gem 'prawn'
 gem 'inherited_resources'
 gem 'pg'
