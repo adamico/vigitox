@@ -55,5 +55,6 @@ group :test do
   gem 'capybara'
   gem "guard-rspec"
   gem 'database_cleaner'
+  gem "simplecov", :require => false
   gem 'launchy'    # So you can do Then show me the page
 end

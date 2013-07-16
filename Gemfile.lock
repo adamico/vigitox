@@ -221,6 +221,10 @@ GEM
     simple_form (2.0.2)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     slop (3.4.5)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -282,6 +286,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   simple_form
+  simplecov
   stringex
   terminal-notifier-guard
   uglifier (>= 1.0.3)
