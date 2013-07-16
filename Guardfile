@@ -12,7 +12,6 @@ guard 'rspec', all_on_start: false, all_after_pass: false, zeus: true, bundler: 
   watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb"] }
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
-  watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/controllers" }
   watch('app/models/ability.rb')                      { "spec/models/user_spec.rb"}
 
