@@ -23,8 +23,8 @@ class ArgumentPdf < Prawn::Document
   def arguments_list
     column_box([0, cursor], columns: 2, width: bounds.width) do
       @arguments.all.each do |argument|
-        revues_as_main = Article.articles_revue_numbers_as_main(argument)
-        revues_as_aux = Article.articles_aux_arguments_names_and_revue_numbers_as_main(argument)
+        revues_as_main = Article.revue_numbers_with_main_argument(argument)
+        revues_as_aux = Article.aux_arguments_names_and_revue_numbers_with_main_argument(argument)
         unless revues_as_main.empty? && revues_as_aux.empty?
           text argument.name + " : " + revues_as_main
           indent 20 do

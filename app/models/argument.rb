@@ -1,5 +1,7 @@
 class Argument < ActiveRecord::Base
   extend FriendlyId
+  attr_accessible :name, :nature
+
   friendly_id :name, use: :slugged
 
   # validations
@@ -13,18 +15,3 @@ class Argument < ActiveRecord::Base
   #kaminari
   paginates_per 18
 end
-
-
-
-# == Schema Information
-# Schema version: 20101022172528
-#
-# Table name: arguments
-#
-#  id         :integer         primary key
-#  name       :string(255)
-#  nature     :string(255)
-#  created_at :timestamp
-#  updated_at :timestamp
-#
-

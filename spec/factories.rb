@@ -18,6 +18,7 @@ FactoryGirl.define  do
   factory :article do
     sequence(:titre) {|n| "article#{n}"}
     contenu "blablla"
+    revue
   end
 
   factory :argument, aliases: [:main_argument, :aux_argument] do

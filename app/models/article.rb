@@ -49,7 +49,7 @@ class Article < ActiveRecord::Base
     joins(:argumentaire).includes(:revue).where(:argumentaires => {:aux_argument_id => argument.id})
   end
 
-  def self.articles_revue_numbers_as_main(argument)
+  def self.revue_numbers_with_main_argument(argument)
     liste = []
     with_main_argument(argument).each do |article|
       liste << article.revue.numero if article.aux_argument.nil?
@@ -57,7 +57,7 @@ class Article < ActiveRecord::Base
     liste.join(', ')
   end
 
-  def self.articles_aux_arguments_names_and_revue_numbers_as_main(argument)
+  def self.aux_arguments_names_and_revue_numbers_with_main_argument(argument)
     liste = []
     temp = {}
     with_main_argument(argument).each do |article|
