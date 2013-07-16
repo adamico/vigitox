@@ -1,38 +1,19 @@
 require 'spec_helper'
 
 describe Article do
-  before(:each) do
-    @article = Article.new
-  end
-  it "should be valid with titre" do
-    @article.titre = "valuefortitre"
-    @article.should be_valid
-  end
-  it "should return an array of main/aux args couple" do
-    main_arg = Argument.create(:name => "mainarg")
-    aux_arg = Argument.create(:name => "mainarg")
-    @article.build_argumentaire
-    @article.argumentaire.main_argument = main_arg
-    @article.argumentaire.aux_argument = aux_arg
-    @article.argumentaire.save
-    @article.args_couple.should == [ main_arg, aux_arg]
+  let(:article)   { create(:article) }
+
+  describe "#arguments" do
+    it "should return an array of main/aux args couple" do
+      main_arg = create(:argument, name: "mainarg")
+      aux_arg = create(:argument, name: "auxarg")
+      create(:argumentaire, article: article, main_argument: main_arg, aux_argument: aux_arg)
+      article.save!
+      article.arguments.should == "mainarg, auxarg"
+    end
+
+    it "should return an the assigned EMPTY_ARGUMENTS_MESSAGE constant when main/aux args are empty" do
+      article.arguments.should == Article::EMPTY_ARGUMENTS_MESSAGE
+    end
   end
 end
-
-
-
-# == Schema Information
-#
-# Table name: articles
-#
-#  id                :integer         not null, primary key
-#  titre             :text
-#  revue_id          :integer
-#  created_at        :datetime
-#  updated_at        :datetime
-#  contenu           :text
-#  fiche_technique   :boolean
-#  position          :integer
-#  authorships_count :integer         default(0)
-#
-

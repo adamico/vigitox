@@ -1,5 +1,7 @@
 require 'stringex'
 class Article < ActiveRecord::Base
+  attr_accessible :revue, :titre, :contenu, :fiche_technique
+
   # plugins
   acts_as_list :scope => :revue
   acts_as_indexed :fields => [:ascii_titre, :ascii_contenu]
@@ -24,13 +26,17 @@ class Article < ActiveRecord::Base
   # kaminari
   paginates_per 20
 
-  # class methods
+  # class methods & constants
+  EMPTY_ARGUMENTS_MESSAGE = "aucun argument"
+
   def self.from_same_revue(a)
     joins(:revue).where('revues.id' => a.revue_id)
   end
+
   def self.prev(a)
     from_same_revue(a).where("position < ?", a.position).order('position DESC')
   end
+
   def self.next(a)
     from_same_revue(a).where("position > ?", a.position).order(:position)
   end
@@ -76,13 +82,9 @@ class Article < ActiveRecord::Base
 
   def arguments
     if argumentaire
-      res = [main_argument]
-      if aux_argument
-        res << aux_argument if aux_argument
-      end
-      res.map(&:name).join(', ') unless res.empty?
+      [main_argument, aux_argument].compact.map(&:name).join(', ')
     else
-      "aucun argument"
+      EMPTY_ARGUMENTS_MESSAGE
     end
   end
 
@@ -112,23 +114,3 @@ class Article < ActiveRecord::Base
     self.contenu.to_ascii
   end
 end
-
-
-
-
-# == Schema Information
-# Schema version: 20101022172528
-#
-# Table name: articles
-#
-#  id                :integer         primary key
-#  titre             :text
-#  revue_id          :integer
-#  created_at        :timestamp
-#  updated_at        :timestamp
-#  contenu           :text
-#  fiche_technique   :boolean
-#  position          :integer
-#  authorships_count :integer         default(0)
-#
-
