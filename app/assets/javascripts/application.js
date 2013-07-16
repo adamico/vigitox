@@ -13,9 +13,9 @@
 //= require ckeditor/init
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
-//= require jquery_ui
-//= require autocomplete-rails
+//= require jquery.ui.all
 //= require jquery.tokeninput
+//= require bootstrap
+//= require autocomplete-rails
 //= require common
 //= require_tree .

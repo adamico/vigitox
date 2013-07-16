@@ -12,6 +12,7 @@ group :assets do
   gem "bootstrap-sass", github: "thomas-mcdonald/bootstrap-sass"
 end
 
+gem "jquery-ui-rails"
 gem 'jquery-rails'
 
 gem "RedCloth"
