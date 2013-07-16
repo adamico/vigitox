@@ -1,18 +1,17 @@
 require 'spec_helper'
 
 describe Revue do
-  subject {Factory(:revue)}
-  # #redacteurs
-  it {should respond_to(:redacteurs)}
-  describe "#redacteurs" do
-    it "should return an array of authors" do
-      3.times do
-        subject.redacteurs << Factory(:author)
-      end
-      subject.save!
-      subject.redacteurs.should == Author.all
+  let!(:revue)         { create(:revue, numero: 3) }
+  let!(:prev_revue)    { create(:revue, numero: 2) }
+  let!(:next_revue)    { create(:revue, numero: 4) }
+
+  describe ".prev" do
+    it "should return the previous numbered revue" do
+      Revue.prev(revue).should == prev_revue
+    end
+
+    it "should return the next numbered revue" do
+      Revue.next(revue).should == next_revue
     end
   end
-  # #editorial
-  it {should respond_to(:editorial)}
 end

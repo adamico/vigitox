@@ -1,4 +1,4 @@
-= simple_form_for resource, html: {class: "form-inline"} do |f|
+= simple_form_for author, html: {class: "form-inline"} do |f|
   = f.error_notification if f.error_notification
   .controls.controls-row
     = f.text_field :nom, placeholder: "Nom", class: "span2"
@@ -6,5 +6,5 @@
   .form-actions
     .btn-group
       = button_tag "Enregistrer", type: :submit, class: "btn btn-success", disable_with: "Enregistrer"
-      = link_to "Annuler les modifications", resource, class: "btn btn-danger"
+      = link_to "Annuler les modifications", author, class: "btn btn-danger"
       = link_to "Retour à la liste", authors_path, class: "btn btn-danger"

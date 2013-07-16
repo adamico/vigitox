@@ -5,7 +5,7 @@ class RevuesController < ApplicationController
   helper_method :assigned_numero
 
   def index
-    @revues ||= Revue.includes(:articles).recent.order("numero DESC").page(params[:page])
+    @revues = Revue.includes(:articles).recent.order("numero DESC").page(params[:page])
     respond_with @revues
   end
 
@@ -16,8 +16,8 @@ class RevuesController < ApplicationController
   end
 
   def show
-    @prev = Revue.prev(@revue).first
-    @next = Revue.next(@revue).first
+    @prev = Revue.prev(@revue)
+    @next = Revue.next(@revue)
   end
 
   def new

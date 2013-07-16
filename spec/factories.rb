@@ -21,6 +21,10 @@ FactoryGirl.define  do
     revue
   end
 
+  factory :categorie do
+    sequence(:name) {|n| "categorie#{n}"}
+  end
+
   factory :argument, aliases: [:main_argument, :aux_argument] do
     sequence(:name) {|n| "argument#{n}"}
   end
