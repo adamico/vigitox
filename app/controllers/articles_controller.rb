@@ -1,12 +1,10 @@
 # encoding: UTF-8
-
 require 'stringex'
-class ArticlesController < InheritedResources::Base
+class ArticlesController < ApplicationController
   respond_to :html, :json
+  before_filter :set_article, only: [:show, :edit, :update, :destroy]
   autocomplete :author, :nom
   autocomplete :argument, :name, full: true
-  belongs_to :revue
-  custom_actions collection: :search
 
   def search
     @search = params[:search].to_ascii if params[:search]
@@ -15,33 +13,62 @@ class ArticlesController < InheritedResources::Base
   end
 
   def show
-    @article_by_position = parent.articles.find_by_position(resource.position)
-    @prev = resource_class.prev(@article_by_position).first
-    @next = resource_class.next(@article_by_position).first
-    show!
+    @article_by_position = @revue.articles.find_by_position(@article.position)
+    @prev = Article.prev(@article_by_position).first
+    @next = Article.next(@article_by_position).first
+    respond_with @article
+  end
+
+  def new
+    @revue = Revue.find(params[:revue_id])
+    @article = Article.new(revue_id: params[:revue_id])
+    @article.build_argumentaire
+    @article.authorships.build
+
+    respond_with @article
   end
 
   def create
-    create! do |success, failure|
-      success.html { redirect_on_success }
+    @revue = Revue.find(params[:article][:revue_id])
+    @article = Article.create(params[:article])
+    if @article.save
+      if params[:_save_and_continue]
+        flash[:notice] = "Article '#{@article.full_title}' : création effectuée avec succès."
+        location = edit_article_path(@article)
+      elsif params[:_save_and_add_another]
+        flash[:notice] = "Article '#{@article.full_title}' : modification effectuée avec succès."
+      end
     end
+
+    respond_with @article, location: location
+  end
+
+  def edit
+    @revue = Revue.find(@article.revue_id)
+    @article.build_argumentaire unless @article.argumentaire
+
+    respond_with @article
   end
 
   def update
-    update! do |success, failure|
-      success.html { redirect_on_success }
+    @revue = Revue.find(@article.revue_id)
+    @article.update_attributes(params[:article])
+
+    if @article.save
+      flash[:notice] = "Article '#{@article.full_title}' : modification effectuée avec succès."
+      if params[:_save_and_continue]
+        location = edit_article_path(@article)
+      elsif params[:_save_and_add_another]
+        location = new_article_path(revue_id: @revue.id)
+      end
     end
+
+    respond_with @article, location: location
   end
 
   private
 
-  def redirect_on_success
-    if params[:_save_and_continue]
-      redirect_to edit_revue_article_path(parent, resource), notice: "L'article a été sauvegardé avec succès."
-    elsif params[:_save_and_add_another]
-      redirect_to new_revue_article_path(parent), notice: "L'article #{resource.full_title} a été sauvegardé."
-    else
-      redirect_to resource, notice: "L'article a été sauvegardé."
-    end
+  def set_article
+    @article ||= params[:id] ? Article.find(params[:id]) : @revue.articles.build
   end
 end

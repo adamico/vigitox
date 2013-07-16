@@ -1,9 +1,6 @@
-- resource.build_argumentaire unless resource.argumentaire
-- resource.authorships.build if resource.authorships.empty?
-
-= simple_form_for [parent, resource], html: {class: 'form-horizontal'} do |f|
+= simple_form_for article, html: {class: 'form-horizontal'} do |f|
   = f.error_notification if f.error_notification
-  = f.input :position, as: :integer, input_html: {class: "span1", :min => "1"}
+  = f.input :revue_id, as: :hidden
   .control-group
     %label.control-label Titre
     .controls
@@ -12,7 +9,7 @@
         = f.check_box :fiche_technique
         Fiche Technique ?
   = f.input :contenu, as: :ckeditor
-  = f.input :authorship_tokens, as: :text, label: "Auteurs", input_html: {"data-pre" => resource.authors.map(&:attributes).to_json}
+  = f.input :authorship_tokens, as: :text, label: "Auteurs", input_html: {"data-pre" => article.authors.map(&:attributes).to_json}
   = f.association :categories, as: :check_boxes, item_wrapper_class: "inline"
   = f.fields_for :argumentaire do |argumentaire_form|
     .control-group
@@ -25,4 +22,4 @@
     .btn-group
       = button_tag "Enregistrer et créer un nouvel article", type: :submit, class: "btn btn-success", disable_with: "Enregistrer et créer un nouvel article", name: "_save_and_add_another"
       = button_tag "Enregistrer et continuer", type: :submit, class: "btn btn-main", disable_with: "Enregistrer et continuer", name: "_save_and_continue"
-      = link_to "Retour à la revue", revue_path(parent), class: 'btn btn-danger'
+      = link_to "Retour à la revue", revue_path(revue), class: 'btn btn-danger'

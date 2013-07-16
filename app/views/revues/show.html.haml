@@ -1,7 +1,7 @@
 - title "Vigitox N° #{@revue.numero}"
 
 = content_for :subtitle do
-  = l(@revue.date_sortie, :format => :month_year)
+  = l(@revue.date_sortie, format: :month_year)
   - if @revue.pdf_url
     = link_to @revue.pdf_url do
       = image_tag("pdficon_large.gif", :alt => "Version PDF", :title => "Version PDF", :class => "pdf_link")
@@ -44,4 +44,4 @@
 
 - if user_signed_in?
   %hr/
-  %p= link_to "Rajouter un article", new_revue_article_path(@revue)
+  %p= link_to "Rajouter un article", new_article_path(revue_id: @revue.id)

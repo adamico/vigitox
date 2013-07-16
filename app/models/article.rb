@@ -1,6 +1,6 @@
 require 'stringex'
 class Article < ActiveRecord::Base
-  attr_accessible :revue, :titre, :contenu, :fiche_technique
+  attr_accessible :revue_id, :titre, :contenu, :fiche_technique, :position, :authorship_tokens, :categorie_ids, :argumentaire_attributes
 
   # plugins
   acts_as_list :scope => :revue
@@ -96,8 +96,8 @@ class Article < ActiveRecord::Base
   end
 
   def full_title
-    title = fiche_technique? ? "Fiche technique : " : ""
-    title += titre
+    prepend = fiche_technique? ? "Fiche technique" : nil
+    [prepend, titre].compact.join(" : ")
   end
 
   def self.search(query, page = 1)

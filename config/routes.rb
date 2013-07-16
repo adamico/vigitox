@@ -7,8 +7,8 @@ Vigitox::Application.routes.draw do
   devise_for :users
 
   as :user do
-    get "/login", :to => "devise/sessions#new"
-    get "/logout", :to=> "devise/sessions#destroy"
+    get "login", to: "devise/sessions#new"
+    get "logout", to: "devise/sessions#destroy"
   end
 
   # ressources de nom féminin
@@ -17,12 +17,12 @@ Vigitox::Application.routes.draw do
     resources :revues do
       get :archive, :on => :collection
       post :sort_articles, :on => :collection
-      resources :articles, path_names: {new: "nouveau", edit: "modifier"}
     end
   end
 
   # ressources de nom masculin commençant par voyelle
   scope path_names: {new: "nouveau", edit: "modifier"} do
+    resources :articles
     resources :authors, path: "auteurs" do
       get :names, :on => :collection
     end

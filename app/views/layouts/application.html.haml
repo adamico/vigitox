@@ -29,10 +29,11 @@
           = link_to "VIGItox", root_path, class: "brand"
           .nav-collapse
             %ul.nav
-              %li
-                = link_to revue_path(Revue.last) do
-                  %i.icon-star.icon-white
-                  Dernier Numéro
+              - if Revue.any?
+                %li
+                  = link_to revue_path(Revue.last) do
+                    %i.icon-star.icon-white
+                    Dernier Numéro
               %li
                 = link_to archive_path do
                   %i.icon-book.icon-white
