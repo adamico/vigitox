@@ -72,5 +72,12 @@ module Vigitox
     if Rails.env.production?
       config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-20156445-4")
     end
+
+    config.generators do |g|
+      g.view_specs         false
+      g.helper_specs       false
+      g.controller_specs   false
+      g.routing_specs      false
+    end
   end
 end
