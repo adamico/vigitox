@@ -16,7 +16,7 @@
     = editorial_form.input :contenu, as: :ckeditor
     = editorial_form.input :author_name, label: "Autheur", as: :autocomplete, url: autocomplete_author_nom_articles_path
 
-  = f.association :redacteurs#ionship_tokens, as: :text, label: "Comité rédaction", input_html: {"data-pre" => revue.redacteurs.map(&:attributes).to_json}
+  = f.association :redacteurs, label: "Comité rédaction"#, input_html: {"data-pre" => revue.redacteurs.map(&:attributes).to_json}
 
   .form-actions
     .btn-group
