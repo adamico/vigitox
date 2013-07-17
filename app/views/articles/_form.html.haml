@@ -9,7 +9,7 @@
         = f.check_box :fiche_technique
         Fiche Technique ?
   = f.input :contenu, as: :ckeditor
-  = f.input :authorship_tokens, as: :text, label: "Auteurs", input_html: {"data-pre" => article.authors.map(&:attributes).to_json}
+  = f.association :authors#hip_tokens, as: :text, label: "Auteurs", input_html: {"data-pre" => article.authors.map(&:attributes).to_json}
   = f.association :categories, as: :check_boxes, item_wrapper_class: "inline"
   = f.simple_fields_for :argumentaire do |argumentaire_form|
     .control-group

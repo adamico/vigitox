@@ -1,6 +1,6 @@
 require 'stringex'
 class Article < ActiveRecord::Base
-  attr_accessible :revue_id, :titre, :contenu, :fiche_technique, :position, :authorship_tokens, :categorie_ids, :argumentaire_attributes
+  attr_accessible :revue_id, :titre, :contenu, :fiche_technique, :position, :author_ids, :categorie_ids, :argumentaire_attributes
 
   # plugins
   acts_as_list scope: :revue

@@ -24,7 +24,6 @@ class ArticlesController < ApplicationController
     @revue = Revue.find(params[:revue_id])
     @article = Article.new(revue_id: params[:revue_id])
     @article.build_argumentaire
-    @article.authorships.build
 
     respond_with @article
   end
