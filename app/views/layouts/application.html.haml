@@ -40,7 +40,7 @@
                   Archive
 
               %li.dropdown
-                = link_to "#", class: "dropdown-toggle", "data-toggle" => "dropdown" do
+                = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
                   %i.icon-filter.icon-white
                   Filtres
                   %b.caret
@@ -62,7 +62,7 @@
           %small= yield(:subtitle)
         = yield(:subnav)
 
-      %section#main
+      #main.clearfix
         = yield
 
     %footer#footer
