@@ -11,6 +11,8 @@ $ ->
       top: ->
         if $(window).width() <= 980 then 190 else 110
       bottom: 170
+  if $(".argumentaire-error").length
+    $(".argumentaire-error").closest(".control-group").addClass("error")
 
 jQuery.fn.addtokenInput = (url) ->
   unless this.prev("ul.token-input-list-facebook").length

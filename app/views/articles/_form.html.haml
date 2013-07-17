@@ -11,12 +11,13 @@
   = f.input :contenu, as: :ckeditor
   = f.input :authorship_tokens, as: :text, label: "Auteurs", input_html: {"data-pre" => article.authors.map(&:attributes).to_json}
   = f.association :categories, as: :check_boxes, item_wrapper_class: "inline"
-  = f.fields_for :argumentaire do |argumentaire_form|
+  = f.simple_fields_for :argumentaire do |argumentaire_form|
     .control-group
       %label.control-label Arguments
       .controls
         = argumentaire_form.autocomplete_field :main_argument_name, autocomplete_argument_name_articles_path, placeholder: "principal"
         = argumentaire_form.autocomplete_field :aux_argument_name, autocomplete_argument_name_articles_path, placeholder: "secondaire"
+        = f.error :argumentaire, class: "argumentaire-error"
 
   .form-actions
     .btn-group

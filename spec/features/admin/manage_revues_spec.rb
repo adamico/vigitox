@@ -2,7 +2,8 @@
 require "spec_helper"
 
 feature "Admin manages revues" do
-  given(:admin)   { create(:admin) }
+  given(:admin)    { create(:admin) }
+  given!(:argument) { create(:argument, name: "argument")}
   background      { login admin }
 
   scenario "revue creation" do
@@ -22,6 +23,9 @@ feature "Admin manages revues" do
     click_on "Enregistrer et continuer"
     page.should have_content /erreurs/i
     fill_in "article_titre", with: "titre"
+    click_on "Enregistrer et continuer"
+    page.should have_content /vous devez saisir au moins un argument principal/i
+    fill_in "article_argumentaire_attributes_main_argument_name", with: "argument"
     click_on "Enregistrer et continuer"
     page.should have_content /création effectuée avec succès/i
   end
