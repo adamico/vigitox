@@ -9,18 +9,3 @@ class Editorial < ActiveRecord::Base
     self.author = Author.find_by_nom(name)
   end
 end
-
-# == Schema Information
-# Schema version: 20101227151605
-#
-# Table name: editorials
-#
-#  id         :integer         not null, primary key
-#  titre      :text
-#  contenu    :text
-#  author_id  :integer
-#  revue_id   :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-

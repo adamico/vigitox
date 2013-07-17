@@ -43,7 +43,6 @@ class Revue < ActiveRecord::Base
     self.redacteur_ids = ids.split(",")
   end
 
-  #TODO: move to a decorator
   def annee_sortie
     date_sortie.beginning_of_year
   end
