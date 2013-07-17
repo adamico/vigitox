@@ -3,7 +3,7 @@ require "spec_helper"
 
 feature "Browsing revues" do
   given!(:revue)    { create(:revue, numero: 3) }
-  given!(:article)  { create(:article, revue: revue) }
+  given!(:article)  { create(:article, revue: revue, categories_count: 2) }
 
   scenario "accessing last revue" do
     visit root_path
@@ -26,8 +26,32 @@ feature "Browsing revues" do
     page.should_not have_link "Numéro suivant"
   end
 
-  scenario "read article" do
+  scenario "access an article" do
     visit article_path(article)
+  end
+
+  %w(categorie author).each do |name|
+    klass = name.classify.constantize
+    scenario "access #{name}s list" do
+      visit polymorphic_path(klass)
+      article.send(:"#{name}s").each do |item|
+        page.should have_content item.name
+      end
+    end
+  end
+
+  scenario "access arguments list" do
+    visit arguments_path
+    Argument.all.each do |argument|
+      page.should have_content argument.name
+    end
+  end
+
+  %w(categorie argument author).each do |name|
+    klass = name.classify.constantize
+    scenario "access #{name}" do
+      visit polymorphic_path(klass.first)
+    end
   end
 
   describe "search" do

@@ -1,13 +1,11 @@
-- title "Articles par : #{@author.short_name}"
+- title "Articles par : #{@author.nom_and_prenom}"
 
 = link_to "Retour à la liste", authors_path, class: "btn btn-primary"
 
 - if user_signed_in?
-  %ul.actions
-    %li= link_to "Modifier", edit_author_path(@author)
-    %li= link_to "Détruire", @author, :confirm => 'Etes-vous sûr?', :method => :delete
+  - actions(@author)
 
 - if @articles.any?
-  = render 'articles/articles', articles: @articles
+  = render @articles
 - else
   %h3 Pas d'articles

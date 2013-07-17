@@ -2,6 +2,8 @@ class Author < ActiveRecord::Base
   extend FriendlyId
   friendly_id :nom_and_prenom, use: :slugged
 
+  alias_attribute :name, :nom_and_prenom
+
   attr_accessible :nom, :prenom
   validates_presence_of :nom, :prenom
 

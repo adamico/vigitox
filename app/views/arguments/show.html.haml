@@ -1,21 +1,19 @@
 - title "Articles dont l'argument est : #{@argument.name.humanize}"
 
-= link_to "Retour à la liste", arguments_path, class: "btn btn-primary"
+= link_to content_tag(:i, nil, class: "icon-arrow-left icon-white") + " Retour à la liste des arguments", arguments_path, class: "btn btn-primary"
 
 - if user_signed_in?
-  %ul.actions
-    %li= link_to "Modifier", edit_argument_path(@argument)
-    %li= link_to "Détruire", @argument, confirm: 'Are you sure?', :method => :delete
+  - actions(@argument)
 
 - if @articles_as_main.any?
   %h3 Articles avec cet argument comme principal
-  = render 'articles/articles', :articles => @articles_as_main
+  = render @articles_as_main
 - else
   %h3 Pas d'articles avec cet argument comme principal
 
 - if @articles_as_aux.any?
   %h4 Articles avec cet argument comme secondaire
-  = render 'articles/articles', :articles => @articles_as_aux
+  = render @articles_as_aux
 
 - else
   %h4 Pas d'articles avec cet argument comme secondaire

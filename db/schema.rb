@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120907141742) do
+ActiveRecord::Schema.define(:version => 20130717105127) do
 
   create_table "argumentaires", :force => true do |t|
     t.integer  "main_argument_id"
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(:version => 20120907141742) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "categorisations", :force => true do |t|
+    t.integer  "article_id"
+    t.integer  "categorie_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "categorisations", ["article_id"], :name => "index_categorisations_on_article_id"
+  add_index "categorisations", ["categorie_id"], :name => "index_categorisations_on_categorie_id"
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false

@@ -20,6 +20,25 @@ FactoryGirl.define  do
     contenu "blablla"
     revue
     argumentaire
+    ignore do
+      categories_count 1
+      authors_count 1
+    end
+
+    before(:create) do |article, evaluator|
+      article.categorisations = create_list(:categorisation, evaluator.categories_count, article: article)
+      article.authorships = create_list(:authorship, evaluator.authors_count, article: article)
+    end
+  end
+
+  factory :categorisation do
+    article
+    categorie
+  end
+
+  factory :authorship do
+    article
+    author
   end
 
   factory :categorie do

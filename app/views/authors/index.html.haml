@@ -9,7 +9,7 @@
   %tbody
     - for author in @authors
       %tr
-        %td= link_to author.short_name, author
+        %td= link_to author.nom_and_prenom, author
         %td= author.authorships.size
         - if user_signed_in?
           %td

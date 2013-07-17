@@ -1,32 +1,5 @@
-#article
-  - if user_signed_in?
-    %ul.actions
-      %li= link_to "Modifier", edit_article_path(article)
-      %li= link_to "Detruire", article, :method => :delete, :confirm => "Are you sure?"
-  %h2= link_to article.full_title, [revue, article]
-  .clear
-  - unless article.authors.empty?
-    %div
-      %span.label.label-info Auteurs :
-      %ul.inline
-        - article.authors.each do |author|
-          %li= link_to author.short_name, author_path(author)
-  - if article.argumentaire
-    %div
-      %span.label Arguments :
-      %ul.inline
-        - unless article.main_argument.nil?
-          %li= link_to article.main_argument.name, argument_path(article.main_argument)
-        - unless article.aux_argument.nil?
-          %li= link_to article.aux_argument.name, argument_path(article.aux_argument)
-  - unless article.categories.empty?
-    %div
-      %span.label Catégories :
-      %ul.inline
-        - article.categories.each do |categorie|
-          %li= link_to categorie.name, categorie_path(categorie)
-
-  .clear
-
-  %div.contenu
-    = raw textilize(article.contenu) unless article.contenu.blank?
+= content_tag_for :div, article do
+  = link_to article do
+    %h4
+      %i.icon-book
+      = article.full_title
