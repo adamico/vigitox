@@ -17,6 +17,17 @@ feature "Admin manages revues" do
     page.should have_content /succès/i
   end
 
+  scenario "revue update" do
+    revue = create(:revue)
+    visit edit_revue_path(revue)
+    fill_in "Numéro", with: ""
+    click_on "Enregistrer"
+    page.should have_content /erreurs/i
+    fill_in "Numéro", with: revue.numero
+    click_on "Enregistrer"
+    page.should have_content /succès/i
+  end
+
   scenario "article create" do
     visit revue_path(create(:revue))
     click_link "Rajouter un article"
@@ -34,6 +45,9 @@ feature "Admin manages revues" do
     create(:revue)
     article = create(:article)
     visit edit_article_path(article)
+    fill_in "article_titre", with: ""
+    click_button "Enregistrer et continuer"
+    page.should have_content /erreurs/i
     fill_in "article_titre", with: "titremisajour"
     click_button "Enregistrer et continuer"
     page.should have_content /modification effectuée avec succès/i
