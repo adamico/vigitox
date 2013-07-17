@@ -1,7 +1,6 @@
 $ = jQuery
 
 $ ->
-  $(".dropdown-toggle").dropdown()
   $(".alert-message").alert()
   revue_numero = $("#revue_numero").attr("data-value")
   $("#revue_numero").val(revue_numero)
@@ -15,11 +14,10 @@ $ ->
 
 jQuery.fn.addtokenInput = (url) ->
   unless this.prev("ul.token-input-list-facebook").length
-    this.tokenInput(url,
+    this.tokenInput url,
       propertyToSearch: "nom"
       theme: "facebook"
       hintText: "Saisir une partie du mot..."
       noResultsText: "Aucun résultat"
       searchingText: "Recherche en cours..."
       preventDuplicates: true
-      )
