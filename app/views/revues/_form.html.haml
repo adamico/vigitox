@@ -1,7 +1,6 @@
-- resource.build_editorial unless resource.editorial
-- resource.redactionships.build if resource.redactionships.empty?
+- revue.redactionships.build if revue.redactionships.empty?
 
-= simple_form_for resource, html: {class: "form-horizontal"} do |f|
+= simple_form_for revue, html: {class: "form-horizontal"} do |f|
   = f.error_notification if f.error_notification
   .control-group
     = f.label :numero, "Numéro", class: "control-label"
@@ -17,7 +16,7 @@
     = editorial_form.input :contenu, as: :ckeditor
     = editorial_form.input :author_name, label: "Autheur", as: :autocomplete, url: autocomplete_author_nom_articles_path
 
-  = f.input :redactionship_tokens, as: :text, label: "Comité rédaction", input_html: {"data-pre" => resource.redacteurs.map(&:attributes).to_json}
+  = f.association :redacteurs#ionship_tokens, as: :text, label: "Comité rédaction", input_html: {"data-pre" => revue.redacteurs.map(&:attributes).to_json}
 
   .form-actions
     .btn-group

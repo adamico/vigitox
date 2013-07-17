@@ -19,12 +19,26 @@ class RevuesController < ApplicationController
 
   def new
     @revue = Revue.new
+    @revue.build_editorial
+
     respond_with @revue
   end
 
   def create
     @revue = Revue.create(params[:revue])
     flash[:notice] = 'Revue enregistrée avec succès.' if @revue.save
+    respond_with @revue
+  end
+
+  def edit
+    @revue.build_editorial unless @revue.editorial
+    respond_with @revue
+  end
+
+  def update
+    @revue.update_attributes(params[:revue])
+
+    flash[:notice] = "Vigitox n° #{@revue.numero} : modification effectuée avec succès." if @revue.save
     respond_with @revue
   end
 
