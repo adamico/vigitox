@@ -1,9 +1,9 @@
 %h3
-  = link_to_with_title "VIGItox##{revue.numero} (#{l(revue.date_sortie, :format => :month_year)})", revue
+  = link_to_with_title "VIGItox##{revue.numero} (#{l(revue.date_sortie, format: :month_year)})", revue
 - if revue.articles.any?
   - revue.articles.each do |article|
     = content_tag_for :div, article do
-      = link_to [revue, article] do
+      = link_to article do
         %h4
           %i.icon-book
           = article.full_title
