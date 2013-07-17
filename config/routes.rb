@@ -1,9 +1,6 @@
 Vigitox::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
-  get "home/index"
-  match "/mentionslegales" => "home#disclaimer", as: "disclaimer"
-
   devise_for :users
 
   as :user do
@@ -14,33 +11,31 @@ Vigitox::Application.routes.draw do
   # ressources de nom féminin
   scope path_names: {new: "nouvelle", edit: "modifier"} do
     resources :categories
-    resources :revues do
-      get :archive, :on => :collection
-      post :sort_articles, :on => :collection
+    resources :revues, except: [:index] do
+      post :sort_articles, on: :collection
     end
   end
 
+  get "archive", to: "revues#index", as: "archive"
+
   # ressources de nom masculin commençant par voyelle
   scope path_names: {new: "nouveau", edit: "modifier"} do
-    resources :articles
     resources :authors, path: "auteurs" do
-      get :names, :on => :collection
+      get :names, on: :collection
     end
     resources :arguments do
-      get :names, :on => :collection
+      get :names, on: :collection
     end
     resources :articles, except: :index do
       get :autocomplete_author_nom, on: :collection
       get :autocomplete_argument_name, on: :collection
-      get :search, on: :collection
     end
   end
 
   match "/search" => "articles#search"
-  match "/archive" => "revues#archive"
+  match "/mentionslegales" => "home#disclaimer", as: "disclaimer"
 
-
-  root :to => 'home#index'
+  root to: 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
