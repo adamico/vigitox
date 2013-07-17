@@ -26,6 +26,10 @@ feature "Browsing revues" do
     page.should_not have_link "Numéro suivant"
   end
 
+  scenario "read article" do
+    visit article_path(article)
+  end
+
   describe "search" do
     given!(:revue)           {create(:revue)}
     given!(:argumentaire)    {create(:argumentaire, main_argument: create(:argument, name: "argument"))}

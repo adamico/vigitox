@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @revue = @article.revue
     @article_by_position = @revue.articles.find_by_position(@article.position)
     @prev = Article.prev(@article_by_position).first
     @next = Article.next(@article_by_position).first
