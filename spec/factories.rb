@@ -19,6 +19,7 @@ FactoryGirl.define  do
     sequence(:titre) {|n| "article#{n}"}
     contenu "blablla"
     revue
+    argumentaire
   end
 
   factory :categorie do
@@ -32,6 +33,5 @@ FactoryGirl.define  do
   factory :argumentaire do
     main_argument
     aux_argument
-    article
   end
 end

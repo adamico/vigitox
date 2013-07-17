@@ -3,24 +3,23 @@ class Article < ActiveRecord::Base
   attr_accessible :revue_id, :titre, :contenu, :fiche_technique, :position, :authorship_tokens, :categorie_ids, :argumentaire_attributes
 
   # plugins
-  acts_as_list :scope => :revue
-  acts_as_indexed :fields => [:ascii_titre, :ascii_contenu]
+  acts_as_list scope: :revue
+  acts_as_indexed fields: [:ascii_titre, :ascii_contenu, :main_argument]
 
   # relations
-  belongs_to :revue, :counter_cache => true
-  has_and_belongs_to_many :categories, :join_table => "articles_categories"
-  has_many :authors, :through => :authorships
-  has_many :authorships, :dependent => :destroy
-  has_one :argumentaire, :dependent => :destroy
+  belongs_to :revue, counter_cache: true
+  has_and_belongs_to_many :categories, join_table: "articles_categories"
+  has_many :authors, through: :authorships
+  has_many :authorships, dependent: :destroy
+  has_one :argumentaire, dependent: :destroy
 
   attr_reader :authorship_tokens
 
-  delegate :main_argument, :aux_argument, :to => :argumentaire
-  delegate :numero, :to => :revue, :allow_nil => true, :prefix => true
+  delegate :main_argument, :aux_argument, to: :argumentaire
+  delegate :numero, to: :revue, allow_nil: true, prefix: true
 
-  accepts_nested_attributes_for :argumentaire,
-    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
-
+  accepts_nested_attributes_for :argumentaire
+  validates_associated :argumentaire, message: "vous devez saisir au moins un argument principal"
   validates_presence_of :titre
 
   # kaminari
@@ -42,11 +41,11 @@ class Article < ActiveRecord::Base
   end
 
   def self.with_main_argument(argument)
-    joins(:argumentaire).includes(:revue).where(:argumentaires => {:main_argument_id => argument.id})
+    joins(:argumentaire).includes(:revue).where(argumentaires: {main_argument_id: argument.id})
   end
 
   def self.with_aux_argument(argument)
-    joins(:argumentaire).includes(:revue).where(:argumentaires => {:aux_argument_id => argument.id})
+    joins(:argumentaire).includes(:revue).where(argumentaires: {aux_argument_id: argument.id})
   end
 
   def self.revue_numbers_with_main_argument(argument)
