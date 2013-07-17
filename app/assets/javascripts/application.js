@@ -14,7 +14,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require jquery.tokeninput
 //= require bootstrap
 //= require autocomplete-rails
 //= require common
