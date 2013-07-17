@@ -13,6 +13,8 @@
                 - revues_by_year.each do |revue|
                   %li
                     %span.label= l(revue.date_sortie, :format => :only_month)
-                    = link_to "N° #{revue.numero}", revue
+                    = link_to "N° #{revue.numero}", revue,
+                      title: revue_title_with_articles(revue),
+                      data: {toggle: "tooltip", placement: "right", html: true}
 - else
   Aucune revue.

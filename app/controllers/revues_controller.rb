@@ -5,19 +5,16 @@ class RevuesController < ApplicationController
   helper_method :assigned_numero
 
   def index
-    @revues = Revue.includes(:articles).recent.order("numero DESC").page(params[:page])
-    respond_with @revues
-  end
-
-  def archive
-    @revues = Revue.order("numero DESC")
+    @revues = Revue.includes(:articles).order("numero DESC")
     @revue_annees = @revues.group_by(&:annee_sortie)
     @annees = @revue_annees.keys
+    respond_with @revues
   end
 
   def show
     @prev = Revue.prev(@revue)
     @next = Revue.next(@revue)
+    respond_with @revue
   end
 
   def new

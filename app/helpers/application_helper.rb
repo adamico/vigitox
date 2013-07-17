@@ -7,6 +7,7 @@ module ApplicationHelper
       haml_concat(link_to "Détruire", model, data: {confirm: 'Etes-vous sûr?'}, method: :delete, class: "btn btn-danger")
     end
   end
+
   def prev_and_next_item(ptext="préc.", ntext="succ.", ppath=@prev, npath=@next, pobject=@prev, nobject=@next)
     haml_tag 'ul.pager' do
       haml_tag 'li.previous' do
@@ -17,7 +18,19 @@ module ApplicationHelper
       end
     end
   end
-  def link_to_with_title(name, url, title=name)
-    link_to name, url, title: title
+
+  def revue_title_with_articles(revue)
+    contents = []
+    contents << content_tag(:strong, "Vigitox N° #{revue.numero}")
+    articles = articles_list(revue.articles)
+    contents << content_tag(:ul, articles)
+  end
+
+  def articles_list(articles)
+    list = []
+    articles.each do |article|
+      list << content_tag(:li, article.titre)
+    end
+    list.join("\n").html_safe
   end
 end

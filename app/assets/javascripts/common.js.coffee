@@ -1,6 +1,14 @@
 $ = jQuery
 
 $ ->
+  $("#search_button").click (e) ->
+    e.preventDefault()
+    search_value = $("#search").val()
+    if search_value
+      $(".navbar-search").submit()
+  $("[data-toggle=tooltip]").tooltip
+    delay:
+      hide: 100
   $(".alert-message").alert()
   revue_numero = $("#revue_numero").attr("data-value")
   $("#revue_numero").val(revue_numero)
