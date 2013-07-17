@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
     @search = params[:search].to_ascii if params[:search]
     @articles = Article.search(@search, params[:page]).includes(:revue).
       order("revue_id DESC").page(params[:page])
+    respond_with @articles
   end
 
   def show

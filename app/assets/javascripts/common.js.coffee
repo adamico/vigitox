@@ -12,8 +12,9 @@ $ ->
   $(".alert-message").alert()
   revue_numero = $("#revue_numero").attr("data-value")
   $("#revue_numero").val(revue_numero)
-  $("#article_authorship_tokens").addtokenInput("/auteurs/names.json")
-  $("#revue_redactionship_tokens").addtokenInput("/auteurs/names.json")
+  $("#article_authorship_tokens").attachMultiSelect2("/auteurs.json")
+  $("#revue_redactionship_tokens").attachMultiSelect2("/auteurs.json")
+  $(".author_autocomplete").attachSelect2("/auteurs.json")
   $(".subnav").affix
     offset:
       top: ->
@@ -22,12 +23,46 @@ $ ->
   if $(".argumentaire-error").length
     $(".argumentaire-error").closest(".control-group").addClass("error")
 
-jQuery.fn.addtokenInput = (url) ->
-  unless this.prev("ul.token-input-list-facebook").length
-    this.tokenInput url,
-      propertyToSearch: "nom"
-      theme: "facebook"
-      hintText: "Saisir une partie du mot..."
-      noResultsText: "Aucun résultat"
-      searchingText: "Recherche en cours..."
-      preventDuplicates: true
+$.fn.attachSelect2 = (url) ->
+  @select2
+    minimumInputLength: 3
+    initSelection : (element, callback) ->
+      preload = element.data("load")
+      callback(preload)
+    ajax:
+      url: url
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+  @on "change", (e) ->
+    $.ajax
+      url: "/auteurs.json?author_id=#{e.val}"
+      dataType: "json"
+      success: (data) =>
+        $(this).data("load", data[0])
+
+jQuery.fn.attachMultiSelect2 = (url) ->
+  @select2
+    minimumInputLength: 3
+    multiple: true
+    initSelection : (element, callback) ->
+      preload = element.data("load")
+      callback(preload)
+    width: "75%"
+    ajax:
+      url: url
+      dataType: "json"
+      data: (term, page) ->
+        q: term
+        page_limit: 10
+      results: (data, page) ->
+        return {results: data}
+
+$.fn.select2.defaults.allowClear = true
+$.fn.select2.defaults.formatNoMatches = -> "Aucun résultat"
+$.fn.select2.defaults.formatInputTooShort = (input, min) ->
+  "Saisir au moins #{min - input.length} caractères"
+$.fn.select2.defaults.formatSearching = -> "Recherche en cours..."

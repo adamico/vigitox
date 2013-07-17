@@ -9,7 +9,10 @@
         = f.check_box :fiche_technique
         Fiche Technique ?
   = f.input :contenu, as: :ckeditor
-  = f.association :authors#hip_tokens, as: :text, label: "Auteurs", input_html: {"data-pre" => article.authors.map(&:attributes).to_json}
+  .control-group
+    = f.label :authorship_tokens, "Auteurs", class: "control-label"
+    .controls
+      = f.hidden_field :authorship_tokens, class: "input-xlarge authorship_tokens", value: (items = f.object.authors).map(&:id).join(","), data: {load: (items.map(&:id_and_name).to_json)}, placeholder: "Choisir les auteurs"
   = f.association :categories, as: :check_boxes, item_wrapper_class: "inline"
   = f.simple_fields_for :argumentaire do |argumentaire_form|
     .control-group

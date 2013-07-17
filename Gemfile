@@ -14,6 +14,7 @@ end
 
 gem "jquery-ui-rails"
 gem 'jquery-rails'
+gem 'select2-rails', github: "argerim/select2-rails"
 
 gem "RedCloth"
 

@@ -1,17 +1,12 @@
 #encoding: utf-8
 class AuthorsController < ApplicationController
   respond_to :html
+  respond_to :json, only: [:index]
   before_filter :set_author, only: [:show, :edit, :update, :destroy]
 
   def index
     @authors = Author.page(params[:page])
-  end
-
-  def names
-    @authors = Author.where("LOWER(nom) like ?", "%#{params[:q]}%").order(:nom)
-    respond_to do |format|
-      format.json { render json: @authors}
-    end
+    respond_with @authors
   end
 
   def show

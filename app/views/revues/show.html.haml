@@ -9,7 +9,10 @@
 = content_for :subnav do
   .subnav
     - prev_and_next_item("&larr; Préc.", "Suiv. &rarr;")
-
+    .article-title
+      %h4
+        Vigitox n° #{@revue.numero}
+        %small= l @revue.date_sortie, format: :month_year
 
 - if user_signed_in?
   - actions(@revue)

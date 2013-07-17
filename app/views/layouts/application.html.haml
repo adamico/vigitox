@@ -66,14 +66,12 @@
         = yield
 
     %footer#footer
-      %ul.credits
-        %li
-          = link_to "mailto:centre.antipoison@chu-lyon.fr" do
-            %i.icon-envelope
-            Nous contacter
-        %li
-          = link_to disclaimer_path do
-            %i.icon-exclamation-sign
-            Mentions légales
+      .btn-group
+        = link_to "mailto:centre.antipoison@chu-lyon.fr", class: "btn btn-link" do
+          %i.icon-envelope
+          Nous contacter
+        = link_to disclaimer_path, class: "btn btn-link" do
+          %i.icon-exclamation-sign
+          Mentions légales
 
       = yield :footer

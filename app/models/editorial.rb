@@ -1,11 +1,7 @@
 class Editorial < ActiveRecord::Base
+  attr_accessible :titre, :contenu, :author_id
   belongs_to :revue
   belongs_to :author
 
-  def author_name
-    author.nom if author
-  end
-  def author_name=(name)
-    self.author = Author.find_by_nom(name)
-  end
+  delegate :name, to: :author, prefix: true, allow_nil: true
 end

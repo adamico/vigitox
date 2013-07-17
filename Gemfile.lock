@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/argerim/select2-rails.git
+  revision: bfb63267337c6e3f20e6c670ea40d54897d409ae
+  specs:
+    select2-rails (3.4.3)
+      sass-rails
+      thor (~> 0.14)
+
+GIT
   remote: git://github.com/jonleighton/poltergeist.git
   revision: 79eff09cec68c44571be62c1ac40311a56ee065b
   specs:
@@ -293,6 +301,7 @@ DEPENDENCIES
   rb-fsevent
   rspec-rails
   sass-rails (~> 3.2.3)
+  select2-rails!
   simple_form
   simplecov
   stringex

@@ -13,12 +13,9 @@
             Vigitox n°#{@revue.numero} :
         = @article.full_title
 
-- if user_signed_in?
-  %ul.actions
-    %li= link_to "Modifier", edit_article_path(@article)
-    %li= link_to "Detruire", @article, method: :delete, data: {confirm: "Are you sure?"}
-
 .well
+  - actions(@article) if user_signed_in?
+
   - unless @article.authors.empty?
     %div
       %span.label.label-info
@@ -49,7 +46,6 @@
 #article
   %div.contenu= raw textilize(@article.contenu) unless @article.contenu.blank?
 
-.row
-  = link_to "#articles", class: "btn btn-primary pull-right" do
-    %i.icon-white.icon-chevron-up
-    Haut de page
+= link_to "#articles", class: "btn btn-primary pull-right" do
+  %i.icon-white.icon-chevron-up
+  Haut de page

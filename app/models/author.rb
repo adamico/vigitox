@@ -20,6 +20,10 @@ class Author < ActiveRecord::Base
     "Auteurs"
   end
 
+  def self.search_by_name(name)
+    where("LOWER(nom) like ?", "%#{name}%").order(:nom)
+  end
+
   def short_name
     prenoms = prenom.split("-").many? ? prenom.split("-") : prenom.split
     initiales = prenoms.map {|p| p.first + "."}.join("-")
@@ -28,5 +32,10 @@ class Author < ActiveRecord::Base
 
   def nom_and_prenom
     [nom, prenom].join(" ")
+  end
+
+
+  def id_and_name
+    {id: self.id, text: nom_and_prenom}
   end
 end

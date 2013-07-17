@@ -11,14 +11,20 @@
   = f.input :pdf_url, label: 'Lien PDF', input_html: {class: "span8"}
 
   %h4 Editorial
-  = f.fields_for :editorial do |editorial_form|
+  = f.simple_fields_for :editorial do |editorial_form|
     = editorial_form.input :titre, as: :text, input_html: {class: "span8", rows: 2}
     = editorial_form.input :contenu, as: :ckeditor
-    = editorial_form.input :author_name, label: "Autheur", as: :autocomplete, url: autocomplete_author_nom_articles_path
+    .control-group
+      = editorial_form.label :author_id, label: "Auteur", class: "control-label"
+      .controls
+        = editorial_form.hidden_field :author_id, class: "input-large author_autocomplete", data: {load: editorial_form.object.author.try(:id_and_name), placeholder: "Saisir le nom de l'auteur"}
 
-  = f.association :redacteurs, label: "Comité rédaction"#, input_html: {"data-pre" => revue.redacteurs.map(&:attributes).to_json}
+  .control-group
+    = f.label :redactionship_tokens, "Comité rédaction", class: "control-label"
+    .controls
+      = f.hidden_field :redactionship_tokens, class: "input-xlarge redactionship_tokens", value: (items = f.object.redacteurs).map(&:id).join(","), data: {load: (items.map(&:id_and_name).to_json)}, placeholder: "Choisir les redacteurs"
 
   .form-actions
     .btn-group
       = button_tag "Enregistrer", type: :submit, class: "btn btn-success", disable_with: "Enregistrer"
-      = link_to "Retour à la liste", revues_path, class: "btn btn-danger"
+      = link_to "Retour", params[:id] ? revue : root_path, class: "btn btn-danger"
