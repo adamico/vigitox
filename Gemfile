@@ -47,7 +47,6 @@ gem 'acts_as_indexed'
 gem 'stringex'
 gem "ckeditor"
 gem 'prawn', github: "prawnpdf/prawn"
-gem 'coffee-filter'
 gem 'rails3-jquery-autocomplete'
 gem 'friendly_id'
 
