@@ -1,1 +1,0 @@
-(function(){var e;e=jQuery,e(function(){return CKEDITOR.config.language="fr"})}).call(this);
