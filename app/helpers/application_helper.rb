@@ -2,13 +2,9 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def actions(model)
-    haml_tag 'ul.actions' do
-      haml_tag :li do
-        haml_concat(link_to "Modifier", edit_polymorphic_path(model))
-      end
-      haml_tag :li do
-        haml_concat(link_to "Détruire", model, :confirm => 'Etes-vous sûr?', :method => :delete)
-      end
+    haml_tag 'div.btn-group.pull-right' do
+      haml_concat(link_to "Modifier", edit_polymorphic_path(model), class: "btn btn-warning")
+      haml_concat(link_to "Détruire", model, data: {confirm: 'Etes-vous sûr?'}, method: :delete, class: "btn btn-danger")
     end
   end
   def prev_and_next_item(ptext="préc.", ntext="succ.", ppath=@prev, npath=@next, pobject=@prev, nobject=@next)

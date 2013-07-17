@@ -4,7 +4,7 @@
   = l(@revue.date_sortie, format: :month_year)
   - if @revue.pdf_url
     = link_to @revue.pdf_url do
-      = image_tag("pdficon_large.gif", :alt => "Version PDF", :title => "Version PDF", :class => "pdf_link")
+      = image_tag("pdficon_large.gif", alt: "Version PDF", title: "Version PDF", class: "pdf_link")
 
 = content_for :subnav do
   .subnav
@@ -35,7 +35,7 @@
 - if @revue.articles.any?
   - @revue.articles.each do |article|
     = content_tag_for :div, article do
-      = link_to [@revue, article] do
+      = link_to article do
         %h4
           %i.icon-book
           = article.full_title
@@ -44,4 +44,5 @@
 
 - if user_signed_in?
   %hr/
-  %p= link_to "Rajouter un article", new_article_path(revue_id: @revue.id)
+  .btn-group
+    = link_to "Rajouter un article", new_article_path(revue_id: @revue.id), class: "btn btn-primary pull-right"

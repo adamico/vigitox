@@ -2,13 +2,14 @@
 require "spec_helper"
 
 feature "Browsing revues" do
-  given!(:revue) { create(:revue, numero: 3) }
+  given!(:revue)    { create(:revue, numero: 3) }
+  given!(:article)  { create(:article, revue: revue) }
 
   scenario "accessing last revue" do
     visit root_path
-    page.should have_content /Dernier numéro/
+    page.should have_content /Dernier numéro/i
     visit revue_path(revue)
-    page.should have_content /vigitox numéro 3/
+    page.should have_content /vigitox n° 3/i
   end
 
   scenario "going to next and prev revue" do
@@ -16,12 +17,12 @@ feature "Browsing revues" do
     create(:revue, numero: 4)
     visit revue_path(revue)
     click_link "Numéro précédent"
-    page.should have_content /vigitox numéro 2/
+    page.should have_content /vigitox n° 2/i
     page.should_not have_link "Numéro précédent"
     click_link "Numéro suivant"
-    page.should have_content /vigitox numéro 3/
+    page.should have_content /vigitox n° 3/i
     click_link "Numéro suivant"
-    page.should have_content /vigitox numéro 4/
+    page.should have_content /vigitox n° 4/i
     page.should_not have_link "Numéro suivant"
   end
 
