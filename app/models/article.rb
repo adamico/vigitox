@@ -25,8 +25,7 @@ class Article < ActiveRecord::Base
   # kaminari
   paginates_per 20
 
-  # class methods & constants
-  EMPTY_ARGUMENTS_MESSAGE = "aucun argument"
+  # class methods
 
   def self.from_same_revue(a)
     joins(:revue).where('revues.id' => a.revue_id)
@@ -80,11 +79,7 @@ class Article < ActiveRecord::Base
   end
 
   def arguments
-    if argumentaire
-      [main_argument, aux_argument].compact.map(&:name).join(', ')
-    else
-      EMPTY_ARGUMENTS_MESSAGE
-    end
+    [main_argument, aux_argument].compact.map(&:name).join(', ')
   end
 
   def authors_list
