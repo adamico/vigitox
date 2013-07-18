@@ -1,5 +1,4 @@
 Vigitox::Application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
 
   devise_for :users
 
@@ -20,20 +19,13 @@ Vigitox::Application.routes.draw do
 
   # ressources de nom masculin commençant par voyelle
   scope path_names: {new: "nouveau", edit: "modifier"} do
-    resources :authors, path: "auteurs" do
-      get :names, on: :collection
-    end
-    resources :arguments do
-      get :names, on: :collection
-    end
-    resources :articles, except: :index do
-      get :autocomplete_author_nom, on: :collection
-      get :autocomplete_argument_name, on: :collection
-    end
+    resources :authors, path: "auteurs"
+    resources :arguments
+    resources :articles, except: :index
   end
 
-  match "/search" => "articles#search"
-  match "/mentionslegales" => "home#disclaimer", as: "disclaimer"
+  get "/search", to: "articles#search"
+  get "/mentionslegales", to: "home#disclaimer", as: "disclaimer"
 
   root to: 'home#index'
   # The priority is based upon order of creation:
