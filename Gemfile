@@ -45,10 +45,9 @@ gem 'acts_as_list'
 gem 'nested_form'
 gem 'acts_as_indexed'
 gem 'stringex'
-gem "ckeditor"
 gem 'prawn', github: "prawnpdf/prawn"
 gem 'rails3-jquery-autocomplete'
-gem 'friendly_id'
+gem 'friendly_id', github: 'FriendlyId/friendly_id'
 
 # rails 4 upgrade gems
 gem 'protected_attributes'

@@ -13,7 +13,7 @@
   %h4 Editorial
   = f.simple_fields_for :editorial do |editorial_form|
     = editorial_form.input :titre, as: :text, input_html: {class: "span8", rows: 2}
-    = editorial_form.input :contenu, as: :ckeditor
+    = editorial_form.input :contenu
     .control-group
       = editorial_form.label :author_id, label: "Auteur", class: "control-label"
       .controls
@@ -26,5 +26,5 @@
 
   .form-actions
     .btn-group
-      = button_tag "Enregistrer", type: :submit, class: "btn btn-success", disable_with: "Enregistrer"
+      = button_tag "Enregistrer", type: :submit, class: "btn btn-success", data: {disable_with: "Enregistrer"}
       = link_to "Retour", params[:id] ? revue : root_path, class: "btn btn-danger"

@@ -8,7 +8,7 @@
       %label.checkbox.inline
         = f.check_box :fiche_technique
         Fiche Technique ?
-  = f.input :contenu, as: :ckeditor
+  = f.input :contenu
   .control-group
     = f.label :authorship_tokens, "Auteurs", class: "control-label"
     .controls
@@ -18,12 +18,12 @@
     .control-group
       %label.control-label Arguments
       .controls
-        = argumentaire_form.autocomplete_field :main_argument_name, autocomplete_argument_name_articles_path, placeholder: "principal"
-        = argumentaire_form.autocomplete_field :aux_argument_name, autocomplete_argument_name_articles_path, placeholder: "secondaire"
+        = argumentaire_form.hidden_field :main_argument_id, class: "input-large argument_autocomplete", data: {load: argumentaire_form.object.main_argument.try(:id_and_name), placeholder: "argument principal"}
+        = argumentaire_form.hidden_field :aux_argument_id, class: "input-large argument_autocomplete", data: {load: argumentaire_form.object.aux_argument.try(:id_and_name), placeholder: "argument secondaire"}
         = f.error :argumentaire, class: "argumentaire-error"
 
   .form-actions
     .btn-group
-      = button_tag "Enregistrer et créer un nouvel article", type: :submit, class: "btn btn-success", disable_with: "Enregistrer et créer un nouvel article", name: "_save_and_add_another"
-      = button_tag "Enregistrer et continuer", type: :submit, class: "btn btn-main", disable_with: "Enregistrer et continuer", name: "_save_and_continue"
+      = button_tag "Enregistrer et créer un nouvel article", type: :submit, class: "btn btn-success", data: {disable_with: "Enregistrer et créer un nouvel article"}, name: "_save_and_add_another"
+      = button_tag "Enregistrer et continuer", type: :submit, class: "btn btn-main", data: {disable_with: "Enregistrer et continuer"}, name: "_save_and_continue"
       = link_to "Retour à la revue", revue_path(revue), class: 'btn btn-danger'
