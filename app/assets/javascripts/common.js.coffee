@@ -1,6 +1,8 @@
 $ = jQuery
 
 $ ->
+  $("#revue_editorial_attributes_contenu").ckeditor()
+  $("#article_contenu").ckeditor()
   $("#search_button").click (e) ->
     e.preventDefault()
     search_value = $("#search").val()
