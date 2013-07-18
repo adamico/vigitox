@@ -2,4 +2,4 @@
   = f.error_notification if f.error_notification
   .input-append
     = f.text_field :name, placeholder: "libéllé"
-    = button_tag "Enregistrer", type: :submit, class: "btn btn-success", disable_with: "Enregistrer"
+    = button_tag "Enregistrer", type: :submit, class: "btn btn-success", data: {disable_with: "Enregistrer"}
