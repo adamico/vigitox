@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @categorie = Categorie.create(params[:categorie])
+    @categorie = Categorie.create(categorie_params)
     flash[:notice] = "Catégorie '#{@categorie.name}' : création effectuée avec succès." if @categorie.save
     respond_with @categorie
   end
@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @categorie.update_attributes(params[:categorie])
+    @categorie.update_attributes(categorie_params)
     flash[:notice] = "Catégorie '#{@categorie.name}' : modification effectuée avec succès." if @categorie.save
     respond_with @categorie
   end
@@ -44,6 +44,10 @@ class CategoriesController < ApplicationController
   end
 
   protected
+
+  def categorie_params
+    params.require(:categorie).permit(:name)
+  end
 
   def set_categorie
     @categorie = Categorie.find(params[:id])

@@ -49,10 +49,6 @@ gem 'prawn', github: "prawnpdf/prawn"
 gem 'rails3-jquery-autocomplete'
 gem 'friendly_id', github: 'FriendlyId/friendly_id'
 
-# rails 4 upgrade gems
-gem 'protected_attributes'
-gem 'activerecord-deprecated_finders'
-
 group :production do
   gem 'rack-google_analytics', require: "rack/google_analytics"
 end

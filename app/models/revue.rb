@@ -1,13 +1,10 @@
 class Revue < ActiveRecord::Base
-  #mass assignment
-  attr_accessible :numero, :date_sortie, :pdf_url, :editorial_attributes, :redactionship_tokens, :redacteur_ids
-
   #validations
   validates_presence_of :numero
   validates_uniqueness_of :numero
 
   #associations
-  has_many :articles, dependent: :destroy, order: "position"
+  has_many :articles, -> {order(:position)}, dependent: :destroy
   has_many :redacteurs, through: :redactionships, source: :author
   has_many :redactionships, dependent: :destroy
   has_one :editorial

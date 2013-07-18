@@ -1,6 +1,5 @@
 class Argument < ActiveRecord::Base
   extend FriendlyId
-  attr_accessible :name, :nature
 
   friendly_id :name, use: :slugged
 

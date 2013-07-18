@@ -10,17 +10,3 @@ class Authorship < ActiveRecord::Base
     self.author = Author.find_by_nom(name)
   end
 end
-
-
-# == Schema Information
-# Schema version: 20101022172528
-#
-# Table name: authorships
-#
-#  id         :integer         primary key
-#  article_id :integer
-#  author_id  :integer
-#  created_at :timestamp
-#  updated_at :timestamp
-#
-

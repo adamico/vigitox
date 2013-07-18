@@ -21,7 +21,7 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    @author = Author.create(params[:author])
+    @author = Author.create(author_params)
     flash[:notice] = "Auteur '#{@author.to_param}' : création effectuée avec succès." if @author.save
     respond_with @author
   end
@@ -31,7 +31,7 @@ class AuthorsController < ApplicationController
   end
 
   def update
-    @author.update_attributes(params[:author])
+    @author.update_attributes(author_params)
     flash[:notice] = "Auteur '#{@author.to_param}' : modification effectuée avec succès." if @author.save
     respond_with @author
   end
@@ -43,6 +43,10 @@ class AuthorsController < ApplicationController
   end
 
   protected
+
+  def author_params
+    params.require(:author).permit(:nom, :prenom)
+  end
 
   def set_author
     @author = Author.find_by_slug(params[:id])

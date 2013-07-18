@@ -4,7 +4,6 @@ class Author < ActiveRecord::Base
 
   alias_attribute :name, :nom_and_prenom
 
-  attr_accessible :nom, :prenom
   validates_presence_of :nom, :prenom
 
   has_many :articles, :through => :authorships
@@ -12,7 +11,7 @@ class Author < ActiveRecord::Base
   has_many :revues, :through => :redactionships
   has_many :redactionships, :dependent => :destroy
 
-  default_scope order(:nom).includes(:authorships)
+  default_scope {order(:nom).includes(:authorships)}
 
   paginates_per 18
 
@@ -36,6 +35,6 @@ class Author < ActiveRecord::Base
 
 
   def id_and_name
-    {id: self.id, text: nom_and_prenom}
+    {id: id, text: nom_and_prenom}
   end
 end

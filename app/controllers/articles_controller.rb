@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
 
   def create
     @revue = Revue.find(params[:article][:revue_id])
-    @article = Article.create(params[:article])
+    @article = Article.create(article_params)
     if @article.save
       if params[:_save_and_continue]
         flash[:notice] = "Article '#{@article.full_title}' : création effectuée avec succès."
@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
 
   def update
     @revue = Revue.find(@article.revue_id)
-    @article.update_attributes(params[:article])
+    @article.update_attributes(article_params)
 
     if @article.save
       flash[:notice] = "Article '#{@article.full_title}' : modification effectuée avec succès."
@@ -68,6 +68,10 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def article_params
+    params.require(:article).permit(:revue_id, :titre, :contenu, :fiche_technique, :position, :authorship_tokens, :categorie_ids, argumentaire_attributes: [:main_argument_id, :aux_argument_id])
+  end
 
   def set_article
     @article ||= params[:id] ? Article.find(params[:id]) : @revue.articles.build

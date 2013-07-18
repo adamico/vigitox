@@ -25,7 +25,7 @@ class RevuesController < ApplicationController
   end
 
   def create
-    @revue = Revue.create(params[:revue])
+    @revue = Revue.create(revue_params)
     flash[:notice] = 'Revue enregistrée avec succès.' if @revue.save
     respond_with @revue
   end
@@ -36,13 +36,17 @@ class RevuesController < ApplicationController
   end
 
   def update
-    @revue.update_attributes(params[:revue])
+    @revue.update_attributes(revue_params)
 
     flash[:notice] = "Vigitox n° #{@revue.numero} : modification effectuée avec succès." if @revue.save
     respond_with @revue
   end
 
   protected
+
+  def revue_params
+    params.require(:revue).permit(:numero, :date_sortie, :pdf_url, :redactionship_tokens, :redacteur_ids, editorial_attributes: [:titre, :contenu, :author_id])
+  end
 
   def set_revue
     @revue = Revue.find(params[:id])

@@ -1,5 +1,4 @@
 class Editorial < ActiveRecord::Base
-  attr_accessible :titre, :contenu, :author_id
   belongs_to :revue
   belongs_to :author
 

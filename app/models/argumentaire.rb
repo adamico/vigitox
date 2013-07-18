@@ -1,5 +1,4 @@
 class Argumentaire < ActiveRecord::Base
-  attr_accessible :main_argument, :aux_argument, :main_argument_name, :aux_argument_name
   belongs_to :article
   belongs_to :main_argument, class_name: "Argument"
   belongs_to :aux_argument, class_name: "Argument"

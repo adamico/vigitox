@@ -1,7 +1,5 @@
 require 'stringex'
 class Article < ActiveRecord::Base
-  attr_accessible :revue_id, :titre, :contenu, :fiche_technique, :position, :authorship_tokens, :categorie_ids, :argumentaire_attributes
-
   # plugins
   acts_as_list scope: :revue
   acts_as_indexed fields: [:ascii_titre, :ascii_contenu, :main_argument]
@@ -16,7 +14,7 @@ class Article < ActiveRecord::Base
 
   attr_reader :authorship_tokens
 
-  delegate :main_argument, :aux_argument, to: :argumentaire
+  delegate :main_argument, :aux_argument, to: :argumentaire, allow_nil: true
   delegate :numero, to: :revue, allow_nil: true, prefix: true
 
   accepts_nested_attributes_for :argumentaire

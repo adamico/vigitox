@@ -32,7 +32,7 @@ class ArgumentsController < ApplicationController
   end
 
   def create
-    @argument = Argument.create(params[:argument])
+    @argument = Argument.create(argument_params)
     flash[:notice] = "Argument '#{@argument.name}' : création effectuée avec succès." if @argument.save
     respond_with @argument
   end
@@ -42,7 +42,7 @@ class ArgumentsController < ApplicationController
   end
 
   def update
-    @argument.update_attributes(params[:argument])
+    @argument.update_attributes(argument_params)
     flash[:notice] = "Argument '#{@argument.name}' : modification effectuée avec succès." if @argument.save
     respond_with @argument
   end
@@ -54,6 +54,10 @@ class ArgumentsController < ApplicationController
   end
 
   protected
+
+  def argument_params
+    params.require(:argument).permit(:name, :nature)
+  end
 
   def set_argument
     @argument = Argument.find_by_slug(params[:id])
