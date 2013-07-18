@@ -28,15 +28,13 @@ feature "Admin manages revues" do
     page.should have_content /succès/i
   end
 
-  scenario "article create" do
+  scenario "article create", js: true do
     visit revue_path(create(:revue))
     click_link "Rajouter un article"
-    click_on "Enregistrer et continuer"
-    page.should have_content /erreurs/i
     fill_in "article_titre", with: "titre"
     click_on "Enregistrer et continuer"
     page.should have_content /vous devez saisir au moins un argument principal/i
-    fill_in "article_argumentaire_attributes_main_argument_name", with: "argument"
+    page.execute_script %|$("#article_argumentaire_attributes_main_argument_id").val(#{argument.id})|
     click_on "Enregistrer et continuer"
     page.should have_content /création effectuée avec succès/i
   end
@@ -44,6 +42,7 @@ feature "Admin manages revues" do
   scenario "article update" do
     create(:revue)
     article = create(:article)
+    article.argumentaire.should_not be_nil
     visit edit_article_path(article)
     fill_in "article_titre", with: ""
     click_button "Enregistrer et continuer"

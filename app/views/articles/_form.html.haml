@@ -16,11 +16,14 @@
   = f.association :categories, as: :check_boxes, item_wrapper_class: "inline"
   = f.simple_fields_for :argumentaire do |argumentaire_form|
     .control-group
-      %label.control-label Arguments
+      = argumentaire_form.label :main_argument_id, "Argument principal", class: "control-label"
       .controls
         = argumentaire_form.hidden_field :main_argument_id, class: "input-large argument_autocomplete", data: {load: argumentaire_form.object.main_argument.try(:id_and_name), placeholder: "argument principal"}
-        = argumentaire_form.hidden_field :aux_argument_id, class: "input-large argument_autocomplete", data: {load: argumentaire_form.object.aux_argument.try(:id_and_name), placeholder: "argument secondaire"}
         = f.error :argumentaire, class: "argumentaire-error"
+    .control-group
+      = argumentaire_form.label :aux_argument_id, "Argument secondaire", class: "control-label"
+      .controls
+        = argumentaire_form.hidden_field :aux_argument_id, class: "input-large argument_autocomplete", data: {load: argumentaire_form.object.aux_argument.try(:id_and_name), placeholder: "argument secondaire"}
 
   .form-actions
     .btn-group
