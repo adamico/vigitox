@@ -30,7 +30,7 @@ end
 # Heroku gems
 gem 'rails_12factor', group: :production
 gem 'newrelic_rpm'
-gem 'unicorn'
+gem 'thin'
 gem 'foreman'
 
 gem "RedCloth"
