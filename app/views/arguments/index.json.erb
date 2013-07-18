@@ -1,0 +1,2 @@
+<% @arguments = params[:argument_id] ? Argument.where(id: params[:auteur_id]) : Argument.search_by_name(params[:q]) %>
+<%= raw(@arguments.map(&:id_and_name).to_json) %>

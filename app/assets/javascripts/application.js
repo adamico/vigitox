@@ -10,6 +10,5 @@
 //= require jquery.ui.all
 //= require bootstrap
 //= require select2
-//= require autocomplete-rails
 //= require common
 //= require_tree .

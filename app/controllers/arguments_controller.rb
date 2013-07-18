@@ -1,7 +1,7 @@
 #encoding: utf-8
 class ArgumentsController < ApplicationController
   respond_to :html
-  respond_to :pdf, only: [:index]
+  respond_to :json, :pdf, only: [:index]
 
   before_filter :set_argument, only: [:show, :edit, :update, :destroy]
 
@@ -9,6 +9,7 @@ class ArgumentsController < ApplicationController
     @arguments = Argument.order(:name)
     respond_with @arguments do |format|
       format.html { @arguments = @arguments.page(params[:page]) }
+      format.json
       format.pdf do
         pdf = ArgumentPdf.new(@arguments)
         send_data pdf.render,

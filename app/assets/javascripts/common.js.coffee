@@ -14,7 +14,8 @@ $ ->
   $("#revue_numero").val(revue_numero)
   $("#article_authorship_tokens").attachMultiSelect2("/auteurs.json")
   $("#revue_redactionship_tokens").attachMultiSelect2("/auteurs.json")
-  $(".author_autocomplete").attachSelect2("/auteurs.json")
+  $(".author_autocomplete").attachSelect2("auteur")
+  $(".argument_autocomplete").attachSelect2("argument")
   $(".subnav").affix
     offset:
       top: ->
@@ -23,26 +24,27 @@ $ ->
   if $(".argumentaire-error").length
     $(".argumentaire-error").closest(".control-group").addClass("error")
 
-$.fn.attachSelect2 = (url) ->
-  @select2
-    minimumInputLength: 3
-    initSelection : (element, callback) ->
-      preload = element.data("load")
-      callback(preload)
-    ajax:
-      url: url
-      dataType: "json"
-      data: (term, page) ->
-        q: term
-        page_limit: 10
-      results: (data, page) ->
-        return {results: data}
-  @on "change", (e) ->
-    $.ajax
-      url: "/auteurs.json?author_id=#{e.val}"
-      dataType: "json"
-      success: (data) =>
-        $(this).data("load", data[0])
+$.fn.attachSelect2 = (resource) ->
+  @each ->
+    $(@).select2
+      minimumInputLength: 3
+      initSelection : (element, callback) ->
+        preload = element.data("load")
+        callback(preload)
+      ajax:
+        url: "/#{resource}s.json"
+        dataType: "json"
+        data: (term, page) ->
+          q: term
+          page_limit: 10
+        results: (data, page) ->
+          return {results: data}
+    $(@).on "change", (e) ->
+      $.ajax
+        url: "/#{resource}s.json?#{resource}_id=#{e.val}"
+        dataType: "json"
+        success: (data) =>
+          $(this).data("load", data[0])
 
 jQuery.fn.attachMultiSelect2 = (url) ->
   @select2
