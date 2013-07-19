@@ -31,10 +31,6 @@ module Vigitox
     # config.i18n.default_locale = :de
     config.i18n.default_locale = :fr
 
-    if Rails.env.production?
-      config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-20156445-4")
-    end
-
     config.generators do |g|
       g.view_specs         false
       g.helper_specs       false

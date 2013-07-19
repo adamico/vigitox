@@ -50,7 +50,7 @@ gem 'rails3-jquery-autocomplete'
 gem 'friendly_id', github: 'FriendlyId/friendly_id'
 
 group :production do
-  gem 'rack-google_analytics', require: "rack/google_analytics"
+  gem 'google-analytics-rails'
 end
 
 group :development do

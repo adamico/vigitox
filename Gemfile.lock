@@ -136,6 +136,7 @@ GEM
       dotenv (>= 0.7)
       thor (>= 0.13.6)
     formatador (0.2.4)
+    google-analytics-rails (0.0.4)
     guard (1.8.1)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -215,8 +216,6 @@ GEM
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
-    rack-google_analytics (1.0.2)
-      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.0)
@@ -327,6 +326,7 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   friendly_id!
+  google-analytics-rails
   guard-rspec
   haml-rails
   jbuilder (~> 1.2)
@@ -342,7 +342,6 @@ DEPENDENCIES
   prawn!
   pry-rails
   quiet_assets (>= 1.0.1)
-  rack-google_analytics
   rails (= 4.0.0)
   rails3-jquery-autocomplete
   rails_12factor
