@@ -9,6 +9,5 @@
 //= require jquery.ui.all
 //= require bootstrap
 //= require select2
-//= require ckeditor/ckeditor
 //= require common
 //= require_tree .
