@@ -5,5 +5,7 @@
   .form-actions
     .btn-group
       = f.button :submit, "Enregistrer", class: "btn-success"
-      = link_to "Annuler les modifications", argument, class: "btn btn-danger"
-      = link_to "Retour à la liste", arguments_path, class: "btn btn-danger"
+      - if params[:id]
+        = link_to "Annuler les modifications", argument, class: "btn btn-danger"
+      - else
+        = link_to "Retour à la liste", arguments_path, class: "btn btn-danger"
