@@ -39,6 +39,9 @@ class ArticlesController < ApplicationController
       elsif params[:_save_and_add_another]
         flash[:notice] = "Article '#{@article.full_title}' : modification effectuée avec succès."
         location = new_article_path(revue_id: @revue.id)
+      else
+        flash[:notice] = "Article '#{@article.full_title}' : création effectuée avec succès."
+        location = revue_path(@revue)
       end
     end
 
@@ -62,6 +65,8 @@ class ArticlesController < ApplicationController
         location = edit_article_path(@article)
       elsif params[:_save_and_add_another]
         location = new_article_path(revue_id: @revue.id)
+      else
+        location = revue_path(@revue)
       end
     end
 
