@@ -13,6 +13,7 @@ class Article < ActiveRecord::Base
   has_one :argumentaire, dependent: :destroy
 
   attr_reader :authorship_tokens
+  attr_reader :categorisation_tokens
 
   delegate :main_argument, :aux_argument, to: :argumentaire, allow_nil: true
   delegate :numero, to: :revue, allow_nil: true, prefix: true
@@ -73,6 +74,11 @@ class Article < ActiveRecord::Base
   end
 
   # instance methods
+
+  def categorisation_tokens=(ids_array)
+    self.categorie_ids = ids_array.map(&:to_i)
+  end
+
   def authorship_tokens=(ids)
     self.author_ids = ids.split(",")
   end

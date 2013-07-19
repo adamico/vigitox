@@ -38,6 +38,7 @@ class ArticlesController < ApplicationController
         location = edit_article_path(@article)
       elsif params[:_save_and_add_another]
         flash[:notice] = "Article '#{@article.full_title}' : modification effectuée avec succès."
+        location = new_article_path(revue_id: @revue.id)
       end
     end
 
@@ -70,7 +71,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:revue_id, :titre, :contenu, :fiche_technique, :position, :authorship_tokens, :categorie_ids, argumentaire_attributes: [:main_argument_id, :aux_argument_id])
+    params.require(:article).permit(:revue_id, :titre, :contenu, :fiche_technique, :position, :authorship_tokens, categorie_ids: [], argumentaire_attributes: [:main_argument_id, :aux_argument_id, :id])
   end
 
   def set_article
