@@ -9,6 +9,8 @@ class Revue < ActiveRecord::Base
   has_many :redactionships, dependent: :destroy
   has_one :editorial
 
+  has_attached_file :pdf, storage: :dropbox, dropbox_credentials: Rails.root.join("config/dropbox.yml")
+
   accepts_nested_attributes_for :editorial,
     reject_if: proc { |attrs| attrs.all? { |k,v| v.blank? } }
 

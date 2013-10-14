@@ -1,19 +1,20 @@
 - revue.redactionships.build if revue.redactionships.empty?
 
-= simple_form_for revue, html: {class: "form-horizontal"} do |f|
+= simple_form_for revue, html: {class: "form-horizontal", multipart: true} do |f|
   = f.error_notification if f.error_notification
   .control-group
     = f.label :numero, "Numéro", class: "control-label"
     .controls
       = f.number_field :numero, class: "span1", "data-value" => assigned_numero
       Sortie :
-      = f.date_select :date_sortie, {:discard_day => true, :include_blank => true, autofocus: true}, {class: "span2"}
+      = f.date_select :date_sortie, {discard_day: true, include_blank: true, autofocus: true}, {class: "span2"}
   = f.input :pdf_url, label: 'Lien PDF', input_html: {class: "span8"}
+  = f.input :pdf
 
   %h4 Editorial
   = f.simple_fields_for :editorial do |editorial_form|
     = editorial_form.input :titre, as: :text, input_html: {class: "span8", rows: 2}
-    = editorial_form.input :contenu
+    = editorial_form.input :contenu, as: :ckeditor
     .control-group
       = editorial_form.label :author_id, label: "Auteur", class: "control-label"
       .controls

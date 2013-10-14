@@ -3,7 +3,7 @@
   = f.input :revue_id, as: :hidden
   = f.input :titre, as: :text, input_html: {class: "span8"}
   = f.input :fiche_technique, label: "Fiche Technique ?"
-  = f.input :contenu
+  = f.input :contenu, as: :ckeditor
   .control-group
     = f.label :authorship_tokens, "Auteurs", class: "control-label"
     .controls

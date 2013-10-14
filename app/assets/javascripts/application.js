@@ -5,9 +5,11 @@
 // the compiled file.
 //
 //= require jquery
+//= require turbolinks
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require bootstrap
+//= require ckeditor/init
 //= require select2
 //= require common
 //= require_tree .

@@ -40,7 +40,8 @@ gem 'simple_form', github: "plataformatec/simple_form"
 gem "haml-rails"
 
 gem 'kaminari'
-gem 'paperclip'
+gem 'paperclip', github: "thoughtbot/paperclip"
+gem "paperclip-dropbox", github: "janko-m/paperclip-dropbox"
 gem 'acts_as_list'
 gem 'nested_form'
 gem 'acts_as_indexed'
@@ -48,6 +49,7 @@ gem 'stringex'
 gem 'prawn', github: "prawnpdf/prawn"
 gem 'rails3-jquery-autocomplete'
 gem 'friendly_id', github: 'FriendlyId/friendly_id'
+gem 'ckeditor'
 
 group :production do
   gem 'google-analytics-rails'

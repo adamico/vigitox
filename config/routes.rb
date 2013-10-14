@@ -1,5 +1,6 @@
 Vigitox::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
 
   as :user do
