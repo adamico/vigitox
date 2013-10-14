@@ -1,5 +1,8 @@
 - title "Catégories"
 
+= content_for :subtitle do
+  = link_to 'Index PDF', categories_path(:format => "pdf") if Rails.env.development?
+
 %table.table.table-condensed.table-striped
   %thead
     %tr

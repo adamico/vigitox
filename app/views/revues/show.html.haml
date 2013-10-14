@@ -2,9 +2,8 @@
 
 = content_for :subtitle do
   = l(@revue.date_sortie, format: :month_year)
-  - if @revue.pdf_url
-    = link_to @revue.pdf_url do
-      = image_tag("pdficon_large.gif", alt: "Version PDF", title: "Version PDF", class: "pdf_link")
+  - link = @revue.pdf.exists? ? @revue.pdf.url(download: true) : @revue.pdf_url
+  = link_to image_tag("pdficon_large.gif", alt: "Version PDF", title: "Version PDF", class: "pdf_link"), link if link
 
 = content_for :subnav do
   .subnav

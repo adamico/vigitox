@@ -1,11 +1,22 @@
 #encoding: utf-8
 class CategoriesController < ApplicationController
   respond_to :html
+  respond_to :pdf, only: [:index]
 
   before_filter :set_categorie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories = Categorie.order(:name)
+    @categories = Categorie.order("LOWER(name)")
+    respond_with @categories do |format|
+      format.html
+      format.pdf do
+        pdf = CategoriesPdf.new(@categories)
+        send_data pdf.render,
+          filename: "vigitox_categories_#{Date.today}",
+          type: "application/pdf",
+          disposition: "inline"
+      end
+    end
   end
 
   def show

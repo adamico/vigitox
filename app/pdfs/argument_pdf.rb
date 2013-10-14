@@ -1,6 +1,6 @@
 class ArgumentPdf < Prawn::Document
   def initialize(arguments)
-    super(top_margin: 40)
+    super(top_margin: 20)
     @arguments = arguments
     repeat :all do
       page_header
@@ -10,10 +10,10 @@ class ArgumentPdf < Prawn::Document
   end
 
   def page_header
-    font_size 24 do
+    font_size 18 do
       cell at: [0, bounds.top],
         width: bounds.width,
-        content: "VIGItox : Index par arguments",
+        content: "VIGItox : Index par arguments (à jour au #{I18n.l Date.today})",
         font_style: :bold,
         align: :center,
         border_color: "000000"

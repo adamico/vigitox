@@ -6,16 +6,15 @@ class ArgumentsController < ApplicationController
   before_filter :set_argument, only: [:show, :edit, :update, :destroy]
 
   def index
-    @arguments = Argument.order(:name)
+    @arguments = Argument.order(:slug)
     respond_with @arguments do |format|
       format.html { @arguments = @arguments.page(params[:page]) }
       format.json
       format.pdf do
         pdf = ArgumentPdf.new(@arguments)
         send_data pdf.render,
-          filename: "vigitox_index",
-          type: "application/pdf",
-          disposition: "inline"
+          filename: "vigitox_index_#{Date.today}",
+          type: "application/pdf"
       end
     end
   end
