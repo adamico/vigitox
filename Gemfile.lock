@@ -20,6 +20,14 @@ GIT
     database_cleaner (1.0.0.RC1)
 
 GIT
+  remote: git://github.com/galetahub/ckeditor.git
+  revision: f7c706776521a43c1beb70fcd3161121af8900d4
+  specs:
+    ckeditor (4.0.6)
+      mime-types
+      orm_adapter
+
+GIT
   remote: git://github.com/janko-m/paperclip-dropbox.git
   revision: 14a0a33c3c44ac4152b27de9a19f6406d0732728
   specs:
@@ -125,9 +133,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    ckeditor (4.0.6)
-      mime-types
-      orm_adapter
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -337,7 +342,7 @@ DEPENDENCIES
   acts_as_list
   bootstrap-sass!
   capybara
-  ckeditor
+  ckeditor!
   coffee-rails (~> 4.0.0)
   database_cleaner!
   devise!

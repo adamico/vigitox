@@ -49,7 +49,7 @@ gem 'stringex'
 gem 'prawn', github: "prawnpdf/prawn"
 gem 'rails3-jquery-autocomplete'
 gem 'friendly_id', github: 'FriendlyId/friendly_id'
-gem 'ckeditor'
+gem 'ckeditor', github: "galetahub/ckeditor"
 
 group :production do
   gem 'google-analytics-rails'

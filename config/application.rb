@@ -13,6 +13,9 @@ Bundler.require(:default, Rails.env)
 
 module Vigitox
   class Application < Rails::Application
+    config.assets.enabled = true
+    config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w(ckeditor/*)
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
