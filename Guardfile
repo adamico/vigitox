@@ -2,6 +2,17 @@
 # More info at https://github.com/guard/guard#readme
 notification "terminal-notifier-guard"
 
+guard 'bundler' do
+  watch('Gemfile')
+  # Uncomment next line if Gemfile contain `gemspec' command
+  # watch(/^.+\.gemspec/)
+end
+
+guard 'rails' do
+  watch('Gemfile.lock')
+  watch(%r{^(config|lib)/.*})
+end
+
 guard 'rspec', all_on_start: false, all_after_pass: false, zeus: true, bundler: false, cli: "-c -f doc" do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
