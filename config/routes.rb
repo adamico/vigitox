@@ -1,4 +1,11 @@
+require 'api_constraints'
+
 Vigitox::Application.routes.draw do
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
+      resources :articles
+    end
+  end
 
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
