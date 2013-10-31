@@ -67,7 +67,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem "zeus"
   gem "poltergeist", github: "jonleighton/poltergeist"
 end
 
