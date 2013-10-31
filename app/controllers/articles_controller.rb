@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
 
   def update
     @revue = Revue.find(@article.revue_id)
-    @article.update_attributes(article_params)
+    @article.update(article_params)
 
     if @article.save
       flash[:notice] = "Article '#{@article.full_title}' : modification effectuée avec succès."
