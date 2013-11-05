@@ -74,6 +74,10 @@ class Article < ActiveRecord::Base
   end
 
   # instance methods
+  #
+  def titre_and_revue
+    {titre: titre, revue: revue.numero}
+  end
 
   def categorisation_tokens=(ids_array)
     self.categorie_ids = ids_array.map(&:to_i)
