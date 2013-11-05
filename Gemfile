@@ -51,6 +51,7 @@ gem 'prawn', github: "prawnpdf/prawn"
 gem 'rails3-jquery-autocomplete'
 gem 'friendly_id', github: 'FriendlyId/friendly_id'
 gem 'ckeditor', github: "galetahub/ckeditor"
+gem 'rack-cors', require: "rack/cors"
 
 group :production do
   gem 'google-analytics-rails'

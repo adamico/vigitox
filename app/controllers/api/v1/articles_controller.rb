@@ -1,7 +1,9 @@
 module Api
   module V1
     class ArticlesController < ApplicationController
-      before_filter :restrict_access
+      before_action :restrict_access
+      protect_from_forgery except: :index
+
       respond_to :json
 
       def index

@@ -3,7 +3,7 @@ require 'api_constraints'
 Vigitox::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
-      resources :articles
+      match "v1/articles", to: "articles#index", via: [:options, :get]
     end
   end
 
