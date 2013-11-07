@@ -75,8 +75,8 @@ class Article < ActiveRecord::Base
 
   # instance methods
   #
-  def titre_and_revue
-    {titre: titre, revue: revue.numero}
+  def id_titre_and_revue
+    {id: id, titre: titre, revue: revue.numero}
   end
 
   def categorisation_tokens=(ids_array)
