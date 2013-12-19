@@ -104,7 +104,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.search(query, page = 1)
-    with_query(query)
+    includes(:revue, :argumentaire).with_query("^" + query)
   end
 
   private

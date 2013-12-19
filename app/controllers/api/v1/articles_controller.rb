@@ -6,7 +6,7 @@ module Api
       respond_to :json
 
       def index
-        @articles = Article.search(params[:q]).includes(:revue).order("revue_id DESC")
+        @articles = Article.search(params[:q]).order("revue_id DESC")
         respond_with @articles.map(&:id_titre_and_revue)
       end
 
