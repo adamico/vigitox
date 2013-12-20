@@ -37,7 +37,6 @@ gem 'foreman'
 gem "RedCloth"
 
 gem "devise", github: "plataformatec/devise"
-gem 'formtastic'
 gem "haml-rails"
 
 gem 'kaminari'

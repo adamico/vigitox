@@ -1,27 +1,56 @@
-= simple_form_for article, html: {class: 'form-horizontal'} do |f|
-  = f.error_notification if f.error_notification
-  = f.input :revue_id, as: :hidden
-  = f.input :titre, as: :text, input_html: {class: "span8"}
-  = f.input :fiche_technique, label: "Fiche Technique ?"
-  = f.input :contenu, as: :ckeditor
-  .control-group
-    = f.label :authorship_tokens, "Auteurs", class: "control-label"
-    .controls
-      = f.hidden_field :authorship_tokens, class: "input-xlarge authorship_tokens", value: (items = f.object.authors).map(&:id).join(","), data: {load: (items.map(&:id_and_name).to_json)}, placeholder: "Saisir les auteurs"
-  = f.association :categories, as: :check_boxes, item_wrapper_class: "inline"
-  = f.simple_fields_for :argumentaire do |argumentaire_form|
-    .control-group.required
-      = argumentaire_form.label :main_argument_id, content_tag(:abbr, "*", title: "obligatoire") + " Argument principal", class: "control-label required"
-      .controls
-        = argumentaire_form.hidden_field :main_argument_id, class: "input-xlarge argument_autocomplete required", data: {load: argumentaire_form.object.main_argument.try(:id_and_name), placeholder: "Saisir un argument"}
-        = f.error :argumentaire, class: "argumentaire-error"
-    .control-group
-      = argumentaire_form.label :aux_argument_id, "Argument secondaire", class: "control-label"
-      .controls
-        = argumentaire_form.hidden_field :aux_argument_id, class: "input-xlarge argument_autocomplete", data: {load: argumentaire_form.object.aux_argument.try(:id_and_name), placeholder: "Saisir un argument"}
+= form_for article, html: {class: 'form-horizontal'} do |f|
+  = render 'application/error_message', model: article
 
-  .form-actions
-    = button_tag "Enregistrer et créer un nouvel article", type: :submit, class: "btn btn-primary btn-block", data: {disable_with: "Enregistrer et créer un nouvel article"}, name: "_save_and_add_another"
-    = button_tag "Enregistrer et continuer", type: :submit, class: "btn btn-main btn-block", data: {disable_with: "Enregistrer et continuer"}, name: "_save_and_continue"
-    = button_tag "Enregistrer et fermer", type: :submit, class: "btn btn-main btn-block", data: {disable_with: "Enregistrer et fermer"}
-    = link_to "Retour à la revue", revue_path(revue), class: 'btn btn-danger btn-block'
+  = f.hidden_field :revue_id
+
+  .form-group
+    = f.label :titre, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :titre, class: "form-control"
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .checkbox
+        %label
+          = f.check_box :fiche_technique
+          Fiche technique ?
+
+  .form-group
+    = f.label :contenu, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.cktext_area :contenu
+
+  .form-group
+    = f.label :authorship_tokens, "Auteurs", class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.hidden_field :authorship_tokens, class: "authorship_tokens",
+        value: (items = f.object.authors).map(&:id).join(","),
+        data: {load: (items.map(&:id_and_name).to_json), placeholder: "Saisir les auteurs"}
+
+  .form-group
+    = f.label :categories, "Catégories", class: "col-sm-2 control-label"
+    .col-sm-10
+      - Categorie.all.each do |categorie|
+        %label.checkbox-inline
+          = check_box_tag "article[categorie_ids][]", categorie.id, article.categorie_ids.include?(categorie.id), id: dom_id(categorie)
+          = categorie.name
+
+  = f.fields_for :argumentaire do |argumentaire_form|
+    .form-group.required
+      = argumentaire_form.label :main_argument_id, content_tag(:abbr, "*", title: "obligatoire") + " Argument principal", class: "col-sm-2 control-label required"
+      .col-sm-10
+        = argumentaire_form.hidden_field :main_argument_id, class: "argument_autocomplete required",
+          data: {load: argumentaire_form.object.main_argument.try(:id_and_name), placeholder: "Saisir un argument"}
+        -#= f.error :argumentaire, class: "argumentaire-error"
+    .form-group
+      = argumentaire_form.label :aux_argument_id, "Argument secondaire", class: "col-sm-2 control-label"
+      .col-sm-10
+        = argumentaire_form.hidden_field :aux_argument_id, class: "argument_autocomplete", data: {load: argumentaire_form.object.aux_argument.try(:id_and_name), placeholder: "Saisir un argument"}
+
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .btn-group
+        = button_tag "Enregistrer et créer un nouvel article", type: :submit, class: "btn btn-primary", data: {disable_with: "Enregistrer et créer un nouvel article"}, name: "_save_and_add_another"
+        = button_tag "Enregistrer et continuer", type: :submit, class: "btn btn-success", data: {disable_with: "Enregistrer et continuer"}, name: "_save_and_continue"
+        = button_tag "Enregistrer et fermer", type: :submit, class: "btn btn-success", data: {disable_with: "Enregistrer et fermer"}
+        = link_to "Retour à la revue", revue_path(revue), class: 'btn btn-danger'
