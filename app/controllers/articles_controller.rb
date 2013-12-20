@@ -3,8 +3,6 @@ require 'stringex'
 class ArticlesController < ApplicationController
   respond_to :html, :json
   before_filter :set_article, only: [:show, :edit, :update, :destroy]
-  autocomplete :author, :nom
-  autocomplete :argument, :name, full: true
 
   def search
     @search = params[:search].to_ascii if params[:search]
