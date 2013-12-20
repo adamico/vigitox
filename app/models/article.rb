@@ -19,7 +19,7 @@ class Article < ActiveRecord::Base
   delegate :numero, to: :revue, allow_nil: true, prefix: true
 
   accepts_nested_attributes_for :argumentaire
-  validates_associated :argumentaire, message: "vous devez saisir au moins un argument principal"
+  validates_associated :argumentaire
   validates_presence_of :titre
 
   # kaminari
