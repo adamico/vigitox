@@ -3,7 +3,7 @@
 source 'http://rubygems.org'
 ruby "2.0.0"
 
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 
 gem 'pg'
 
@@ -13,7 +13,7 @@ gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', "~> 4.0.0"
 
-gem "bootstrap-sass", github: "thomas-mcdonald/bootstrap-sass"
+gem "bootstrap-sass", "~> 3.0.3.0"
 gem 'select2-rails', github: "argerim/select2-rails"
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -37,7 +37,7 @@ gem 'foreman'
 gem "RedCloth"
 
 gem "devise", github: "plataformatec/devise"
-gem 'simple_form', github: "plataformatec/simple_form"
+gem 'formtastic'
 gem "haml-rails"
 
 gem 'kaminari'
