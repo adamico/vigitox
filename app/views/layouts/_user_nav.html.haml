@@ -1,4 +1,4 @@
 - if user_signed_in?
-  %ul.nav.pull-right
+  %ul.nav.navbar-nav.pull-right
     %li= link_to "Bonjour, #{current_user.email}", "#"
     %li= link_to "Déconnexion", logout_path

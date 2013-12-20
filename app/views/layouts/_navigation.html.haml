@@ -1,0 +1,32 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle{data: {toggle: "collapse", target: ".navbar-collapse"}}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "VIGItox", root_path, class: "navbar-brand"
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        - if Revue.any?
+          %li
+            = link_to revue_path(Revue.last) do
+              %span.glyphicon.glyphicon-star
+              Dernier Numéro
+        %li
+          = link_to archive_path do
+            %span.glyphicon.glyphicon-book
+            Archive
+
+        %li.dropdown
+          = link_to "#", class: "dropdown-toggle", data: {toggle: "dropdown"} do
+            %span.glyphicon.glyphicon-filter
+            Filtres
+            %b.caret
+          %ul.dropdown-menu
+            %li= link_to "Catégories", categories_path
+            %li= link_to "Arguments", arguments_path
+            %li= link_to "Auteurs", authors_path
+      = render 'layouts/user_nav'
+      = render 'layouts/search'
