@@ -67,6 +67,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'rspec-rails'
   gem "poltergeist", github: "jonleighton/poltergeist"
 end
