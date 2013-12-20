@@ -9,10 +9,10 @@
             %h3= annee.strftime("%Y")
             - revues_by_year = @revue_annees[annee]
             - if revues_by_year.any?
-              %ul.unstyled
+              %ul.list-unstyled
                 - revues_by_year.each do |revue|
                   %li
-                    %span.label= l(revue.date_sortie, :format => :only_month)
+                    %span.label.label-primary= l(revue.date_sortie, :format => :only_month)
                     = link_to "N° #{revue.numero}", revue,
                       title: revue_title_with_articles(revue),
                       data: {toggle: "tooltip", placement: "right", html: true}
