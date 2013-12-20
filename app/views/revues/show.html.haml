@@ -19,7 +19,7 @@
 - unless @revue.redacteurs.empty?
   %div
     %strong Comité de rédaction :
-    %ul.inline
+    %ul.list-inline
       - @revue.redacteurs.each do |redacteur|
         %li= link_to redacteur.short_name, author_path(redacteur)
 
@@ -34,15 +34,7 @@
 
   .clear
 
-- if @revue.articles.any?
-  - @revue.articles.each do |article|
-    = content_tag_for :div, article do
-      = link_to article do
-        %h4
-          %i.icon-book
-          = article.full_title
-- else
-  %p= "Aucun article pour le vigitox numéro #{@revue.numero}"
+= render "revue", revue: @revue
 
 - if user_signed_in?
   %hr/

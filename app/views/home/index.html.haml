@@ -6,6 +6,7 @@
 - if Revue.any?
   %h2 Dernier numéro publié :
 
+  %h3= link_to_with_title "VIGItox##{@last.numero} (#{l(@last.date_sortie, format: :month_year)})", @last
   = render "revues/revue", revue: @last
 
 = link_to archive_path, class: "btn btn-lg btn-primary" do
