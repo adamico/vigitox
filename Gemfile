@@ -1,20 +1,23 @@
-# Edit this Gemfile to bundle your application's dependencies.
-# This preamble is the current preamble for Rails 3 apps; edit as needed.
 source 'http://rubygems.org'
 ruby "2.0.0"
 
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
 gem 'pg'
 
+
+
 gem 'sass-rails', '~> 4.0.0'
-gem "jquery-ui-sass-rails"
-gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', "~> 4.0.0"
 
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+#gem 'therubyracer', platforms: :ruby
+
 gem "bootstrap-sass", "~> 3.0.3.0"
-gem 'select2-rails', github: "argerim/select2-rails"
+
+gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -27,30 +30,34 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-#
+
+# To use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.0.0'
+
+# To use debugger
+# gem 'debugger'
+
 # Heroku gems
 gem 'rails_12factor', group: :production
 gem 'newrelic_rpm'
-gem 'thin'
+gem 'unicorn'
+gem "unicorn-rails"
 gem 'foreman'
 
-gem "RedCloth"
-
 gem "devise", github: "plataformatec/devise"
+gem "RedCloth"
 gem "haml-rails"
-
 gem 'kaminari'
 gem 'paperclip', github: "thoughtbot/paperclip"
 gem "paperclip-dropbox", github: "janko-m/paperclip-dropbox"
 gem 'acts_as_list'
-gem 'nested_form'
 gem 'acts_as_indexed'
 gem 'stringex'
 gem 'prawn', github: "prawnpdf/prawn"
-gem 'rails3-jquery-autocomplete'
 gem 'friendly_id', github: 'FriendlyId/friendly_id'
 gem 'ckeditor', github: "galetahub/ckeditor"
 gem 'rack-cors', require: "rack/cors"
+gem 'select2-rails', github: "argerim/select2-rails"
 
 group :production do
   gem 'google-analytics-rails'

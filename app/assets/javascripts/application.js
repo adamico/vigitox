@@ -8,7 +8,6 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery.ui.all
 //= require bootstrap
 //= require ckeditor/override
 //= require ckeditor/init
