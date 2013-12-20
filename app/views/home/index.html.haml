@@ -1,5 +1,5 @@
 = content_for :page_header do
-  .hero-unit
+  .jumbotron
     %h1 VIGItox
     %p VIGItox est le bulletin d'information rédigé par les médecins et pharmaciens du service des Hospices Civils de Lyon "Centre Antipoison - Centre de Pharmacovigilance - Centre d'Évaluation et d'Information sur la Pharmacodépendance". Il parait à raison de 3 à 4 numéros par an depuis 1993. Nous espérons que sa lecture vous sera utile. N'hésitez pas à nous faire part de vos réactions, critiques et suggestions.
 
@@ -8,5 +8,5 @@
 
   = render "revues/revue", revue: @last
 
-= link_to archive_path, class: "btn btn-large btn-block btn-primary" do
+= link_to archive_path, class: "btn btn-lg btn-primary" do
   Voir les numéros précédents
