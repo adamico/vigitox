@@ -1,31 +1,50 @@
 - revue.redactionships.build if revue.redactionships.empty?
 
-= simple_form_for revue, html: {class: "form-horizontal", multipart: true} do |f|
-  = f.error_notification if f.error_notification
-  .control-group
-    = f.label :numero, "Numéro", class: "control-label"
-    .controls
-      = f.number_field :numero, class: "span1", "data-value" => assigned_numero
-      Sortie :
-      = f.date_select :date_sortie, {discard_day: true, include_blank: true, autofocus: true}, {class: "span2"}
-  = f.input :pdf_url, label: 'Lien PDF', input_html: {class: "span8"}
-  = f.input :pdf
+= form_for revue, html: {class: "form-horizontal", multipart: true} do |f|
+  = render "application/error_message", model: revue
+
+  .form-group
+    = f.label :numero, "Numéro", class: "col-sm-2 control-label"
+    .col-sm-1
+      = f.number_field :numero, class: "form-control", "data-value" => assigned_numero
+    .col-sm-3
+      = f.month_field :date_sortie, autofocus: true, class: "form-control"
+
+  .form-group
+    = f.label :pdf_url, 'Lien PDF', class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.url_field :pdf_url, class: "form-control"
+  .form-group
+    = f.label :pdf, "Fichier PDF", class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.file_field :pdf
 
   %h4 Editorial
-  = f.simple_fields_for :editorial do |editorial_form|
-    = editorial_form.input :titre, as: :text, input_html: {class: "span8", rows: 2}
-    = editorial_form.input :contenu, as: :ckeditor
-    .control-group
-      = editorial_form.label :author_id, label: "Auteur", class: "control-label"
-      .controls
-        = editorial_form.hidden_field :author_id, class: "input-large author_autocomplete", data: {load: editorial_form.object.author.try(:id_and_name), placeholder: "Saisir le nom de l'auteur"}
+  = f.fields_for :editorial do |editorial_form|
+    .form-group
+      = editorial_form.label :titre, class: "col-sm-2 control-label"
+      .col-sm-10
+        = editorial_form.text_area :titre, class: "form-control", rows: 2
+    .form-group
+      = editorial_form.label :contenu, class: "col-sm-2 control-label"
+      .col-sm-10
+        = editorial_form.cktext_area :contenu
+    .form-group
+      = editorial_form.label :author_id, "Auteur", class: "col-sm-2 control-label"
+      .col-sm-10
+        = editorial_form.hidden_field :author_id, class: "author_autocomplete",
+          data: {load: editorial_form.object.author.try(:id_and_name),
+          placeholder: "Saisir le nom de l'auteur"}
 
-  .control-group
-    = f.label :redactionship_tokens, "Comité rédaction", class: "control-label"
-    .controls
-      = f.hidden_field :redactionship_tokens, class: "input-xlarge redactionship_tokens", value: (items = f.object.redacteurs).map(&:id).join(","), data: {load: (items.map(&:id_and_name).to_json)}, placeholder: "Choisir les redacteurs"
+  .form-group
+    = f.label :redactionship_tokens, "Comité rédaction", class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.hidden_field :redactionship_tokens, class: "redactionship_tokens",
+        value: (items = f.object.redacteurs).map(&:id).join(","),
+        data: {load: (items.map(&:id_and_name).to_json)}, placeholder: "Choisir les redacteurs"
 
-  .form-actions
-    .btn-group
-      = button_tag "Enregistrer", type: :submit, class: "btn btn-success", data: {disable_with: "Enregistrer"}
-      = link_to "Retour", params[:id] ? revue : root_path, class: "btn btn-danger"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .btn-group
+        = button_tag "Enregistrer", type: :submit, class: "btn btn-success", data: {disable_with: "Enregistrer"}
+        = link_to "Retour", params[:id] ? revue : root_path, class: "btn btn-danger"
