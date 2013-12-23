@@ -19,9 +19,9 @@
           %td= Article.with_main_argument(argument).count + Article.with_aux_argument(argument).count
           - if user_signed_in?
             %td
-              %ul.actions
-                %li= link_to 'Modifier', edit_argument_path(argument)
-                %li= link_to 'Détruire', argument, :confirm => 'Etes-vous sur ?', :method => :delete
+              .btn-group
+                = link_to 'Modifier', edit_argument_path(argument), class: "btn btn-warning btn-sm"
+                = link_to 'Détruire', argument, data: {confirm: 'Etes-vous sur ?'}, method: :delete, class: "btn btn-danger btn-sm"
 
   = paginate @arguments, theme: "twitter-bootstrap"
 
