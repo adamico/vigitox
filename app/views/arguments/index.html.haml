@@ -1,7 +1,7 @@
 - title "Arguments"
 
 = content_for :subtitle do
-  = link_to 'Index PDF', arguments_path(:format => "pdf") if Rails.env.development?
+  = link_to 'Index PDF', arguments_path(format: "pdf") if user_signed_in?
 
 - if @arguments.any?
   %table.table.table-condensed.table-striped
@@ -29,6 +29,7 @@
   Aucun argument.
 
 - if user_signed_in?
-  = link_to new_argument_path, class: "btn btn-success" do
-    %i.icon-white.icon-plus
-    Nouvel Argument
+  .pull-right
+    = link_to new_argument_path, class: "btn btn-success" do
+      %span.glyphicon.glyphicon-plus
+      Nouvel Argument
