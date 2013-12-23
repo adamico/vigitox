@@ -26,19 +26,13 @@ $secondary_color_be: #FFBD80
 
 $global_background: #FFF
 
+body
+  background-color: $secondary_color_be
+
 #footer
   border-top: 1px solid $secondary_color_bb
   background-color: $secondary_color_be
-  background-image: -moz-linear-gradient(center top , $secondary_color_be, $secondary_color_bd)
-  background-repeat: repeat-x
   text-shadow: 0px 1px 1px #fff
-  left: 0
-  right: 0
-  width: 100%
-  bottom: 0
-  z-index: 1030
-  position: fixed
-  height: auto
   padding: 7px
   a
     color: $secondary_color_bc
@@ -46,9 +40,13 @@ $global_background: #FFF
 .pdf_link
   vertical-align: top
 
+#page_header
+  text-shadow: 0px 1px 1px #fff
+
 #revue, #article
   margin-top: 0.5em
   border-bottom: 4px solid $secondary_color_be
+  text-shadow: 0px 1px 1px #fff
 
 #article
   p
