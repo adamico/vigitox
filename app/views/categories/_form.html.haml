@@ -1,5 +1,13 @@
-= simple_form_for categorie, html: {class: 'form-inline'} do |f|
-  = f.error_notification if f.error_notification
-  .input-append
-    = f.text_field :name, placeholder: "libéllé"
-    = button_tag "Enregistrer", type: :submit, class: "btn btn-success", data: {disable_with: "Enregistrer"}
+= form_for categorie, html: {class: 'form-inline', role: "form"} do |f|
+  = render 'application/error_message', model: categorie
+
+  .form-group
+    = f.label :name, class: "sr-only"
+    = f.text_field :name, placeholder: "Libellé", class: "form-control"
+
+  .btn-group
+    = f.submit "Enregistrer", class: "btn btn-success"
+    - if params[:id]
+      = link_to "Annuler les modifications", categorie, class: "btn btn-danger"
+    - else
+      = link_to "Retour à la liste", categories_path, class: "btn btn-danger"

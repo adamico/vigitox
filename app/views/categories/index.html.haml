@@ -16,11 +16,12 @@
         %td= categorie.articles.count
         - if user_signed_in?
           %td
-            %ul.actions
-              %li= link_to 'Modifier', edit_categorie_path(categorie)
-              %li= link_to 'Détruire', categorie, :confirm => 'Sûr?', :method => :delete
+            .btn-group
+              = link_to 'Modifier', edit_categorie_path(categorie), class: "btn btn-sm btn-warning"
+              = link_to 'Détruire', categorie, data: {confirm: 'Sûr ?'}, method: :delete, class: "btn btn-sm btn-danger"
 
 - if user_signed_in?
-  = link_to new_categorie_path, class: "btn btn-success" do
-    %i.icon-white.icon-plus
-    Nouvelle Categorie
+  .pull-right
+    = link_to new_categorie_path, class: "btn btn-success" do
+      %span.glyphicon.glyphicon-plus
+      Nouvelle Categorie
