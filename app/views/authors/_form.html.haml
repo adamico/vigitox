@@ -1,10 +1,17 @@
-= simple_form_for author, html: {class: "form-inline"} do |f|
-  = f.error_notification if f.error_notification
-  .controls.controls-row
-    = f.text_field :nom, placeholder: "Nom", class: "span2"
-    = f.text_field :prenom, placeholder: "Prénom", class: "span2"
-  .form-actions
-    .btn-group
-      = button_tag "Enregistrer", type: :submit, class: "btn btn-success", data: {disable_with: "Enregistrer"}
+= form_for author, html: {class: "form-inline", role: "form"} do |f|
+  = render 'application/error_message', model: author
+
+  .form-group
+    = f.label :nom, class: "sr-only"
+    = f.text_field :nom, placeholder: "Nom", class: "form-control"
+
+  .form-group
+    = f.label :prenom, class: "sr-only"
+    = f.text_field :prenom, placeholder: "Prénom", class: "form-control"
+
+  .btn-group
+    = f.submit "Enregistrer", class: "btn btn-success"
+    - if params[:id]
       = link_to "Annuler les modifications", author, class: "btn btn-danger"
+    - else
       = link_to "Retour à la liste", authors_path, class: "btn btn-danger"

@@ -13,12 +13,14 @@
         %td= author.authorships.size
         - if user_signed_in?
           %td
-            %ul.actions
-              %li= link_to 'Modifier', edit_author_path(author)
-              %li= link_to 'Détruire', author, :confirm => 'Etes-vous sur ?', :method => :delete
+            .btn-group
+              = link_to 'Modifier', edit_author_path(author), class: "btn btn-sm btn-warning"
+              = link_to 'Détruire', author, data: {confirm: 'Etes-vous sur ?'}, method: :delete, class: "btn btn-sm btn-danger"
+
 = paginate @authors, theme: "twitter-bootstrap"
 
 - if user_signed_in?
-  = link_to new_author_path, class: "btn btn-success" do
-    %i.icon-white.icon-plus
-    Nouvel Auteur
+  .pull-right
+    = link_to new_author_path, class: "btn btn-success" do
+      %span.glyphicon.glyphicon-plus
+      Nouvel Auteur
