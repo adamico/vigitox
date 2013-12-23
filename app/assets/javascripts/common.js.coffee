@@ -5,7 +5,7 @@ $ ->
     e.preventDefault()
     search_value = $("#search").val()
     if search_value
-      $(".navbar-search").submit()
+      $(@).parent("form").submit()
   $("[data-toggle=tooltip]").tooltip
     delay:
       hide: 100
