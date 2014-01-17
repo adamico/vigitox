@@ -63,6 +63,8 @@
 .select2-container-multi .select2-choices .select2-search-field {
   height: 28px;
   line-height: 27px;
+  padding: 0;
+  padding-left: 12px;
 }
 
 .select2-drop.select2-drop-active,
