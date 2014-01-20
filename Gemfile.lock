@@ -13,13 +13,6 @@ GIT
       thor (~> 0.14)
 
 GIT
-  remote: git://github.com/bmabey/database_cleaner.git
-  revision: c86583862e46d5708f3c6aff6b960d78899edc36
-  tag: v1.0.0.RC1
-  specs:
-    database_cleaner (1.0.0.RC1)
-
-GIT
   remote: git://github.com/galetahub/ckeditor.git
   revision: 077827e013901f315a6a1ca9cc7ac2af05acc099
   specs:
@@ -137,6 +130,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.1)
     dotenv (0.9.0)
@@ -339,7 +333,7 @@ DEPENDENCIES
   capybara
   ckeditor!
   coffee-rails (~> 4.0.0)
-  database_cleaner!
+  database_cleaner (~> 1.2.0)
   devise!
   dotenv-rails
   factory_girl_rails

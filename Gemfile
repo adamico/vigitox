@@ -1,12 +1,10 @@
 source 'http://rubygems.org'
-ruby "2.0.0"
+ruby "2.1.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
 gem 'pg'
-
-
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
@@ -82,7 +80,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem "guard-rspec"
-  gem "database_cleaner", github: "bmabey/database_cleaner", tag: "v1.0.0.RC1"
-  gem "simplecov", :require => false
+  gem "database_cleaner", "~> 1.2.0"
+  gem "simplecov", require: false
   gem 'launchy'    # So you can do Then show me the page
 end
