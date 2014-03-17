@@ -75,6 +75,7 @@ gem 'dotenv-rails'
 group :development, :test do
   gem 'rspec-rails'
   gem "poltergeist", github: "jonleighton/poltergeist"
+  gem 'railroady'
 end
 
 group :test do
