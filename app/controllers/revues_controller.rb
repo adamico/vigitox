@@ -1,4 +1,3 @@
-#encoding: utf-8
 class RevuesController < ApplicationController
   respond_to :html
   before_filter :set_revue, only: [:show, :edit, :update, :destroy]
