@@ -45,7 +45,16 @@ class RevuesController < ApplicationController
   protected
 
   def revue_params
-    params.require(:revue).permit(:numero, :date_sortie, :pdf_url, :pdf, :redactionship_tokens, :redacteur_ids, editorial_attributes: [:titre, :contenu, :author_id])
+    params.require(:revue).permit(:numero,
+                                  :year_month_sortie,
+                                  :pdf_url,
+                                  :pdf,
+                                  :redactionship_tokens,
+                                  :redacteur_ids,
+                                  editorial_attributes: [
+                                    :titre, :contenu, :author_id
+                                  ]
+                                 )
   end
 
   def set_revue
@@ -54,7 +63,9 @@ class RevuesController < ApplicationController
 
   def assigned_numero
     if Revue.any?
-      @assigned_numero ||= params[:id] ? @revue.numero : Revue.recent.first.numero + 1
+      @assigned_numero ||= params[:id] ?
+        @revue.numero :
+        Revue.recent.first.numero + 1
     end
   end
 end
