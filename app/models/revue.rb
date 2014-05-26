@@ -37,6 +37,10 @@ class Revue < ActiveRecord::Base
     recent.first
   end
 
+  def year_month_sortie=(year_month)
+    self.date_sortie = Date.parse(year_month + '-01')
+  end
+
   # instance methods
   def redactionship_tokens=(ids)
     self.redacteur_ids = ids.split(",")
