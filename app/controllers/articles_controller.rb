@@ -40,6 +40,8 @@ class ArticlesController < ApplicationController
       end
     end
 
+    logger.debug location
+
     respond_with @article, location: location
   end
 
