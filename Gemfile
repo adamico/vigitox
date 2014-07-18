@@ -25,7 +25,7 @@ gem 'unicorn'
 gem "unicorn-rails"
 gem 'foreman'
 
-gem "devise", github: "plataformatec/devise"
+gem 'devise', '~> 3.2.4'
 gem "RedCloth"
 gem "haml-rails"
 gem 'kaminari'
@@ -49,6 +49,7 @@ group :development do
   gem 'terminal-notifier-guard'
   gem 'guard-bundler'
   gem 'guard-rails'
+  gem 'spring'
 end
 
 gem 'dotenv-rails'
@@ -63,9 +64,9 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'capybara'
+  gem 'capybara', '~> 2.1'
   gem "guard-rspec"
-  gem "database_cleaner", "~> 1.2.0"
+  gem "database_cleaner", "~> 1.3.0"
   gem "simplecov", require: false
   gem 'launchy'    # So you can do Then show me the page
 end

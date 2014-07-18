@@ -2,7 +2,7 @@
 
 # Add new inflection rules using the following format 
 # (all these examples are active by default):
-ActiveSupport::Inflector.inflections do |inflect|
+ActiveSupport::Inflector.inflections(:fr) do |inflect|
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
   inflect.irregular 'categorie', 'categories'
@@ -11,6 +11,6 @@ ActiveSupport::Inflector.inflections do |inflect|
 end
 #
 # These inflection rules are supported but not enabled by default:
-# ActiveSupport::Inflector.inflections do |inflect|
+# ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end

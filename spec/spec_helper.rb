@@ -52,12 +52,25 @@ RSpec.configure do |config|
   config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
-  config.before(:each) do
+
+  config.around(:each) do |example|
+    # Use really fast transaction strategy for all
+    # examples except `js: true` capybara specs
+    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+
+    # Start transaction
     DatabaseCleaner.start
-  end
-  config.after(:each) do
+
+    # Run example
+    example.run
+
+    # Clear session data
+    Capybara.reset_sessions!
+
+    # Rollback transaction
     DatabaseCleaner.clean
   end
 end

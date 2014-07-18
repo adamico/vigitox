@@ -2,7 +2,6 @@ class Article < ActiveRecord::Base
   # plugins
   include PgSearch
   acts_as_list scope: :revue
-  #acts_as_indexed fields: [:ascii_titre, :ascii_contenu, :main_argument]
 
   # relations
   belongs_to :revue, counter_cache: true
