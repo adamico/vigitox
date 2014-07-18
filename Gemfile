@@ -1,40 +1,22 @@
 source 'http://rubygems.org'
 ruby "2.1.2"
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.6'
+gem 'rails', '4.1.4'
 
 gem 'pg'
 gem 'pg_search'
 
-gem 'sass-rails', '~> 4.0.2'
+gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', "~> 4.0.0"
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-#gem 'therubyracer', platforms: :ruby
-
-gem "bootstrap-sass", "~> 3.1.1"
+gem "bootstrap-sass", "~> 3.2.0"
+gem 'autoprefixer-rails'
 
 gem 'jquery-rails'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-gem "jquery-turbolinks"
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use debugger
-# gem 'debugger'
+gem 'jbuilder', '~> 2.0'
 
 # Heroku gems
 gem 'rails_12factor', group: :production

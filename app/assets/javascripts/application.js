@@ -5,10 +5,8 @@
 // the compiled file.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require ckeditor/override
 //= require ckeditor/init
 //= require select2
