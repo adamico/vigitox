@@ -10,4 +10,3 @@
 //= require ckeditor/init
 //= require select2
 //= require common
-//= require_tree .

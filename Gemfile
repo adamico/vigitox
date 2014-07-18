@@ -29,8 +29,8 @@ gem 'devise', '~> 3.2.4'
 gem "RedCloth"
 gem "haml-rails"
 gem 'kaminari'
-gem 'paperclip', github: "thoughtbot/paperclip"
-gem "paperclip-dropbox", github: "janko-m/paperclip-dropbox"
+gem 'paperclip', "~> 4.1"
+gem "paperclip-dropbox", ">= 1.1.7"
 gem 'acts_as_list'
 gem 'prawn', github: "prawnpdf/prawn"
 gem 'friendly_id', github: 'FriendlyId/friendly_id'
