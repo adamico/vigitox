@@ -12,9 +12,9 @@ $ ->
   $(".alert-message").alert()
   revue_numero = $("#revue_numero").attr("data-value")
   $("#revue_numero").val(revue_numero)
-  $("#article_authorship_tokens").attachMultiSelect2("/auteurs.json")
-  $("#revue_redactionship_tokens").attachMultiSelect2("/auteurs.json")
-  $(".author_autocomplete").attachSelect2("auteur")
+  $("#article_authorship_tokens").attachMultiSelect2("/authors.json")
+  $("#revue_redactionship_tokens").attachMultiSelect2("/authors.json")
+  $(".author_autocomplete").attachSelect2("author")
   $(".argument_autocomplete").attachSelect2("argument")
   $(".subnav").affix
     offset:

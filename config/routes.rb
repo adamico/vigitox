@@ -15,22 +15,16 @@ Vigitox::Application.routes.draw do
     get "logout", to: "devise/sessions#destroy"
   end
 
-  # ressources de nom féminin
-  scope path_names: {new: "nouvelle", edit: "modifier"} do
-    resources :categories
-    resources :revues, except: [:index] do
-      post :sort_articles, on: :collection
-    end
+  resources :categories
+  resources :revues, except: [:index] do
+    post :sort_articles, on: :collection
   end
 
   get "archive", to: "revues#index", as: "archive"
 
-  # ressources de nom masculin commençant par voyelle
-  scope path_names: {new: "nouveau", edit: "modifier"} do
-    resources :authors, path: "auteurs"
-    resources :arguments
-    resources :articles, except: :index
-  end
+  resources :authors
+  resources :arguments
+  resources :articles, except: :index
 
   get "/search", to: "articles#search"
   get "/mentionslegales", to: "home#disclaimer", as: "disclaimer"
