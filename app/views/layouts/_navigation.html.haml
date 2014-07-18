@@ -1,7 +1,9 @@
 %nav.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
   .container
     .navbar-header
-      %button.navbar-toggle{data: {toggle: "collapse", target: ".navbar-collapse"}}
+      = button_tag class: 'navbar-toggle',
+        data: { target: '.navbar-collapse', toggle: 'collapse' },
+        type: 'button' do
         %span.sr-only Menu
         %span.icon-bar
         %span.icon-bar
