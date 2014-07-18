@@ -1,13 +1,10 @@
-# encoding: UTF-8
-require 'stringex'
 class ArticlesController < ApplicationController
   respond_to :html, :json
   before_filter :set_article, only: [:show, :edit, :update, :destroy]
 
   def search
-    @search = params[:search].to_ascii if params[:search]
-    @articles = Article.search(@search, params[:page]).includes(:revue).
-      order("revue_id DESC").page(params[:page])
+    @articles = Article.search(params[:query])
+      .includes(:revue).page(params[:page])
     respond_with @articles
   end
 

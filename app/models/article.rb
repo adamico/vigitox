@@ -1,8 +1,8 @@
-require 'stringex'
 class Article < ActiveRecord::Base
   # plugins
+  include PgSearch
   acts_as_list scope: :revue
-  acts_as_indexed fields: [:ascii_titre, :ascii_contenu, :main_argument]
+  #acts_as_indexed fields: [:ascii_titre, :ascii_contenu, :main_argument]
 
   # relations
   belongs_to :revue, counter_cache: true
@@ -11,6 +11,8 @@ class Article < ActiveRecord::Base
   has_many :authors, through: :authorships
   has_many :authorships, dependent: :destroy
   has_one :argumentaire, dependent: :destroy
+  has_one :main_argument, through: :argumentaire
+  has_one :aux_argument, through: :argumentaire
 
   attr_reader :authorship_tokens
   attr_reader :categorisation_tokens
@@ -103,17 +105,18 @@ class Article < ActiveRecord::Base
     [prepend, titre].compact.join(" : ")
   end
 
-  def self.search(query, page = 1)
-    includes(:revue, :argumentaire).with_query("^" + query)
-  end
+  pg_search_scope :text_search, against: [:titre, :contenu],
+                                associated_against: {
+                                                       main_argument: :name,
+                                                       aux_argument: :name
+                                                     },
+                                using: { tsearch: {
+                                  prefix: true,
+                                  dictionary: 'french' }
+                                },
+                                ignoring: :accents
 
-  private
-
-  def ascii_titre
-    self.titre.to_ascii
-  end
-
-  def ascii_contenu
-    self.contenu.to_ascii
+  def self.search(query)
+    text_search(query) if query.present?
   end
 end

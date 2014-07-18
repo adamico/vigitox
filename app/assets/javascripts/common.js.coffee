@@ -3,7 +3,7 @@ $ = jQuery
 $ ->
   $("#search_button").click (e) ->
     e.preventDefault()
-    search_value = $("#search").val()
+    search_value = $("#query").val()
     if search_value
       $(@).parent("form").submit()
   $("[data-toggle=tooltip]").tooltip

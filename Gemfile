@@ -5,6 +5,7 @@ ruby "2.1.2"
 gem 'rails', '4.0.6'
 
 gem 'pg'
+gem 'pg_search'
 
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
@@ -49,11 +50,9 @@ gem 'kaminari'
 gem 'paperclip', github: "thoughtbot/paperclip"
 gem "paperclip-dropbox", github: "janko-m/paperclip-dropbox"
 gem 'acts_as_list'
-gem 'acts_as_indexed'
-gem 'stringex'
 gem 'prawn', github: "prawnpdf/prawn"
 gem 'friendly_id', github: 'FriendlyId/friendly_id'
-gem 'ckeditor', github: "galetahub/ckeditor"
+gem 'ckeditor', '~> 4.0.11'
 gem 'rack-cors', require: "rack/cors"
 gem 'select2-rails', github: "argerim/select2-rails"
 
