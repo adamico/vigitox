@@ -34,7 +34,7 @@ gem "paperclip-dropbox", github: "janko-m/paperclip-dropbox"
 gem 'acts_as_list'
 gem 'prawn', github: "prawnpdf/prawn"
 gem 'friendly_id', github: 'FriendlyId/friendly_id'
-gem 'ckeditor', '~> 4.0.11'
+gem 'ckeditor'
 gem 'rack-cors', require: "rack/cors"
 gem 'select2-rails', github: "argerim/select2-rails"
 
